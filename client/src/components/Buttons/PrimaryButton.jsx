@@ -3,11 +3,7 @@ import "./Buttons.css";
 import PropTypes from "prop-types";
 
 const PrimaryButton = ({ text }) => {
-  return (
-    <button className="primary-button">
-      {text}
-    </button>
-  );
+  return <button className="primary-button">{text}</button>;
 };
 
 PrimaryButton.propTypes = {

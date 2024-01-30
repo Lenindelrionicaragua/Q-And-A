@@ -10,18 +10,15 @@ const Nav = () => {
     <>
       <header className="site-nav">
         <div id="header-logo">
-            <Logo />
+          <Logo />
         </div>
         <div className="header-buttons">
-           <SecondaryButton text="Log in" />
-           <PrimaryButton text="Sign up" />
+          <SecondaryButton text="Log in" />
+          <PrimaryButton text="Sign up" />
         </div>
       </header>
       {/* <h1 className="site-nav">Try text</h1> */}
-      <nav>
-        {/* //buttons */}
-      </nav>
-
+      <nav>{/* //buttons */}</nav>
     </>
   );
 };
