@@ -1,0 +1,9 @@
+body {
+  border: solid 2px blue;
+  width: 100vw;
+  margin: 0;
+}
+
+#root{
+  border: solid 2px red;
+}

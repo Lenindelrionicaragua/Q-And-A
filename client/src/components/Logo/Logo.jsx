@@ -4,7 +4,7 @@ import AppLogo from "../../images/Q&A Sessions.png";
 
 const Logo = () => {
   return (
-    <div id="logoImage">
+    <div className="logoImage">
       <img alt="Q&A Sessions Logo" src={AppLogo} />
     </div>
   );

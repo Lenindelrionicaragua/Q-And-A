@@ -1,0 +1,30 @@
+button {
+  font-family: 'Inter', sans-serif;
+  border: none;
+}
+
+.primary-button {
+  border-radius: 0.35em;
+  background: #76F013;
+  color: #1D1E21;
+  font-size: 1em;
+  font-weight: 700;
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.secondary-button {
+  border-radius: 0.35em;
+  background: #76F013;
+  color: #1D1E21;
+  font-size: 1em;
+  font-weight: 700;
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
