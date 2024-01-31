@@ -1,24 +1,37 @@
 import React from "react";
 import "./Nav.css";
-import Logo from "../Logo/Logo";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import SecondaryButton from "../Buttons/SecondaryButton";
-// import { Link } from "react-router-dom";
+
+import homeIcon from "../../images/icons/home-white.png";
+import homeIconHover from "../../images/icons/home.png";
+import modulesIcon from "../../images/icons/compass-white.png";
+import modulesIconHover from "../../images/icons/compass.png";
 
 const Nav = () => {
   return (
     <>
-      <header className="site-nav">
-        <div id="header-logo">
-          <Logo />
+      <nav className="site-nav" id="nav-sidebar">
+        <div className="nav-buttons">
+          <PrimaryButton
+            text="HOME"
+            addIcon={true}
+            srcIcon={homeIcon}
+            srcHoverIcon={homeIconHover}
+          />
+          <PrimaryButton
+            text="MODULES"
+            addIcon={true}
+            srcIcon={modulesIcon}
+            srcHoverIcon={modulesIconHover}
+          />
         </div>
-        <div className="header-buttons">
-          <SecondaryButton text="Log in" />
-          <PrimaryButton text="Sign up" />
+        <div className="user-area">
+          <h3>
+            Welcome <span className="username">Guest</span>
+          </h3>
+          <PrimaryButton text="Ask a Question" />
         </div>
-      </header>
-      {/* <h1 className="site-nav">Try text</h1> */}
-      <nav>{/* //buttons */}</nav>
+      </nav>
     </>
   );
 };

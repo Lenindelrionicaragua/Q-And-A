@@ -1,24 +1,41 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-.site-nav {
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-}
-
-/* Header Styles */
-header {
-  border: solid 5px green;
-  padding: 3em;
+/* Nav Styles */
+nav {
+  background-color: #1d1e21;
+  width: 20vw;
+  grid-area: sidebar;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  min-width: 15vw;
+  padding-bottom: 2em;
 }
 
-#header-logo {
-  border: solid 2px red;
-  width: 300px;
-}
-
-.header-buttons {
+.nav-buttons {
   display: flex;
-  gap: 0.55em;
+  flex-direction: column;
+}
+
+.nav-buttons button {
+  font-size: 0.85em;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  justify-content: left;
+  padding: 1.75em 1.15em;
+  background-color: #1d1e21;
+  border-bottom: solid 1px #c8d1df;
+  border-radius: 0em;
+  color: #c8d1df;
+}
+
+.user-area {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0em 1.25em;
+  color: #c8d1df;
+}
+
+.user-area .username {
+  color: #76f013;
 }

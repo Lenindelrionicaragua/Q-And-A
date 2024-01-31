@@ -1,11 +1,11 @@
 import React from "react";
 import "./Logo.css";
-import AppLogo from "../../images/Q&A Sessions.png";
+import appLogo from "../../images/Q&A Sessions.png";
 
 const Logo = () => {
   return (
     <div className="logoImage">
-      <img alt="Q&A Sessions Logo" src={AppLogo} />
+      <img alt="Q&A Sessions Logo" src={appLogo} />
     </div>
   );
 };
