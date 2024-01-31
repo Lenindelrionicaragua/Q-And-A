@@ -1,6 +1,7 @@
 button {
   font-family: "Inter", sans-serif;
   border: none;
+  cursor: pointer;
 }
 
 .primary-button {
@@ -8,7 +9,7 @@ button {
   background: #76f013;
   color: #1d1e21;
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.5em 1em;
   display: flex;
   justify-content: center;
@@ -16,15 +17,27 @@ button {
   gap: 0.5em;
 }
 
+.primary-button:hover {
+  background: #1d1e21;
+  color: #FFFFFF;
+}
+
 .secondary-button {
   border-radius: 0.35em;
-  background: #76f013;
-  color: #1d1e21;
+  border: solid 1.5px #616161;
+  background: #FFFFFF;
+  color: #616161;
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.5em 1em;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5em;
+}
+
+.secondary-button:hover {
+  border: solid 1.5px #1d1e21;
+  background: #1d1e21;
+  color: #FFFFFF;
 }
