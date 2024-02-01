@@ -1,0 +1,38 @@
+button {
+  font-size: 0.9em;
+  font-family: "Inter", sans-serif;
+  border: solid 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  padding-bottom: 1.05em;
+  min-height: 40px;
+  max-height: 40px;
+  gap: 0.5em;
+}
+
+/* Icon styles */
+button .icon {
+  padding-top: 0.15em;
+}
+
+button .icon img {
+  height: 1em;
+}
+
+/* Primary button styles */
+.primary-button {
+  font-weight: 600;
+  border-radius: 0.35em;
+  border-color: #c8d1df;
+  background: #0f0f12;
+  color: #c8d1df;
+}
+
+.primary-button:hover {
+  border-color: #76f013;
+  background: #76f013;
+  color: #0f0f12;
+}
