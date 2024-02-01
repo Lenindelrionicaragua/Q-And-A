@@ -20,6 +20,7 @@ const QuestionDetail = () => {
       userName: "Zehra",
       time: 5,
     });
+
     setAnswers([
       {
         content:
