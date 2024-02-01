@@ -16,6 +16,7 @@ nav {
 }
 
 .nav-buttons button {
+  width: 100%;
   font-size: 0.85em;
   border-top: none;
   border-left: none;
@@ -34,6 +35,10 @@ nav {
   flex-direction: column;
   margin: 0em 1.25em;
   color: #c8d1df;
+}
+
+.user-area button {
+  width: 100%;
 }
 
 .user-area .username {

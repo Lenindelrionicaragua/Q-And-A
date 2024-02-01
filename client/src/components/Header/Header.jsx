@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.css";
 import Logo from "../Logo/Logo";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,8 +12,12 @@ const Header = () => {
           <Logo />
         </div>
         <div className="header-buttons">
-          <PrimaryButton text="Log in" />
-          <PrimaryButton text="Sign up" />
+          <Link to="/log-in">
+            <PrimaryButton text="Log in" />
+          </Link>
+          <Link to="/sign-up">
+            <PrimaryButton text="Sign up" />
+          </Link>
         </div>
       </header>
     </>

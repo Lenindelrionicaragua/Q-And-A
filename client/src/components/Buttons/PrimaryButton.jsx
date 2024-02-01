@@ -18,7 +18,7 @@ const PrimaryButton = ({ text, addIcon, srcIcon, srcHoverIcon }) => {
 
   return (
     <button
-      className="primary-button icon-button"
+      className="primary-button"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -24,3 +24,7 @@ main {
   padding: 2em;
   width: 70vw;
 }
+
+a {
+  text-decoration: none;
+}

@@ -16,6 +16,9 @@ const App = () => {
         <h1>Each page would load in this area</h1>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/log-in" />
+          <Route path="/sign-up" />
+          <Route path="/ask-a-question" />
           <Route path="/user" element={<UserList />} />
           <Route path="/user/create" element={<CreateUser />} />
         </Routes>
