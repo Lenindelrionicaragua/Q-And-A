@@ -1,0 +1,19 @@
+.sorting-wrapper {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.sorting-wrapper span {
+  margin-right: 10px;
+}
+.sort-btn-wrapper {
+  display: flex;
+  align-items: center;
+}
+.popular-question-btn {
+  padding: 3px;
+  margin-right: 10px;
+}
+.newest-question-btn {
+  padding: 3px;
+}
