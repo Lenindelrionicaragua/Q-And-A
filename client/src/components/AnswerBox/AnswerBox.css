@@ -1,0 +1,22 @@
+.answer-pins {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.answer-wrapper {
+  flex: 1;
+  border-radius: 8px;
+  padding: 25px;
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 50px;
+  position: relative;
+  background-color: #a8a6c61c;
+  color: #44576a;
+}
+
+.answer-pin {
+  padding: 10px;
+  margin-right: 5px;
+}

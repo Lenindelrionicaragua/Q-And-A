@@ -1,0 +1,25 @@
+.question-pins {
+  display: flex;
+  justify-content: space-between;
+}
+.question-pins .question-pin {
+  background: #4e5289;
+  color: white;
+}
+
+.question-wrapper {
+  flex: 1;
+  border-radius: 8px;
+  padding: 25px;
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 50px;
+  position: relative;
+  background-color: #d8d4a83b;
+  color: #44576a;
+}
+.like-icon {
+  position: absolute;
+  right: 20px;
+}

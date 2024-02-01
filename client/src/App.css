@@ -1,0 +1,12 @@
+.pin {
+  padding: 8px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.tag {
+  background: #4e5289;
+  color: white;
+}
+.flex-spanner {
+  flex-grow: 1;
+}
