@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Nav.css";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import ModulesList from "../ModulesList/ModulesList";
 
 import homeIcon from "../../images/icons/home-white.png";
 import homeIconHover from "../../images/icons/home.png";
@@ -12,6 +13,13 @@ import plusIconHover from "../../images/icons/plus.png";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const [isModulesListVisible, setModulesListVisibility] = useState(false);
+
+  const handleModulesButtonClick = () => {
+    // Toggle the visibility of the Modules list when the button is clicked
+    setModulesListVisibility(!isModulesListVisible);
+  };
+
   return (
     <>
       <nav className="site-nav" id="nav-sidebar">
@@ -29,7 +37,9 @@ const Nav = () => {
             addIcon={true}
             srcIcon={modulesIcon}
             srcHoverIcon={modulesIconHover}
+            onClickHandler={handleModulesButtonClick}
           />
+          {isModulesListVisible && <ModulesList />}
         </div>
         <div className="user-area">
           <h3>

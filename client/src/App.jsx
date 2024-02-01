@@ -13,7 +13,7 @@ const App = () => {
       <Header />
       <Nav />
       <main>
-        <h1>Each page would load in this area</h1>
+        <h1 className="info-text">Each page would load in this area</h1>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/log-in" />

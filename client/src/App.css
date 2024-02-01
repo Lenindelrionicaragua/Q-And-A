@@ -28,3 +28,7 @@ main {
 a {
   text-decoration: none;
 }
+
+.info-text {
+  color: #135df0;
+}
