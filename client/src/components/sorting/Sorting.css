@@ -17,3 +17,6 @@
 .newest-question-btn {
   padding: 3px;
 }
+.sort-active {
+  background-color: rgb(84, 185, 96);
+}

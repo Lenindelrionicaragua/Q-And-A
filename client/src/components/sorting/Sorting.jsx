@@ -1,7 +1,12 @@
 import React from "react";
 import "./Sorting.css";
 
-const Sorting = (handlePopularQuestions) => {
+const Sorting = ({
+  handleSortByPopularity,
+  handleSortByTime,
+  isSortedByPopularity,
+  isSortedByTime,
+}) => {
   return (
     <div className="sorting-wrapper">
       <div className="sorting-icon">
@@ -9,13 +14,34 @@ const Sorting = (handlePopularQuestions) => {
       </div>
       <div className="sort-btn-wrapper">
         <p style={{ marginRight: "5px" }}>sort list of questions:</p>
-        <button
-          className="popular-question-btn"
-          onClick={handlePopularQuestions}
-        >
-          MOST POPULAR QUESTIONS
-        </button>
-        <button className="newest-question-btn">NEWEST QUESTIONS</button>
+        {isSortedByPopularity ? (
+          <button
+            className="popular-question-btn sort-active"
+            onClick={handleSortByPopularity}
+          >
+            MOST POPULAR QUESTIONS
+          </button>
+        ) : (
+          <button
+            className="popular-question-btn "
+            onClick={handleSortByPopularity}
+          >
+            MOST POPULAR QUESTIONS
+          </button>
+        )}
+
+        {isSortedByTime ? (
+          <button
+            className="newest-question-btn sort-active"
+            onClick={handleSortByTime}
+          >
+            NEWEST QUESTIONS
+          </button>
+        ) : (
+          <button className="newest-question-btn " onClick={handleSortByTime}>
+            NEWEST QUESTIONS
+          </button>
+        )}
       </div>
     </div>
   );

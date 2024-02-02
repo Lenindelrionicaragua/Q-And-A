@@ -7,6 +7,9 @@ import Sorting from "../sorting/Sorting";
 
 const QuestionList = () => {
   const [questions, setQuestions] = React.useState([]);
+  const [filteredQuestions, setFilteredQuestions] = React.useState([]);
+  const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
+  const [isSortedByTime, setIsSortedByTime] = React.useState(false);
 
   React.useEffect(() => {
     setQuestions([
@@ -16,10 +19,10 @@ const QuestionList = () => {
         excerpt:
           "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
         module: ["javascript", "react", "nodejs"],
-        likes: 10,
+        likes: 16,
         views: 20,
         author: "@username",
-        date: "1 day",
+        date: new Date("8.9.2023"),
         answers: [
           "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
           "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
@@ -31,10 +34,10 @@ const QuestionList = () => {
         excerpt:
           "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
         module: ["javascript", "react"],
-        likes: 10,
+        likes: 17,
         views: 20,
         author: "@username",
-        date: "1 day",
+        date: new Date("1.10.2023"),
         answers: [
           "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
           "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
@@ -46,10 +49,10 @@ const QuestionList = () => {
         excerpt:
           "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
         module: ["javascript", "react"],
-        likes: 10,
+        likes: 1,
         views: 20,
         author: "@username",
-        date: "1 day",
+        date: new Date("1.1.2024"),
         answers: [
           "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
           "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
@@ -61,10 +64,10 @@ const QuestionList = () => {
         excerpt:
           "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
         module: ["javascript", "react"],
-        likes: 10,
+        likes: 90,
         views: 20,
         author: "@username",
-        date: "1 day",
+        date: new Date("1.8.2022"),
         answers: [
           "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
           "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
@@ -73,22 +76,69 @@ const QuestionList = () => {
     ]);
   }, []);
 
+  React.useEffect(() => {
+    if (questions.length > 0) {
+      runSearch();
+    }
+  }, [questions]);
+
   const runSearch = (searchModule) => {
-    const filteredQuestions = questions.filter((question) => {
+    if (!searchModule) {
+      setFilteredQuestions(questions);
+      return;
+    }
+    const updatedQuestions = questions.filter((question) => {
       return question.module.includes(searchModule);
     });
 
-    setQuestions(filteredQuestions);
+    setFilteredQuestions(updatedQuestions);
   };
 
-  const handlePopularQuestions = () => {};
+  function handleSortByPopularity() {
+    const sortedQuestions = [...questions].sort((a, b) => {
+      return b.likes - a.likes;
+    });
+    const valueToBe = !isSortedByPopularity;
+    setIsSortedByPopularity(valueToBe);
+    setIsSortedByTime(false);
+
+    if (valueToBe) {
+      setFilteredQuestions(sortedQuestions);
+    } else {
+      setFilteredQuestions(questions);
+    }
+  }
+
+  function handleSortByTime() {
+    const sortedQuestions = [...questions].sort((a, b) => {
+      const timeA = new Date().getTime() - a.date.getTime();
+      const timeB = new Date().getTime() - b.date.getTime();
+      return timeA - timeB;
+    });
+
+    const valueToBe = !isSortedByTime;
+    setIsSortedByTime(valueToBe);
+    setIsSortedByPopularity(false);
+
+    if (valueToBe) {
+      setFilteredQuestions(sortedQuestions);
+    } else {
+      setFilteredQuestions(questions);
+    }
+  }
+
   return (
     <Box component="section" py={4}>
       <Container maxWidth="lg">
         <SearchBar runSearch={runSearch} />
-        <Sorting handlePopularQuestions={handlePopularQuestions} />
+        <Sorting
+          handleSortByPopularity={handleSortByPopularity}
+          handleSortByTime={handleSortByTime}
+          isSortedByPopularity={isSortedByPopularity}
+          isSortedByTime={isSortedByTime}
+        />
         <ul>
-          {questions.map((qus, index) => (
+          {filteredQuestions.map((qus, index) => (
             <Question key={index} question={qus} />
           ))}
         </ul>

@@ -6,6 +6,14 @@ import Button from "@mui/material/Button";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const Question = ({ question }) => {
+  const daysAgo = React.useMemo(() => {
+    const currentDate = new Date();
+    const questionDate = question.date;
+    const timeDifference = Math.abs(currentDate - questionDate);
+    Math.ceil(timeDifference / (1000 * 60 * 60 * 24)),
+      [questionDate, timeDifference];
+  });
+
   return (
     <li className="questionItem">
       <Stack
@@ -58,8 +66,9 @@ const Question = ({ question }) => {
           <Typography>{question.answers.length} Answers</Typography>
           <Typography>{question.likes} Like</Typography>
           <Typography>{question.views} Views</Typography>
-          <Typography> Asked by:{question.author}</Typography>
-          <Typography>{question.date}</Typography>
+          <Typography>
+            Asked by:{question.author} {daysAgo} days ago
+          </Typography>
         </Stack>
       </Stack>
     </li>
