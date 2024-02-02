@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
+import LoginPage from "./pages/LoginPage/LoginPage"; // Agrega la importación de LoginPage
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
+        <Route path="/user/login" element={<LoginPage />} />
       </Routes>
     </>
   );
