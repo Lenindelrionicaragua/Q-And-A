@@ -10,9 +10,8 @@ const Question = ({ question }) => {
     const currentDate = new Date();
     const questionDate = question.date;
     const timeDifference = Math.abs(currentDate - questionDate);
-    Math.ceil(timeDifference / (1000 * 60 * 60 * 24)),
-      [questionDate, timeDifference];
-  });
+    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  }, [question.date]);
 
   return (
     <li className="questionItem">
