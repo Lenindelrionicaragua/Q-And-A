@@ -1,7 +1,6 @@
 import React from "react";
-import Question from "./Question";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Question from "./Question";
 
 const questions = [
   {
@@ -68,14 +67,12 @@ const questions = [
 
 const QuestionList = () => {
   return (
-    <Box component="section" py={4}>
-      <Container maxWidth="lg">
-        <ul>
-          {questions.map((qus, index) => (
-            <Question key={index} question={qus} />
-          ))}
-        </ul>
-      </Container>
+    <Box>
+      <ul>
+        {questions.map((qus, index) => (
+          <Question key={index} question={qus} />
+        ))}
+      </ul>
     </Box>
   );
 };
