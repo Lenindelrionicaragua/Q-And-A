@@ -7,11 +7,14 @@ import TEST_ID from "./CreateUser.testid";
 const CreateUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onSuccess = () => {
     setName("");
     setEmail("");
+    setPassword("");
   };
+
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user/create",
     onSuccess
@@ -28,7 +31,7 @@ const CreateUser = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ user: { name, email } }),
+      body: JSON.stringify({ user: { name, email, password } }),
     });
   };
 
@@ -53,13 +56,23 @@ const CreateUser = () => {
           name="name"
           value={name}
           onChange={(value) => setName(value)}
+          placeholder="Enter your name"
           data-testid={TEST_ID.nameInput}
         />
         <Input
           name="email"
           value={email}
           onChange={(value) => setEmail(value)}
+          placeholder="Enter your email"
           data-testid={TEST_ID.emailInput}
+        />
+        <Input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(value) => setPassword(value)}
+          placeholder="Enter your password"
+          data-testid={TEST_ID.passwordInput}
         />
         <button type="submit" data-testid={TEST_ID.submitButton}>
           Submit

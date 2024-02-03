@@ -13,7 +13,8 @@ const Login = ({ onLogin }) => {
   const { email, password, loginError } = formData;
   const { isLoading, performFetch } = useFetch(
     "/user/login",
-    handleLoginSuccess
+    handleLoginSuccess,
+    handleLoginError
   );
 
   const handleChange = (e) => {
@@ -30,12 +31,16 @@ const Login = ({ onLogin }) => {
         onLogin(response);
       }
     } else {
-      setFormData({
-        ...formData,
-        loginError: "Invalid credentials. Please try again.",
-      });
-      logInfo("Login failed.");
+      handleLoginError(response);
     }
+  };
+
+  const handleLoginError = (response) => {
+    setFormData({
+      ...formData,
+      loginError: response.msg || "Invalid credentials. Please try again.",
+    });
+    logInfo("Login failed.");
   };
 
   const handleSubmit = (e) => {
@@ -88,6 +93,7 @@ const Login = ({ onLogin }) => {
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Logging in..." : "Login"}
         </button>
+        {isLoading && <p>Loading...</p>}
       </form>
     </div>
   );

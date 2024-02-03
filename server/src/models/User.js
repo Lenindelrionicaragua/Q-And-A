@@ -1,17 +1,18 @@
 import mongoose from "mongoose";
-
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const userSchema = new mongoose.Schema({
+  user_id: { type: String },
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model("user", userSchema);
 
-export const validateUser = (userObject) => {
+export const validateUser = (userObject, requirePassword = true) => {
   const errorList = [];
-  const allowedKeys = ["name", "email"];
+  const allowedKeys = ["name", "email", "password"];
 
   const validatedKeysMessage = validateAllowedFields(userObject, allowedKeys);
 
@@ -25,6 +26,10 @@ export const validateUser = (userObject) => {
 
   if (userObject.email == null) {
     errorList.push("email is a required field");
+  }
+
+  if (requirePassword && userObject.password == null) {
+    errorList.push("password is a required field");
   }
 
   return errorList;

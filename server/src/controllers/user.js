@@ -29,7 +29,8 @@ export const createUser = async (req, res) => {
       return;
     }
 
-    const errorList = validateUser(user);
+    // Validar también la presencia del campo 'password'
+    const errorList = validateUser(user, true);
 
     if (errorList.length > 0) {
       res
