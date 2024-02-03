@@ -16,7 +16,6 @@ a {
 
 body {
   font-family: "Inter", sans-serif;
-
   height: 100vh;
   font-size: 16px;
 }
@@ -36,5 +35,5 @@ main {
 }
 
 .info-text {
-  color: #135df0;
+  color: #175ff0;
 }
