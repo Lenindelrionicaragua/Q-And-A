@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* this is global roles for all the elements */
 * {
   margin: 0;
   padding: 0;
@@ -10,20 +9,19 @@
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
 }
-/* ====================== */
 
 body {
   font-family: "Inter", sans-serif;
-  /* width: 100vw; */
+
   height: 100vh;
   font-size: 16px;
 }
 
 #root {
-  /* width: 100vw; */
   height: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -35,8 +33,6 @@ body {
 
 main {
   grid-area: main;
-  /* padding: 2em; */
-  /* width: 70vw; */
 }
 
 .info-text {
