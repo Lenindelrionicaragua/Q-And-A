@@ -19,10 +19,9 @@ const LoginPage = () => {
       });
 
       if (response && response.success) {
-        const { token } = response;
-        localStorage.setItem("token", token);
         navigate("/");
         logInfo("Login successful!");
+
         return true;
       } else {
         logError("Login failed.");
