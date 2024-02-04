@@ -128,13 +128,15 @@ const QuestionList = () => {
 
   return (
     <Box component="section" py={4}>
-      <SearchBar runSearch={runSearch} />
-      <Sorting
-        handleSortByPopularity={handleSortByPopularity}
-        handleSortByTime={handleSortByTime}
-        isSortedByPopularity={isSortedByPopularity}
-        isSortedByTime={isSortedByTime}
-      />
+      <div className="over-question-table">
+        <SearchBar runSearch={runSearch} />
+        <Sorting
+          handleSortByPopularity={handleSortByPopularity}
+          handleSortByTime={handleSortByTime}
+          isSortedByPopularity={isSortedByPopularity}
+          isSortedByTime={isSortedByTime}
+        />
+      </div>
       <ul>
         {filteredQuestions.map((qus, index) => (
           <Question key={index} question={qus} />
