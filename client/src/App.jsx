@@ -8,14 +8,15 @@ import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import QuestionDetails from "./pages/QuestionDetails";
+import "./App.css";
 
 const App = () => {
   return (
     <>
       <Header />
       <Nav />
-      <h1>Q & A SESSION</h1>
-      <PageContent>
+      {/* <h1>Q & A SESSION</h1> */}
+      <PageContent className="overflow-auto">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/log-in" />

@@ -37,3 +37,45 @@ main {
 .info-text {
   color: #175ff0;
 }
+
+#root > main.MuiBox-root {
+  overflow: auto !important;
+}
+
+.pin {
+  padding: 8px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.tag {
+  background: #4e5289;
+  color: white;
+}
+.flex-spanner {
+  flex-grow: 1;
+}
+
+.over-question-table {
+  flex: 1;
+  border-radius: 8px;
+  padding: 25px;
+  margin: auto;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: #c1c1c11f;
+  color: #44576a;
+}
+
+.over-question-table form input {
+  width: 100%;
+  padding: 12px 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 3px;
+  color: black;
+}
+
+.form-group input::placeholder,
+form input::placeholder {
+  color: #44576a;
+}

@@ -27,7 +27,6 @@ const Question = ({ question }) => {
               {question.title}
             </Typography>
           </Link>
-
           <Typography component="span">{question.excerpt}</Typography>
         </Stack>
 
