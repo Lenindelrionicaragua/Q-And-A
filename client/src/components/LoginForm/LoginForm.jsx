@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
 import useFetch from "../../hooks/useFetch";
+import { useAuth } from "../../Context/AuthContext";
 
 const LoginForm = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const LoginForm = ({ onLogin }) => {
   });
 
   const { email, password, loginError } = formData;
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +24,10 @@ const LoginForm = ({ onLogin }) => {
   const handleLoginSuccess = (response) => {
     if (response.success === true) {
       setFormData({ email: "", password: "", loginError: null });
-      logInfo("Login successfull LOGIN FORM");
+      logInfo("Login successful");
+
+      login(response.token);
+
       if (onLogin) {
         onLogin(response);
       }
@@ -32,10 +37,10 @@ const LoginForm = ({ onLogin }) => {
   };
 
   const handleLoginError = (response) => {
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       loginError: response.msg || "Invalid credentials. Please try again.",
-    });
+    }));
     logInfo("Login failed.");
   };
 
@@ -47,11 +52,6 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Log the current formData before the API call
-    logInfo("formData before API call:", formData);
-
-    // Call performFetch with the appropriate options
     performFetch({
       method: "POST",
       headers: {
@@ -63,7 +63,7 @@ const LoginForm = ({ onLogin }) => {
 
   useEffect(() => {
     return () => {
-      // Aquí no necesitas agregar nada más, ya que useFetch se encargará de la limpieza.
+      // Limpieza necesaria, como cancelar solicitudes, si es necesario
     };
   }, []);
 
