@@ -37,3 +37,7 @@ main {
 .info-text {
   color: #175ff0;
 }
+
+#root > main.MuiBox-root {
+  overflow: auto !important;
+}

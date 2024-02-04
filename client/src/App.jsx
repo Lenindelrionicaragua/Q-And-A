@@ -14,8 +14,8 @@ const App = () => {
     <>
       <Header />
       <Nav />
-      <h1>Q & A SESSION</h1>
-      <PageContent>
+      {/* <h1>Q & A SESSION</h1> */}
+      <PageContent className="overflow-auto">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/log-in" />
