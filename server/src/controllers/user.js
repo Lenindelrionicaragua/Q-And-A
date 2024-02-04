@@ -53,16 +53,12 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { user } = req.body;
-  logInfo("Request body:", req.body);
 
   try {
-    // Log to verify that the request is being sent to the database
-    logInfo(`Attempting to find user by email: ${user.email}`);
-
     const userFound = await User.findOne({ email: user.email });
 
     if (userFound) {
-      // Log to verify that the user is found successfully
+      // Log para verificar que el usuario se encuentra exitosamente
       logInfo(`User found: ${JSON.stringify(userFound)}`);
 
       // Antes de la comparación
@@ -74,22 +70,26 @@ export const loginUser = async (req, res) => {
 
       // Después de la comparación
       logInfo(`Is password valid? ${isPasswordValid}`);
-      logInfo(`Length of input password: ${user.password.trim().length}`);
-      logInfo(`Length of stored password: ${userFound.password.trim().length}`);
-      logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
-        // Log to verify that the password is valid
+        // Log para verificar que la contraseña es válida
         logInfo(`Password is valid for user: ${JSON.stringify(userFound)}`);
 
         const token = userFound.generateAuthToken();
+        logInfo(
+          `Generated Auth Token for User: ${userFound.email}, Token: ${token}`
+        );
 
-        // Log to indicate that the user login was successful
-        logInfo(`User login successful: ${JSON.stringify(userFound)}`);
+        // Log para indicar que la respuesta se está enviando al cliente
 
+        logInfo(
+          `Sending response to client: success=${true}, msg=${"Login successful"}, token=${token}`
+        );
+
+        // Enviar la respuesta al cliente
         res.status(200).json({ success: true, msg: "Login successful", token });
       } else {
-        // Log to verify that the password does not match
+        // Log para verificar que la contraseña no coincide
         logInfo(`Invalid password for user: ${JSON.stringify(userFound)}`);
         res.status(401).json({
           success: false,
@@ -97,14 +97,14 @@ export const loginUser = async (req, res) => {
         });
       }
     } else {
-      // Log to verify that no user is found for that email
+      // Log para verificar que no se encuentra ningún usuario para ese correo electrónico
       logInfo(`No user found for email: ${user.email}`);
       res
         .status(401)
         .json({ success: false, msg: "Invalid credentials - User not found" });
     }
   } catch (error) {
-    // Log to verify any internal errors
+    // Log para verificar cualquier error interno
     logError(error);
     res.status(500).json({ success: false, msg: "Internal server error" });
   }

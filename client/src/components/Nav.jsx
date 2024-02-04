@@ -6,15 +6,21 @@ import TEST_ID from "./Nav.testid";
 const Nav = () => {
   return (
     <ul>
-      <Link to="/" data-testid={TEST_ID.linkToHome}>
-        <li>Home</li>
-      </Link>
-      <Link to="/user" data-testid={TEST_ID.linkToUsers}>
-        <li>Users</li>
-      </Link>
-      <Link to="/user/login" data-testid={TEST_ID.linkToUsers}>
-        <li>Login</li>
-      </Link>
+      <li>
+        <Link to="/" data-testid={TEST_ID.linkToHome}>
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link to="/user" data-testid={TEST_ID.linkToUsers}>
+          Users
+        </Link>
+      </li>
+      <li>
+        <Link to="/user/login" data-testid={TEST_ID.linkToLogin}>
+          Login
+        </Link>
+      </li>
     </ul>
   );
 };

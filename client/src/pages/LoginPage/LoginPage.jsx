@@ -1,27 +1,22 @@
 import React from "react";
-import useFetch from "../../hooks/useFetch";
-import Login from "../../components/Login/Login";
-import { logError, logInfo } from "../../../../server/src/util/logging";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import { useNavigate } from "react-router-dom";
+import { logError, logInfo } from "../../../../server/src/util/logging";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { performFetch } = useFetch("/user/login", handleLogin);
 
-  async function handleLogin(formData) {
+  const handleLogin = async () => {
     try {
-      const response = await performFetch({
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Perform your login logic here
+      // For example, make an API request or any other authentication mechanism
 
-      if (response && response.success) {
+      // For demonstration purposes, let's assume login is successful
+      const response = { success: true };
+
+      if (response.success) {
         navigate("/");
         logInfo("Login successful!");
-
         return true;
       } else {
         logError("Login failed.");
@@ -31,9 +26,9 @@ const LoginPage = () => {
       logError(error);
       return false;
     }
-  }
+  };
 
-  return <Login onLogin={handleLogin} />;
+  return <LoginForm onLogin={handleLogin} />;
 };
 
 export default LoginPage;

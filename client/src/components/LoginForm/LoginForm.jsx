@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+// LoginForm.jsx
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
 import useFetch from "../../hooks/useFetch";
 
-const Login = ({ onLogin }) => {
+const LoginForm = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -11,22 +12,17 @@ const Login = ({ onLogin }) => {
   });
 
   const { email, password, loginError } = formData;
-  const { isLoading, performFetch } = useFetch(
-    "/user/login",
-    handleLoginSuccess,
-    handleLoginError
-  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    logInfo(`Email input value changed to: ${value}`);
+    logInfo(`${name} input value changed to: ${value}`);
   };
 
   const handleLoginSuccess = (response) => {
-    if (response.success) {
+    if (response.success === true) {
       setFormData({ email: "", password: "", loginError: null });
-      logInfo("Login successful!");
+      logInfo("Login successfull LOGIN FORM");
       if (onLogin) {
         onLogin(response);
       }
@@ -43,6 +39,12 @@ const Login = ({ onLogin }) => {
     logInfo("Login failed.");
   };
 
+  const { isLoading, performFetch } = useFetch(
+    "/user/login",
+    handleLoginSuccess,
+    handleLoginError
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,6 +60,12 @@ const Login = ({ onLogin }) => {
       body: JSON.stringify({ user: { email, password } }),
     });
   };
+
+  useEffect(() => {
+    return () => {
+      // Aquí no necesitas agregar nada más, ya que useFetch se encargará de la limpieza.
+    };
+  }, []);
 
   return (
     <div>
@@ -99,12 +107,12 @@ const Login = ({ onLogin }) => {
   );
 };
 
-Login.propTypes = {
+LoginForm.propTypes = {
   onLogin: PropTypes.func,
 };
 
-Login.defaultProps = {
+LoginForm.defaultProps = {
   onLogin: null,
 };
 
-export default Login;
+export default LoginForm;
