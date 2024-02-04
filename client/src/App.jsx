@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import QuestionDetails from "./pages/QuestionDetails";
+import "./App.css";
 
 const App = () => {
   return (

@@ -1,6 +1,5 @@
 .sorting-wrapper {
   display: flex;
-  margin-bottom: 20px;
   justify-content: space-between;
 }
 .sorting-wrapper span {
@@ -11,11 +10,12 @@
   align-items: center;
 }
 .popular-question-btn {
-  padding: 3px;
-  margin-right: 10px;
+  min-height: 30px;
+  font-size: 10px;
 }
 .newest-question-btn {
-  padding: 3px;
+  min-height: 30px;
+  font-size: 10px;
 }
 .sort-active {
   background-color: rgb(84, 185, 96);
