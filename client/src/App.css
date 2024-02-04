@@ -68,9 +68,14 @@ main {
 
 .over-question-table form input {
   width: 100%;
-  padding: 12px 0px;
+  padding: 12px 12px;
   margin-bottom: 15px;
   border: none;
   border-radius: 3px;
   color: black;
+}
+
+.form-group input::placeholder,
+form input::placeholder {
+  color: #44576a;
 }

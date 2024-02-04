@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Sorting from "../sorting/Sorting";
 import Question from "./Question";
+import "./question.module.css";
 
 const QuestionList = () => {
   const [questions, setQuestions] = React.useState([]);

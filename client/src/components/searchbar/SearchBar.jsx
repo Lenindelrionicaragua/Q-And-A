@@ -6,7 +6,6 @@ const SearchBar = ({ runSearch }) => {
 
   return (
     <div className="search-form-wrapper">
-      <p>Search in all questions:</p>
       <form
         className="search-form"
         onSubmit={(event) => {
@@ -17,6 +16,7 @@ const SearchBar = ({ runSearch }) => {
         <input
           type="text"
           value={module}
+          placeholder="Search in all questions"
           onChange={(event) => {
             setModule(event.target.value);
           }}
