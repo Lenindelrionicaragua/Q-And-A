@@ -3,17 +3,19 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Nav from "./components/Navigation/Nav";
+import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
+import QuestionDetails from "./pages/QuestionDetails";
 
 const App = () => {
   return (
     <>
       <Header />
       <Nav />
-      <main>
-        <h1 className="info-text">Each page would load in this area</h1>
+      <h1>Q & A SESSION</h1>
+      <PageContent>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/log-in" />
@@ -21,8 +23,9 @@ const App = () => {
           <Route path="/ask-a-question" />
           <Route path="/user" element={<UserList />} />
           <Route path="/user/create" element={<CreateUser />} />
+          <Route path="/:id" element={<QuestionDetails />} />
         </Routes>
-      </main>
+      </PageContent>
     </>
   );
 };
