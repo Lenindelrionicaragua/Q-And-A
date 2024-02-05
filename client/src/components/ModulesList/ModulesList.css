@@ -1,0 +1,10 @@
+.modules-list {
+  list-style-type: none;
+  color: #c8d1df;
+  display: flex;
+  flex-direction: column;
+}
+
+.modules-list li {
+  margin-bottom: 1em;
+}

@@ -1,13 +1,13 @@
 import React from "react";
-
+import QuestionList from "../../components/questions/QuestionList";
+import PageContent from "../../components/ui/PageContent";
 import TEST_ID from "./Home.testid";
 
 const Home = () => {
   return (
-    <div data-testid={TEST_ID.container}>
-      <h1>This is the homepage</h1>
-      <p>Good luck with the project!</p>
-    </div>
+    <PageContent testId={TEST_ID.container}>
+      <QuestionList />
+    </PageContent>
   );
 };
 

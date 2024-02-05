@@ -1,0 +1,22 @@
+.sorting-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.sorting-wrapper span {
+  margin-right: 10px;
+}
+.sort-btn-wrapper {
+  display: flex;
+  align-items: center;
+}
+.popular-question-btn {
+  min-height: 30px;
+  font-size: 10px;
+}
+.newest-question-btn {
+  min-height: 30px;
+  font-size: 10px;
+}
+.sort-active {
+  background-color: rgb(84, 185, 96);
+}

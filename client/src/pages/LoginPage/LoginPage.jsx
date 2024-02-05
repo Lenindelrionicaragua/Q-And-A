@@ -1,4 +1,3 @@
-// LoginPage.jsx
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { useNavigate } from "react-router-dom";

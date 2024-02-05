@@ -1,0 +1,25 @@
+/* Header Styles */
+header {
+  background-color: #0f0f12;
+  padding: 1em 3em;
+  grid-area: header;
+  border-bottom: solid 1px #babdc2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+#header-logo {
+  width: 200px;
+  min-height: 1em;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 0.55em;
+  margin: 0.75em 0em;
+}
+
+.header-buttons button {
+  min-height: 2em;
+}
