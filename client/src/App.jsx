@@ -9,25 +9,29 @@ import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import QuestionDetails from "./pages/QuestionDetails";
 import "./App.css";
+import { AuthProvider } from "./Context/AuthContext";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 const App = () => {
   return (
-    <>
-      <Header />
-      <Nav />
-      {/* <h1>Q & A SESSION</h1> */}
-      <PageContent className="overflow-auto">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/log-in" />
-          <Route path="/sign-up" />
-          <Route path="/ask-a-question" />
-          <Route path="/user" element={<UserList />} />
-          <Route path="/user/create" element={<CreateUser />} />
-          <Route path="/:id" element={<QuestionDetails />} />
-        </Routes>
-      </PageContent>
-    </>
+    <AuthProvider>
+      <>
+        <Header />
+        <Nav />
+        {/* <h1>Q & A SESSION</h1> */}
+        <PageContent className="overflow-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user/login" element={<LoginPage />} />
+            <Route path="/sign-up" />
+            <Route path="/ask-a-question" />
+            <Route path="/user" element={<UserList />} />
+            <Route path="/user/create" element={<CreateUser />} />
+            <Route path="/:id" element={<QuestionDetails />} />
+          </Routes>
+        </PageContent>
+      </>
+    </AuthProvider>
   );
 };
 

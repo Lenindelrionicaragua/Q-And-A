@@ -12,7 +12,7 @@ const Header = () => {
           <Logo />
         </div>
         <div className="header-buttons">
-          <Link to="/log-in">
+          <Link to="/user/login">
             <PrimaryButton text="Log in" />
           </Link>
           <Link to="/sign-up">
