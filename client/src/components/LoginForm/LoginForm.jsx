@@ -1,4 +1,3 @@
-// LoginForm.jsx
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
@@ -44,7 +43,7 @@ const LoginForm = ({ onLogin }) => {
     logInfo("Login failed.");
   };
 
-  const { isLoading, performFetch } = useFetch(
+  const { isLoading, error, performFetch } = useFetch(
     "/user/login",
     handleLoginSuccess,
     handleLoginError
@@ -61,16 +60,25 @@ const LoginForm = ({ onLogin }) => {
     });
   };
 
+  let statusComponent = null;
+  const errorMessage = loginError || (error && error.toString());
+
+  if (errorMessage) {
+    statusComponent = <div style={{ color: "red" }}>Error: {errorMessage}</div>;
+  } else if (isLoading) {
+    statusComponent = <div>Loading....</div>;
+  }
+
   useEffect(() => {
     return () => {
-      // Limpieza necesaria, como cancelar solicitudes, si es necesario
+      // Necessary cleanup, such as canceling requests if needed
     };
   }, []);
 
   return (
     <div>
       <h2>Login</h2>
-      {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+      {statusComponent}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email:

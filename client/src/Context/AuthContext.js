@@ -1,6 +1,5 @@
-// AuthContext.js
 import React, { createContext, useContext, useState } from "react";
-import { logInfo } from "../../../server/src/util/logging"; // Asegúrate de importar logInfo
+import { logInfo } from "../../../server/src/util/logging";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext();
@@ -28,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Agrega la validación para 'children'
+  children: PropTypes.node.isRequired,
 };
 
 export const useAuth = () => {

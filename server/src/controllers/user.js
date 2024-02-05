@@ -58,54 +58,38 @@ export const loginUser = async (req, res) => {
     const userFound = await User.findOne({ email: user.email });
 
     if (userFound) {
-      // Log para verificar que el usuario se encuentra exitosamente
       logInfo(`User found: ${JSON.stringify(userFound)}`);
 
-      // Antes de la comparación
-      logInfo(`Password input: ${user.password}`);
-      logInfo(`Stored password: ${userFound.password}`);
+      // Before the comparison
+      //logInfo(`Password input: ${user.password}`);
+      //logInfo(`Stored password: ${userFound.password}`);
 
       const isPasswordValid =
         user.password.trim() === userFound.password.trim();
 
-      // Después de la comparación
+      // After the comparison
       logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
-        // Log para verificar que la contraseña es válida
-        logInfo(`Password is valid for user: ${JSON.stringify(userFound)}`);
-
         const token = userFound.generateAuthToken();
         logInfo(
           `Generated Auth Token for User: ${userFound.email}, Token: ${token}`
         );
 
-        // Log para indicar que la respuesta se está enviando al cliente
-
-        logInfo(
-          `Sending response to client: success=${true}, msg=${"Login successful"}, token=${token}`
-        );
-
-        // Enviar la respuesta al cliente
+        // Send response to the client
         res.status(200).json({ success: true, msg: "Login successful", token });
       } else {
-        // Log para verificar que la contraseña no coincide
-        logInfo(`Invalid password for user: ${JSON.stringify(userFound)}`);
         res.status(401).json({
           success: false,
           msg: "Invalid credentials - Incorrect password",
         });
       }
     } else {
-      // Log para verificar que no se encuentra ningún usuario para ese correo electrónico
-      logInfo(`No user found for email: ${user.email}`);
       res
         .status(401)
         .json({ success: false, msg: "Invalid credentials - User not found" });
     }
   } catch (error) {
-    // Log para verificar cualquier error interno
-    logError(error);
     res.status(500).json({ success: false, msg: "Internal server error" });
   }
 };
