@@ -31,22 +31,18 @@ const LoginForm = ({ onLogin }) => {
         onLogin(response);
       }
     } else {
-      handleLoginError(response);
+      // Use setError directly here instead of handleLoginError
+      setFormData((prevData) => ({
+        ...prevData,
+        loginError: response.msg || "Invalid credentials. Please try again.",
+      }));
+      logInfo("Login failed.");
     }
-  };
-
-  const handleLoginError = (response) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      loginError: response.msg || "Invalid credentials. Please try again.",
-    }));
-    logInfo("Login failed.");
   };
 
   const { isLoading, error, performFetch } = useFetch(
     "/user/login",
-    handleLoginSuccess,
-    handleLoginError
+    handleLoginSuccess
   );
 
   const handleSubmit = (e) => {
