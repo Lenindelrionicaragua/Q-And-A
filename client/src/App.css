@@ -1,3 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  font-size: 16px;
+}
+
+#root {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 15vh 85vh;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main";
+}
+
+main {
+  grid-area: main;
+}
+
+.info-text {
+  color: #175ff0;
+}
+
+#root > main.MuiBox-root {
+  overflow: auto !important;
+}
+
 .pin {
   padding: 8px;
   border-radius: 3px;
@@ -9,4 +53,29 @@
 }
 .flex-spanner {
   flex-grow: 1;
+}
+
+.over-question-table {
+  flex: 1;
+  border-radius: 8px;
+  padding: 25px;
+  margin: auto;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: #c1c1c11f;
+  color: #44576a;
+}
+
+.over-question-table form input {
+  width: 100%;
+  padding: 12px 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 3px;
+  color: black;
+}
+
+.form-group input::placeholder,
+form input::placeholder {
+  color: #44576a;
 }

@@ -47,10 +47,12 @@
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "axios": "^0.24.0",
-    "cypress": "^9.1.0",
+    "cypress": "^9.7.0",
     "husky": "^7.0.0"
   },
   "dependencies": {
-    "concurrently": "^6.4.0"
+    "bcrypt": "^5.1.1",
+    "concurrently": "^6.4.0",
+    "jsonwebtoken": "^9.0.2"
   }
 }
