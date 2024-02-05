@@ -32,7 +32,6 @@ const App = () => {
         </PageContent>
       </>
     </AuthProvider>
-
   );
 };
 
