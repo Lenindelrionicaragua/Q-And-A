@@ -75,33 +75,34 @@ const LoginForm = ({ onLogin }) => {
   return (
     <>
       <form id="loginForm" onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-          />
-        </label>
+        <div id="login-input-area">
+          <label htmlFor="email">
+            Email:
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+        </div>
         <br />
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            required
-          />
-        </label>
-        <br />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading} id="submit-login">
           {isLoading ? "Logging in..." : "Login"}
         </button>
         {/* {isLoading && <p>Loading...</p>} */}
