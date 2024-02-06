@@ -1,3 +1,4 @@
+import "./LoginForm.css";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
@@ -72,10 +73,8 @@ const LoginForm = ({ onLogin }) => {
   }, []);
 
   return (
-    <div>
-      <h2>Login</h2>
-      {statusComponent}
-      <form onSubmit={handleSubmit}>
+    <>
+      <form id="loginForm" onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email:
           <input
@@ -105,9 +104,10 @@ const LoginForm = ({ onLogin }) => {
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Logging in..." : "Login"}
         </button>
-        {isLoading && <p>Loading...</p>}
+        {/* {isLoading && <p>Loading...</p>} */}
+        {statusComponent}
       </form>
-    </div>
+    </>
   );
 };
 

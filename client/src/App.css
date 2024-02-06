@@ -23,7 +23,7 @@ body {
 #root {
   height: 100%;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 20vw 40vw 40vw;
   grid-template-rows: 15vh 85vh;
   grid-template-areas:
     "header header header"
