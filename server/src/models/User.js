@@ -71,6 +71,13 @@ userSchema.methods.generateAuthToken = function () {
   });
 };
 
+userSchema.methods.bcryptComparePasswords = function (normalPassword) {
+  logInfo(normalPassword);
+  const hashedPassword = this.password;
+  logInfo("PASSWORDS HERE!!!", normalPassword, hashedPassword);
+  return bcrypt.compare(normalPassword, hashedPassword);
+};
+
 const User = mongoose.model("user", userSchema);
 
 export default User;

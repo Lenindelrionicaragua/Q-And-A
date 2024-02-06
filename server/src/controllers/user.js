@@ -60,12 +60,11 @@ export const loginUser = async (req, res) => {
     if (userFound) {
       logInfo(`User found: ${JSON.stringify(userFound)}`);
 
-      // Before the comparison
-      //logInfo(`Password input: ${user.password}`);
-      //logInfo(`Stored password: ${userFound.password}`);
+      const passwordInput = user.password;
 
-      const isPasswordValid =
-        user.password.trim() === userFound.password.trim();
+      const isPasswordValid = await userFound.bcryptComparePasswords(
+        passwordInput
+      );
 
       // After the comparison
       logInfo(`Is password valid? ${isPasswordValid}`);
