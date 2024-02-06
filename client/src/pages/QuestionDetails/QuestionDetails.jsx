@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import QuestionBox from "../../components/QuestionBox/QuestionBox";
 import AnswerBox from "../../components/AnswerBox/AnswerBox";
 import CreateAnswerBox from "../../components/CreateAnswerBox/CreateAnswerBox";
+import { useParams } from "react-router-dom";
 
 const QuestionDetail = () => {
   const [question, setQuestion] = useState({});
   const [answers, setAnswers] = useState([]);
+  const { id } = useParams();
+
+  //We should fetch the question and answers from the server using the id and set the state accordingly. I used a mock data for now.
 
   useEffect(() => {
     setQuestion({
@@ -14,10 +18,10 @@ const QuestionDetail = () => {
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, eget aliquam nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, eget aliquam. ",
       module: "JAVASCRIPT",
-      likeCount: 2,
+      likeCount: 22,
       answerCount: 2,
       viewCount: 3,
-      userName: "Zehra",
+      userName: "Christina",
       time: 5,
     });
 
@@ -33,16 +37,13 @@ const QuestionDetail = () => {
         content:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, eget aliquam nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, eget aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, eget aliquam. ",
         likeCount: 9,
-        userName: "Zek",
+        userName: "Liz",
         time: 5,
       },
     ]);
   }, []);
 
   const handleSubmit = (answerTitle, answerContent) => {
-    console.log(answerTitle);
-    console.log(answerContent);
-
     const newAnswer = {
       title: answerTitle,
       content: answerContent,
@@ -67,6 +68,7 @@ const QuestionDetail = () => {
 
   return (
     <div>
+      <p>Question ID: {id}</p>
       <QuestionBox question={question} />
       {answers.map((answer, i) => (
         <AnswerBox key={i} answer={answer} />

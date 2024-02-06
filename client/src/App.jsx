@@ -7,8 +7,7 @@ import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
-import QuestionDetail from "./pages/QuestionDetailForAnotherUser/QuestionDetail";
-import QuestionDetails from "./pages/QuestionDetails";
+import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import "./App.css";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -29,7 +28,6 @@ const App = () => {
             <Route path="/user" element={<UserList />} />
             <Route path="/user/create" element={<CreateUser />} />
             <Route path="/:id" element={<QuestionDetails />} />
-            <Route path="/questiondetail" element={<QuestionDetail />} />
           </Routes>
         </PageContent>
       </>

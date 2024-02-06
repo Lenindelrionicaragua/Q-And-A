@@ -18,7 +18,7 @@ const CreateAnswerBox = ({ handleSubmit }) => {
         <div className="description-wrapper">
           <h3>This is a create answer box</h3>
           <p>Save your changes before leaving the page</p>
-        </div>{" "}
+        </div>
         <hr />
         <input
           placeholder="INSERT TITLE"
