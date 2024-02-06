@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { logInfo } from "../../../server/src/util/logging";
+import useAuthToken from "../hooks/AuthTokenHook";
 /**
  * Our useFetch hook should be used for all communication with the server.
  *
@@ -36,6 +37,7 @@ const useFetch = (route, onReceived) => {
 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const token = useAuthToken();
 
   // Add any args given to the function to the fetch function
   const performFetch = (options) => {
@@ -46,9 +48,12 @@ const useFetch = (route, onReceived) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        // Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     };
+
+    if (token) {
+      baseOptions.headers.Authorization = `Bearer ${token}`;
+    }
 
     const fetchData = async () => {
       // We add the /api subsection here to make it a single point of change if our configuration changes
