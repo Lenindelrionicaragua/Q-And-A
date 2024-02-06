@@ -61,9 +61,13 @@ const LoginForm = ({ onLogin }) => {
   const errorMessage = loginError || (error && error.toString());
 
   if (errorMessage) {
-    statusComponent = <div style={{ color: "red" }}>Error: {errorMessage}</div>;
+    statusComponent = (
+      <div id="log-in-status-component" style={{ color: "red" }}>
+        Error: {errorMessage}
+      </div>
+    );
   } else if (isLoading) {
-    statusComponent = <div>Loading....</div>;
+    statusComponent = <div id="log-in-status-component">Loading....</div>;
   }
 
   useEffect(() => {
@@ -102,7 +106,7 @@ const LoginForm = ({ onLogin }) => {
           </label>
         </div>
         <br />
-        <button type="submit" disabled={isLoading} id="submit-login">
+        <button type="submit" disabled={isLoading} id="submit-login-button">
           {isLoading ? "Logging in..." : "Login"}
         </button>
         {/* {isLoading && <p>Loading...</p>} */}
