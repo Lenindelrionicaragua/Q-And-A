@@ -18,12 +18,10 @@ const App = () => {
       <>
         <Header />
         <Nav />
-        {/* <h1>Q & A SESSION</h1> */}
         <PageContent className="overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/user/login" element={<LoginPage />} />
-            <Route path="/sign-up" />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
             <Route path="/user/create" element={<CreateUser />} />

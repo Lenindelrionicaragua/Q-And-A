@@ -8,11 +8,13 @@ const CreateUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [invitationCode, setInvitationCode] = useState("");
 
   const onSuccess = () => {
     setName("");
     setEmail("");
     setPassword("");
+    setInvitationCode("");
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -31,7 +33,7 @@ const CreateUser = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ user: { name, email, password } }),
+      body: JSON.stringify({ user: { name, email, password, invitationCode } }),
     });
   };
 
@@ -59,6 +61,7 @@ const CreateUser = () => {
           placeholder="Enter your name"
           data-testid={TEST_ID.nameInput}
         />
+        <br />
         <Input
           name="email"
           value={email}
@@ -66,6 +69,7 @@ const CreateUser = () => {
           placeholder="Enter your email"
           data-testid={TEST_ID.emailInput}
         />
+        <br />
         <Input
           type="password"
           name="password"
@@ -73,6 +77,14 @@ const CreateUser = () => {
           onChange={(value) => setPassword(value)}
           placeholder="Enter your password"
           data-testid={TEST_ID.passwordInput}
+        />
+        <br />
+        <Input
+          name="invitationCode"
+          value={invitationCode}
+          onChange={(value) => setInvitationCode(value)}
+          placeholder="Enter your invitation code"
+          required
         />
         <button type="submit" data-testid={TEST_ID.submitButton}>
           Submit
