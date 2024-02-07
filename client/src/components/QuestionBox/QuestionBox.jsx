@@ -16,9 +16,8 @@ const QuestionBox = ({ question }) => {
         <span className="pin">{question.answerCount} ANSWERS</span>
         <span className="pin">{question.likeCount} LIKES</span>
         <span className="pin">{question.viewCount} VIEWS</span>
-        <span className="pin">
-          Asked by {question.userName} {question.time} mins ago
-        </span>
+        <span className="pin">Asked by {question.userName}</span>
+        <span className="pin"> {question.time} mins ago</span>
       </div>
     </div>
   );

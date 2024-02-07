@@ -82,6 +82,20 @@ const QuestionList = () => {
     }
   }, [questions]);
 
+  React.useEffect(() => {
+    fetch("/api/questions")
+      .then((res) => {
+        console.log(res.json());
+        //return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const runSearch = (searchModule) => {
     if (!searchModule) {
       setFilteredQuestions(questions);
