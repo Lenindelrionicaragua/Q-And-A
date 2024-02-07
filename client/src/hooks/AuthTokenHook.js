@@ -1,5 +1,5 @@
 import { useAuth } from "../Context/AuthContext";
-import { logInfo } from "../../../server/src/util/logging"; // Asegúrate de importar logInfo si no lo has hecho
+import { logInfo } from "../../../server/src/util/logging";
 
 const useAuthToken = () => {
   const { token } = useAuth();
