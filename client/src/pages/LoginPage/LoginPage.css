@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+#logInPage {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+}
+
+#logInPage hr {
+  width: 150%;
+  opacity: 70%;
+}
+
+#logInPage h1 {
+  font-family: "JetBrains Mono", monospace;
+  color: #1ad721;
+  font-weight: 800;
+  text-align: center;
+}
+
+#logInPage h2 {
+  font-size: 1em;
+  margin-top: 2em;
+}
+
+#logInPage a {
+  color: black;
+  text-decoration: underline;
+}
+
+#logInPage a:hover {
+  color: #54c834;
+}
