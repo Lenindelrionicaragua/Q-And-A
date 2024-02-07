@@ -50,9 +50,6 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
     performFetch({
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
       body: JSON.stringify({ user: { email, password } }),
     });
   };
