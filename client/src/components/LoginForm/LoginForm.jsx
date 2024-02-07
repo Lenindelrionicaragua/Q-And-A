@@ -41,7 +41,7 @@ const LoginForm = ({ onLogin }) => {
     }
   };
 
-  const { isLoading, error, performFetch } = useFetch(
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user/login",
     handleLoginSuccess
   );
@@ -69,7 +69,8 @@ const LoginForm = ({ onLogin }) => {
 
   useEffect(() => {
     return () => {
-      // Necessary cleanup, such as canceling requests if needed
+      // call a cancelFetch when the component is unmounted
+      cancelFetch();
     };
   }, []);
 
