@@ -1,0 +1,60 @@
+#loginForm {
+  margin: 1em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Input area */
+#login-input-area {
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+}
+
+#loginForm input {
+  display: flex;
+  margin-top: 0.5em;
+  padding: 0.5em;
+}
+
+#loginForm input::placeholder {
+  font-family: "Inter", sans-serif;
+}
+
+#log-in-status-component {
+  margin-top: 1.5em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+/* Login Submit Button */
+#loginForm #submit-login-button {
+  font-size: 0.95em;
+  font-family: "Inter", sans-serif;
+  border: solid 1px #c8d1df;
+  cursor: pointer;
+  text-align: center;
+  padding: 1em;
+  padding-bottom: 1.05em;
+  font-weight: 600;
+  border-radius: 0.35em;
+  background: #0f0f12;
+  color: #c8d1df;
+  width: 95%;
+  margin: auto;
+}
+
+#loginForm #submit-login-button:hover {
+  border-color: #76f013;
+  background: #76f013;
+  color: #0f0f12;
+}

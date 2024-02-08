@@ -73,8 +73,15 @@ userSchema.methods.generateAuthToken = function () {
   // Generate a session token for the user
   logInfo(`JWT_SECRET: ${process.env.JWT_SECRET}`);
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
+    expiresIn: "24h",
   });
+};
+
+userSchema.methods.bcryptComparePasswords = function (normalPassword) {
+  logInfo(normalPassword);
+  const hashedPassword = this.password;
+  logInfo("PASSWORDS HERE!!!", normalPassword, hashedPassword);
+  return bcrypt.compare(normalPassword, hashedPassword);
 };
 
 const User = mongoose.model("user", userSchema);

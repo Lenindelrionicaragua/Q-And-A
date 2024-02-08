@@ -1,3 +1,4 @@
+import "./LoginForm.css";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
@@ -40,7 +41,7 @@ const LoginForm = ({ onLogin }) => {
     }
   };
 
-  const { isLoading, error, performFetch } = useFetch(
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user/login",
     handleLoginSuccess
   );
@@ -49,9 +50,6 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
     performFetch({
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
       body: JSON.stringify({ user: { email, password } }),
     });
   };
@@ -60,54 +58,59 @@ const LoginForm = ({ onLogin }) => {
   const errorMessage = loginError || (error && error.toString());
 
   if (errorMessage) {
-    statusComponent = <div style={{ color: "red" }}>Error: {errorMessage}</div>;
+    statusComponent = (
+      <div id="log-in-status-component" style={{ color: "red" }}>
+        Error: {errorMessage}
+      </div>
+    );
   } else if (isLoading) {
-    statusComponent = <div>Loading....</div>;
+    statusComponent = <div id="log-in-status-component">Loading....</div>;
   }
 
   useEffect(() => {
     return () => {
-      // Necessary cleanup, such as canceling requests if needed
+      // call a cancelFetch when the component is unmounted
+      cancelFetch();
     };
   }, []);
 
   return (
-    <div>
-      <h2>Login</h2>
-      {statusComponent}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-          />
-        </label>
+    <>
+      <form id="loginForm" onSubmit={handleSubmit}>
+        <div id="login-input-area">
+          <label htmlFor="email">
+            Email:
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+        </div>
         <br />
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            required
-          />
-        </label>
-        <br />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading} id="submit-login-button">
           {isLoading ? "Logging in..." : "Login"}
         </button>
-        {isLoading && <p>Loading...</p>}
+        {/* {isLoading && <p>Loading...</p>} */}
+        {statusComponent}
       </form>
-    </div>
+    </>
   );
 };
 
