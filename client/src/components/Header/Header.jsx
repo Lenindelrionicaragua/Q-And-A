@@ -15,7 +15,7 @@ const Header = () => {
           <Link to="/user/login">
             <PrimaryButton text="Log in" />
           </Link>
-          <Link to="/sign-up">
+          <Link to="/user/create">
             <PrimaryButton text="Sign up" />
           </Link>
         </div>
