@@ -11,6 +11,7 @@ import QuestionDetails from "./pages/QuestionDetails";
 import "./App.css";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import QuestionList from "./pages/Question/QuestionPage";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/user" element={<UserList />} />
             <Route path="/user/create" element={<CreateUser />} />
             <Route path="/:id" element={<QuestionDetails />} />
+            <Route path="/question-page" element={<QuestionList />} />
           </Routes>
         </PageContent>
       </>
