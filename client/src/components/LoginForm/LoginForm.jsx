@@ -25,19 +25,11 @@ const LoginForm = ({ onLogin }) => {
     if (response.success === true) {
       setFormData({ email: "", password: "", loginError: null });
       logInfo("Login successful");
-
-      // Set session and session signature in the authentication context
-      login({ session: response.session, sessionSig: response.sessionSig });
-
-      // Store session and session signature cookies in the browser
-      document.cookie = `session=${response.session}; SameSite=Lax`;
-      document.cookie = `session.sig=${response.sessionSig}; SameSite=Lax`;
-
+      login(response.user);
       if (onLogin) {
         onLogin(response);
       }
     } else {
-      // Use setError directly here instead of handleLoginError
       setFormData((prevData) => ({
         ...prevData,
         loginError: response.msg || "Invalid credentials. Please try again.",
