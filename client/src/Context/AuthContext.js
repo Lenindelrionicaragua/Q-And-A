@@ -1,43 +1,42 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { logInfo } from "../../../server/src/util/logging";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
-const getCookie = (name) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-};
-
-const setCookie = (name, value, days) => {
-  const date = new Date();
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-  const expires = `expires=${date.toUTCString()}`;
-  document.cookie = `${name}=${value}; ${expires}; path=/; secure; SameSite=strict`;
-};
-
-const deleteCookie = (name) => {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-};
-
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(getCookie("token") || null);
+  const [session, setSession] = useState(null);
 
-  const login = (newToken) => {
-    setToken(newToken);
-    setCookie("token", newToken, 1); // Sets the cookie with a duration of 1 day
+  useEffect(() => {
+    // Attempt to retrieve the session from the session cookies when the component mounts
+    const sessionFromCookie = getCookie("session");
+    const sessionSigFromCookie = getCookie("session.sig");
+    if (sessionFromCookie && sessionSigFromCookie) {
+      setSession({
+        session: sessionFromCookie,
+        sessionSig: sessionSigFromCookie,
+      });
+      logInfo(`Session received from session cookies: ${sessionFromCookie}`);
+      logInfo(
+        `Session signature received from session cookies: ${sessionSigFromCookie}`
+      );
+    }
+  }, []);
 
-    logInfo(`Token set in context: ${newToken}`);
+  const login = (newSession) => {
+    setSession(newSession);
+    logInfo("Session updated:", newSession);
   };
 
   const logout = () => {
-    setToken(null);
-    deleteCookie("token");
+    setSession(null);
+    deleteCookie("session");
+    deleteCookie("session.sig");
+    logInfo("Session cleared");
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ session, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -53,4 +52,18 @@ export const useAuth = () => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
+};
+
+// Function to retrieve a cookie by name
+const getCookie = (name) => {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(name))
+    ?.split("=")[1];
+  return cookieValue ? decodeURIComponent(cookieValue) : null;
+};
+
+// Function to delete a cookie by name
+const deleteCookie = (name) => {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };

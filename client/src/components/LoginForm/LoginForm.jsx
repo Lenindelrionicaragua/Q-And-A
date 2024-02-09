@@ -26,7 +26,12 @@ const LoginForm = ({ onLogin }) => {
       setFormData({ email: "", password: "", loginError: null });
       logInfo("Login successful");
 
-      login(response.token);
+      // Set session and session signature in the authentication context
+      login({ session: response.session, sessionSig: response.sessionSig });
+
+      // Store session and session signature cookies in the browser
+      document.cookie = `session=${response.session}; SameSite=Lax`;
+      document.cookie = `session.sig=${response.sessionSig}; SameSite=Lax`;
 
       if (onLogin) {
         onLogin(response);
@@ -42,7 +47,7 @@ const LoginForm = ({ onLogin }) => {
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/user/login",
+    "/auth/login",
     handleLoginSuccess
   );
 

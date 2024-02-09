@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
 import validateAllowedFields from "../util/validateAllowedFields.js";
 import { logInfo } from "../util/logging.js";
 
@@ -62,21 +60,6 @@ userSchema.pre("save", async function (next) {
     next();
   }
 });
-
-userSchema.methods.generateAuthToken = function () {
-  // Generate a session token for the user
-  logInfo(`JWT_SECRET: ${process.env.JWT_SECRET}`);
-  return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "24h",
-  });
-};
-
-userSchema.methods.bcryptComparePasswords = function (normalPassword) {
-  logInfo(normalPassword);
-  const hashedPassword = this.password;
-  logInfo("PASSWORDS HERE!!!", normalPassword, hashedPassword);
-  return bcrypt.compare(normalPassword, hashedPassword);
-};
 
 const User = mongoose.model("user", userSchema);
 
