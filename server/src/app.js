@@ -7,7 +7,7 @@ import userRouter from "./routes/user.js";
 // Create an express server
 const app = express();
 
-// Middleware para acceder a req.session en todas las solicitudes
+// Middleware to access req.session in all request.
 app.use(sessionMiddleware);
 
 // Tell express to use the json middleware
