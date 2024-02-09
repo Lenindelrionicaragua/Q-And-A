@@ -7,16 +7,18 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
   email: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
+  invitationCode: { type: String, required: true },
 });
 
 export const validateUser = (
   userObject,
   requirePassword = true,
   requireName = true,
-  requireEmail = true
+  requireEmail = true,
+  requireInvitationCode = true
 ) => {
   const errorList = [];
-  const allowedKeys = ["name", "email", "password"];
+  const allowedKeys = ["name", "email", "password", "invitationCode"];
 
   const validatedKeysMessage = validateAllowedFields(userObject, allowedKeys);
 
@@ -37,6 +39,10 @@ export const validateUser = (
   if (requirePassword && userObject.password == null) {
     errorList.push("password is a required field");
     logInfo("User create Validation failed: Password is required");
+  }
+  if (requireInvitationCode && userObject.invitationCode == null) {
+    errorList.push("invitationCode is a required field");
+    logInfo("User create Validation failed: Invitation Code is required");
   }
 
   return errorList;

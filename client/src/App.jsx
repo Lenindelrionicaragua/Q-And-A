@@ -5,8 +5,8 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Navigation/Nav";
 import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
-import CreateUser from "./pages/User/CreateUser";
-import UserList from "./pages/User/UserList";
+import CreateUser from "./pages/SignUp /CreateUser";
+import UserList from "./pages/SignUp /UserList";
 import QuestionDetails from "./pages/QuestionDetails";
 import "./App.css";
 import { AuthProvider } from "./Context/AuthContext";
@@ -18,7 +18,6 @@ const App = () => {
       <>
         <Header />
         <Nav />
-        {/* <h1>Q & A SESSION</h1> */}
         <PageContent className="overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
