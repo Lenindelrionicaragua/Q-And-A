@@ -18,7 +18,6 @@ const CreateUser = () => {
     setEmail("");
     setPassword("");
     setInvitationCode("");
-
     navigate("/user/login");
     alert("You signed up successfully! Login to continue.");
   };
@@ -46,8 +45,16 @@ const CreateUser = () => {
   let statusComponent = null;
   if (error != null) {
     statusComponent = (
-      <div data-testid={TEST_ID.errorContainer} style={{ color: "red" }}>
-        Error: {error.toString()}
+      <div
+        data-testid={TEST_ID.errorContainer}
+        style={{
+          color: "#e23030",
+          fontSize: "13px",
+          textAlign: "center",
+          lineHeight: "34px",
+        }}
+      >
+        {error.toString()}
       </div>
     );
   } else if (isLoading) {
@@ -75,6 +82,7 @@ const CreateUser = () => {
               onChange={(value) => setName(value)}
               placeholder="Enter your name"
               data-testid={TEST_ID.nameInput}
+              required
             />
           </label>
 
@@ -86,6 +94,9 @@ const CreateUser = () => {
               onChange={(value) => setEmail(value)}
               placeholder="Enter your email"
               data-testid={TEST_ID.emailInput}
+              required
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              title="Please enter a valid email address"
             />
           </label>
 
@@ -98,7 +109,11 @@ const CreateUser = () => {
               onChange={(value) => setPassword(value)}
               placeholder="Enter your password"
               data-testid={TEST_ID.passwordInput}
-            />{" "}
+              required
+              minLength={8}
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+              title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number"
+            />
           </label>
           <label htmlFor="password">
             Invitation Code:
@@ -108,8 +123,11 @@ const CreateUser = () => {
               onChange={(value) => setInvitationCode(value)}
               placeholder="Enter your invitation code"
               required
+              pattern="^[a-zA-Z0-9]{5}$"
+              title="Invitation code must be 5 characters long and contain only alphanumeric characters"
             />
           </label>
+          {statusComponent}
           <button
             type="submit"
             data-testid={TEST_ID.submitButton}
@@ -118,7 +136,6 @@ const CreateUser = () => {
             Sign Up
           </button>
         </form>
-        {statusComponent}
       </div>
     </div>
   );

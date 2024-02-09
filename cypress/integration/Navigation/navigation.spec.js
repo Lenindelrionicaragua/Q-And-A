@@ -21,7 +21,7 @@ describe("Navigation", () => {
   });
 
   it("From create user page", () => {
-    cy.visit("/user/create");
+    cy.visit("/user/sign-up");
     cy.getByTestId(TEST_ID_CREATE_USER.container).should("be.visible");
 
     checkNavigation();
