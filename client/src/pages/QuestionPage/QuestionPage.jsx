@@ -35,7 +35,7 @@ const QuestionList = () => {
                 <li key={question._id}>
                   <h3>Question #{index + 1}</h3>
                   <h2>{question.title}</h2>
-                  <p>{question.excerpt}</p>
+                  <p>{question.content}</p>
                   <h4>{question.author}</h4>
                   <br></br>
                 </li>

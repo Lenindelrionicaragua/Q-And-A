@@ -11,7 +11,8 @@ import QuestionDetails from "./pages/QuestionDetails";
 import "./App.css";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import QuestionList from "./pages/Question/QuestionPage";
+import QuestionList from "./pages/QuestionPage/QuestionPage";
+import PostQuestion from "./pages/PostQuestion/PostQuestion";
 
 const App = () => {
   return (
@@ -25,10 +26,12 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/user/login" element={<LoginPage />} />
             <Route path="/sign-up" />
-            <Route path="/ask-a-question" />
+            <Route path="/post-question" element={<PostQuestion />} />{" "}
+            {/* Post a question page */}
             <Route path="/user" element={<UserList />} />
             <Route path="/user/create" element={<CreateUser />} />
             <Route path="/:id" element={<QuestionDetails />} />
+            {/* /question-page was created to test db connection to "questions" collection */}
             <Route path="/question-page" element={<QuestionList />} />
           </Routes>
         </PageContent>

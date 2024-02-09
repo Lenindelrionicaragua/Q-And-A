@@ -1,7 +1,7 @@
 import Question from "../../models/Question.js";
 import { logError } from "../../util/logging.js";
 
-export const getQuestions = async (req, res) => {
+const getQuestions = async (req, res) => {
   try {
     const questions = await Question.find();
     res.status(200).json({ success: true, result: questions });
@@ -13,3 +13,5 @@ export const getQuestions = async (req, res) => {
     });
   }
 };
+
+export default getQuestions;
