@@ -45,9 +45,9 @@ const Nav = () => {
           <h3>
             Welcome <span className="username">Guest</span>
           </h3>
-          <Link to="/ask-a-question">
+          <Link to="/post-question">
             <PrimaryButton
-              text="Ask a Question"
+              text="Ask new Question"
               addIcon={true}
               srcIcon={plusIcon}
               srcHoverIcon={plusIconHover}

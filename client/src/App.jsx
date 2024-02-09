@@ -11,6 +11,7 @@ import QuestionDetails from "./pages/QuestionDetails";
 import "./App.css";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import QuestionList from "./pages/QuestionPage/QuestionPage";
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
             <Route path="/user" element={<UserList />} />
             <Route path="/user/sign-up" element={<CreateUser />} />
             <Route path="/:id" element={<QuestionDetails />} />
+            {/* /question-page was created to test db connection to "questions" collection */}
+            <Route path="/question-page" element={<QuestionList />} />
           </Routes>
         </PageContent>
       </>
