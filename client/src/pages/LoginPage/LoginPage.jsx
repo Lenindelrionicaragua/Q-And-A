@@ -26,7 +26,7 @@ const LoginPage = () => {
       <LoginForm onLogin={handleLogin} />
       <hr></hr>
       <h2>
-        New user? Sign up <Link to="/sign-up">here</Link>!
+        New user? Sign up <Link to="/user/sign-up">here</Link>!
       </h2>
     </div>
   );
