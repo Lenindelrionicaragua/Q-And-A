@@ -25,14 +25,11 @@ const LoginForm = ({ onLogin }) => {
     if (response.success === true) {
       setFormData({ email: "", password: "", loginError: null });
       logInfo("Login successful");
-
-      login(response.token);
-
+      login(response.user);
       if (onLogin) {
         onLogin(response);
       }
     } else {
-      // Use setError directly here instead of handleLoginError
       setFormData((prevData) => ({
         ...prevData,
         loginError: response.msg || "Invalid credentials. Please try again.",
@@ -42,7 +39,7 @@ const LoginForm = ({ onLogin }) => {
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/user/login",
+    "/auth/log-in",
     handleLoginSuccess
   );
 

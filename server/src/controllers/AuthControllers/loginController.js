@@ -1,8 +1,9 @@
-import { logInfo } from "../util/logging.js";
-import validationErrorMessage from "../util/validationErrorMessage.js";
-import User from "../models/User.js";
+import { logInfo } from "../../util/logging.js";
+import validationErrorMessage from "../../util/validationErrorMessage.js";
+import User from "../../models/User.js";
+import bcrypt from "bcrypt";
 
-export const loginUser = async (req, res) => {
+export const login = async (req, res) => {
   const { user } = req.body;
 
   try {
@@ -23,23 +24,19 @@ export const loginUser = async (req, res) => {
     if (userFound) {
       logInfo(`User found: ${JSON.stringify(userFound)}`);
 
-      const passwordInput = user.password;
-
-      const isPasswordValid = await userFound.bcryptComparePasswords(
-        passwordInput
+      const isPasswordValid = await bcrypt.compare(
+        user.password,
+        userFound.password
       );
 
       // After the comparison
       logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
-        const token = userFound.generateAuthToken();
-        logInfo(
-          `Generated Auth Token for User: ${userFound.email}, Token: ${token}`
-        );
-
+        // Establish the user session
+        req.user = userFound;
         // Send response to the client
-        res.status(200).json({ success: true, msg: "Login successful", token });
+        res.status(200).json({ success: true, msg: "Login successful" });
       } else {
         res.status(401).json({
           success: false,

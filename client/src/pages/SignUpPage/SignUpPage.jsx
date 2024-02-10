@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./CreateUser.css";
+import "./SignUpPage.css";
 import { useNavigate } from "react-router-dom";
 
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
-import TEST_ID from "./CreateUser.testid";
+import TEST_ID from "./SignUpPage.testid";
 
-const CreateUser = () => {
+const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,12 +18,12 @@ const CreateUser = () => {
     setEmail("");
     setPassword("");
     setInvitationCode("");
-    navigate("/user/login");
+    navigate("/auth/log-in");
     alert("You signed up successfully! Login to continue.");
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/user/create",
+    "/auth/sign-up",
     onSuccess
   );
 
@@ -141,4 +141,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default SignUp;
