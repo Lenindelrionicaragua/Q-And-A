@@ -3,13 +3,9 @@ import cors from "cors";
 
 import userRouter from "./routes/user.js";
 import questionsRouter from "./routes/questions.js";
-
 import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
-import userRouter from "./routes/user.js";
-import questionRouter from "./routes/questions.js";
 import answerRouter from "./routes/answers.js";
-
 
 // Create an express server
 const app = express();
@@ -39,8 +35,5 @@ app.use("/api/questions", questionsRouter);
 
 //app.use("/api/questions", questionRouter);
 app.use("/api/questions/:questionId/answers", answerRouter);
-
-
-
 
 export default app;

@@ -7,7 +7,7 @@ import Question from "./Question";
 import "./question.module.css";
 
 const QuestionList = () => {
-  const { isLoading, error, performFetch } = useFetch(
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/questions",
     fetchQuestions
   );
@@ -20,8 +20,12 @@ const QuestionList = () => {
   function fetchQuestions(res) {
     setQuestions(res.questions);
   }
+
   React.useEffect(() => {
     performFetch();
+    return () => {
+      cancelFetch();
+    };
   }, []);
 
   React.useEffect(() => {
