@@ -33,7 +33,7 @@ app.use((err, req, res) => {
   logError(err.stack);
   res
     .status(500)
-    .send("An error occured during your request. Please try again!");
+    .send("An error occurred during your request. Please try again!");
 });
 
 export default app;
