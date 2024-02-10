@@ -3,6 +3,7 @@ import cors from "cors";
 
 import userRouter from "./routes/user.js";
 import questionRouter from "./routes/questions.js";
+import answerRouter from "./routes/answers.js";
 
 // Create an express server
 const app = express();
@@ -19,5 +20,6 @@ app.use(cors());
  */
 app.use("/api/user", userRouter);
 app.use("/api/questions", questionRouter);
+app.use("/api/questions/:questionId/answers", answerRouter);
 
 export default app;
