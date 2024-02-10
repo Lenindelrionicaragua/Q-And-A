@@ -144,3 +144,39 @@ export const patchAnswer = async (req, res) => {
 
   res.status(200).json({ success: true, answer: updatedAnswer });
 };
+
+export const deleteAnswer = async (req, res) => {
+  const questionExist = await isQuestionExist(req);
+
+  if (!questionExist) {
+    res.status(404).json({
+      success: false,
+      msg: `Question with id ${req.params.questionId} does not exist`,
+    });
+    return;
+  }
+
+  const { answerId } = req.params;
+
+  if (!answerId) {
+    res.status(400).json({
+      success: false,
+      msg: "You need to provide an 'answerId' parameter",
+    });
+    return;
+  }
+
+  const deletedAnswer = await Answer.findByIdAndDelete(answerId);
+
+  if (!deletedAnswer) {
+    res.status(404).json({
+      success: false,
+      msg: `Answer with id ${answerId} does not exist`,
+    });
+    return;
+  }
+
+  logInfo("Answer deleted successfully:", deletedAnswer);
+
+  res.status(200).json({ success: true, answer: deletedAnswer });
+};
