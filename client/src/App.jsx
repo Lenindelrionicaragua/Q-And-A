@@ -22,7 +22,8 @@ const App = () => {
         <PageContent className="overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/user/login" element={<LoginPage />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/sign-up" />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
             <Route path="/user/sign-up" element={<CreateUser />} />
