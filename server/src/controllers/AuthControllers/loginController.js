@@ -1,6 +1,6 @@
-import { logInfo } from "../util/logging.js";
-import validationErrorMessage from "../util/validationErrorMessage.js";
-import User from "../models/User.js";
+import { logInfo } from "../../util/logging.js";
+import validationErrorMessage from "../../util/validationErrorMessage.js";
+import User from "../../models/User.js";
 import bcrypt from "bcrypt";
 
 export const login = async (req, res) => {

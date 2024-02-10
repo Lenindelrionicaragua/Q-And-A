@@ -39,7 +39,7 @@ const LoginForm = ({ onLogin }) => {
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/auth/login",
+    "/auth/log-in",
     handleLoginSuccess
   );
 
