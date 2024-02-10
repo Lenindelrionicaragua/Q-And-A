@@ -18,7 +18,7 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     setInvitationCode("");
-    navigate("/auth/login");
+    navigate("/auth/log-in");
     alert("You signed up successfully! Login to continue.");
   };
 
