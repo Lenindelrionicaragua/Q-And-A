@@ -33,9 +33,8 @@ export const login = async (req, res) => {
       logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
-        // Establish the user session using the cookies session middleware
-        req.session.user = userFound;
-
+        // Establish the user session
+        req.user = userFound;
         // Send response to the client
         res.status(200).json({ success: true, msg: "Login successful" });
       } else {
