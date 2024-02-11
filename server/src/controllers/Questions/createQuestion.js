@@ -27,7 +27,7 @@ const createQuestion = async (req, res) => {
       const newQuestion = await Question.create(question);
       logInfo("Question created successfully:", newQuestion);
 
-      res.status(201).json({ success: true, user: newQuestion });
+      res.status(201).json({ success: true, question: newQuestion });
     }
   } catch (error) {
     logError(error);

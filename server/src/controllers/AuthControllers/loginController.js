@@ -36,7 +36,9 @@ export const login = async (req, res) => {
         // Establish the user session
         req.user = userFound;
         // Send response to the client
-        res.status(200).json({ success: true, msg: "Login successful" });
+        res
+          .status(200)
+          .json({ success: true, msg: "Login successful", user: userFound });
       } else {
         res.status(401).json({
           success: false,
