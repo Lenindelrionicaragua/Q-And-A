@@ -3,7 +3,6 @@ import "./CreateAnswerBox.css";
 import PropTypes from "prop-types";
 
 const CreateAnswerBox = ({ handleSubmit }) => {
-  const [answerTitle, setAnswerTitle] = React.useState("");
   const [answerContent, setAnswerContent] = React.useState("");
 
   return (
@@ -12,7 +11,7 @@ const CreateAnswerBox = ({ handleSubmit }) => {
         className="form-group"
         onSubmit={(event) => {
           event.preventDefault();
-          handleSubmit(answerTitle, answerContent);
+          handleSubmit(answerContent);
         }}
       >
         <div className="description-wrapper">
@@ -20,14 +19,6 @@ const CreateAnswerBox = ({ handleSubmit }) => {
           <p>Save your changes before leaving the page</p>
         </div>
         <hr />
-        <input
-          placeholder="INSERT TITLE"
-          type="text"
-          value={answerTitle}
-          onChange={(event) => {
-            setAnswerTitle(event.target.value);
-          }}
-        />
         <input
           placeholder="INSERT CONTENT"
           type="text"

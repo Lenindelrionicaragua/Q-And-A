@@ -6,7 +6,6 @@ import questionsRouter from "./routes/questions.js";
 import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
-import { logError } from "./util/logging.js";
 
 // Create an express server
 const app = express();
@@ -32,16 +31,6 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/questions", questionsRouter);
-
-// Very basic error handling
-app.use((err, req, res) => {
-  logError(err.stack);
-  res
-    .status(500)
-    .send("An error occurred during your request. Please try again!");
-});
-
-//app.use("/api/questions", questionRouter);
-app.use("/api/questions/:questionId/answers", answerRouter);
+app.use("/api/answer", answerRouter);
 
 export default app;

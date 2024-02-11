@@ -5,10 +5,9 @@ import PropTypes from "prop-types";
 const AnswerBox = ({ answer }) => {
   return (
     <div className="answer-wrapper">
-      <h3>This box is an answer box</h3>
-      <p>{answer.content}</p>
+      <p>{answer.answer_content}</p>
       <div className="answer-pins">
-        <span className="pin">{answer.likeCount} LIKES</span>
+        <span className="pin">{answer.like_counter} LIKES</span>
         <span className="pin">
           Answered by {answer.userName} {answer.time} mins ago
         </span>

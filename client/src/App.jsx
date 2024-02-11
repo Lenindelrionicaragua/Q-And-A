@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/auth/sign-up" element={<SignUp />} />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
-            <Route path="/:id" element={<QuestionDetails />} />
+            <Route path="questions/:id" element={<QuestionDetails />} />
             {/* /question-page was created to test db connection to "questions" collection */}
             <Route path="/question-page" element={<QuestionList />} />
           </Routes>
