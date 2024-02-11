@@ -48,28 +48,43 @@ const PostQuestionPage = () => {
   return (
     <div id="PostQuestionPage">
       <h1>Post a new question!</h1>
-      <br></br>
+      <hr></hr>
+      <h2>
+        Hey there <span>user.name</span>!
+      </h2>
+      <h3>
+        Got any bugs? Share your experience and let&apos;s find a solution
+        together.
+      </h3>
       <form id="postQuestionForm" onSubmit={handleSubmit}>
         <div id="postQuestion-input-area">
-          <Input
-            name="title"
-            value={title}
-            onChange={(value) => setTitle(value)}
-            placeholder="Enter your question title"
-          />
-          {/* <br></br>
-          <br></br> */}
-          <Input
-            name="content"
-            value={content}
-            onChange={(value) => setContent(value)}
-            placeholder="Enter your question content"
-          />
+          <label htmlFor="question-title">
+            What would you like to ask about?
+            <Input
+              name="question-title"
+              value={title}
+              onChange={(value) => setTitle(value)}
+              placeholder="Please enter your question title here."
+            />
+          </label>
+          <label htmlFor="question-content">
+            Please share extra information and context about your question.
+            <textarea
+              name="question-content"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              placeholder="Please enter your question content here."
+            ></textarea>
+            {/* <Input
+              name="question-content"
+              value={content}
+              onChange={(value) => setContent(value)}
+              placeholder="Please enter your question content here."
+            /> */}
+          </label>
         </div>
-        {/* <br></br>
-        <br></br> */}
-        <button id="submit-question-button" type="submit">
-          Submit
+        <button id="post-question-button" type="submit">
+          Post Question
         </button>
       </form>
       {statusComponent}
