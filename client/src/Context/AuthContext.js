@@ -1,28 +1,23 @@
 import React, { createContext, useContext, useState } from "react";
-import { logInfo } from "../../../server/src/util/logging";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [user, setUser] = useState(null);
 
-  const login = (newToken) => {
-    setToken(newToken);
-    localStorage.setItem("token", newToken);
-
-    logInfo(`Token set in context: ${newToken}`);
+  const login = (userData) => {
+    setUser(userData);
   };
 
   const logout = () => {
-    setToken(null);
-    localStorage.removeItem("token");
+    setUser(null);
   };
 
-  return (
-    <AuthContext.Provider value={{ token, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+  return React.createElement(
+    AuthContext.Provider,
+    { value: { user, login, logout } },
+    children
   );
 };
 

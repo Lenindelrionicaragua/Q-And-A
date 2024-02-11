@@ -12,10 +12,10 @@ const Header = () => {
           <Logo />
         </div>
         <div className="header-buttons">
-          <Link to="/user/login">
+          <Link to="/auth/log-in">
             <PrimaryButton text="Log in" />
           </Link>
-          <Link to="/sign-up">
+          <Link to="/auth/sign-up">
             <PrimaryButton text="Sign up" />
           </Link>
         </div>

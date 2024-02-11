@@ -46,7 +46,6 @@ const useFetch = (route, onReceived) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     };
 

@@ -1,10 +1,17 @@
 import express from "express";
 import cors from "cors";
-
+import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
+import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
+import questionRouter from "./routes/questions.js";
+import answerRouter from "./routes/answers.js";
+/*import { logError } from "./util/logging.js";*/
 
 // Create an express server
 const app = express();
+
+// Middleware to access req.session in all request.
+app.use(sessionMiddleware);
 
 // Tell express to use the json middleware
 app.use(express.json());
@@ -16,6 +23,18 @@ app.use(cors());
  * We use /api/ at the start of every route!
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
+app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/questions", questionRouter);
+app.use("/api/questions/:questionId/answers", answerRouter);
+
+// Very basic error handling
+/*app.use((err, req, res) => {
+  logError(err.stack);
+  res
+    .status(500)
+    .send("An error occurred during your request. Please try again!");
+});
+*/
 
 export default app;
