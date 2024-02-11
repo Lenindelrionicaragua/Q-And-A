@@ -10,14 +10,9 @@ import classes from "./question.module.css";
 const Question = ({ question }) => {
   return (
     <li className={classes.questionItem}>
-      <Stack
-        // flex={1}
-        direction="row"
-        justifyContent="space-between"
-        alignItems="start"
-      >
+      <Stack direction="row" justifyContent="space-between" alignItems="start">
         <Stack spacing={2} mb={4}>
-          <Link to={`/${question.id}`}>
+          <Link to={`/${question._id}`}>
             <Typography
               component="h3"
               variant="h6"

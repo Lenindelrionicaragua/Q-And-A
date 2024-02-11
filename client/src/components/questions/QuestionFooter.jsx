@@ -3,12 +3,17 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 const QuestionFooter = ({ classes, question }) => {
-  const daysAgo = React.useMemo(() => {
-    const currentDate = new Date();
-    const questionDate = question.date;
-    const timeDifference = Math.abs(currentDate - questionDate);
-    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  }, [question.date]);
+  // const daysAgo = React.useMemo(() => {
+  //   const currentDate = new Date();
+  //   const questionDate = question.date;
+  //   const timeDifference = Math.abs(currentDate - questionDate);
+  //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  // }, [question.date]);
+  const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
   return (
     <Stack
       flex={1}
@@ -32,12 +37,11 @@ const QuestionFooter = ({ classes, question }) => {
         flexWrap="wrap"
         rowGap={2}
       >
-        <Typography>{question.answers.length} Answers</Typography>
+        {/* <Typography>{question.answers.length} Answers</Typography> */}
         <Typography>{question.likes} Like</Typography>
         <Typography>{question.views} Views</Typography>
-        <Typography>
-          Asked by:{question.author} {daysAgo} days ago
-        </Typography>
+        <Typography>Asked by:{question.author}</Typography>
+        <Typography>{formattedDate} </Typography>
       </Stack>
     </Stack>
   );

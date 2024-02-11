@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import QuestionBox from "../../components/QuestionBox/QuestionBox";
 import AnswerBox from "../../components/AnswerBox/AnswerBox";
 import CreateAnswerBox from "../../components/CreateAnswerBox/CreateAnswerBox";
-import { useParams } from "react-router-dom";
 
 const QuestionDetail = () => {
   const [question, setQuestion] = useState({});
   const [answers, setAnswers] = useState([]);
-  const { id } = useParams();
 
   //We should fetch the question and answers from the server using the id and set the state accordingly. I used a mock data for now.
 
