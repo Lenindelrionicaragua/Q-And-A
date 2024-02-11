@@ -5,7 +5,7 @@ import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import questionRouter from "./routes/questions.js";
 import answerRouter from "./routes/answers.js";
-/*import { logError } from "./util/logging.js";*/
+import { logError } from "./util/logging.js";
 
 // Create an express server
 const app = express();
@@ -29,12 +29,11 @@ app.use("/api/questions", questionRouter);
 app.use("/api/questions/:questionId/answers", answerRouter);
 
 // Very basic error handling
-/*app.use((err, req, res) => {
+app.use((err, req, res) => {
   logError(err.stack);
   res
     .status(500)
     .send("An error occurred during your request. Please try again!");
 });
-*/
 
 export default app;
