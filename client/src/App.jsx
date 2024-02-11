@@ -7,7 +7,7 @@ import Nav from "./components/Navigation/Nav";
 import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import LogInPage from "./pages/LogInPage/LogInPage";
+import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
 import QuestionDetails from "./pages/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
