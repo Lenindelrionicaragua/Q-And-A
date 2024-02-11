@@ -1,4 +1,4 @@
-import "./LogInPage.css";
+import "./LoginPage.css";
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { Link, useNavigate } from "react-router-dom";
