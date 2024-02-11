@@ -19,9 +19,9 @@ app.use(express.json());
 app.use(cors());
 //const PORT = 5000; // Use the port your server should run on
 
-app.get("/", (req, res) => {
-  res.send("Backend server is running!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Backend server is running!");
+// });
 
 /****** Attach routes ******/
 /**
