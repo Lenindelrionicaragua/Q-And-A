@@ -9,11 +9,13 @@ const QuestionFooter = ({ classes, question }) => {
   //   const timeDifference = Math.abs(currentDate - questionDate);
   //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   // }, [question.date]);
+
   const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
+
   return (
     <Stack
       flex={1}

@@ -18,7 +18,7 @@ const QuestionList = () => {
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
 
   function fetchQuestions(res) {
-    setQuestions(res.questions);
+    setQuestions(res.result);
   }
 
   React.useEffect(() => {
