@@ -8,7 +8,7 @@ import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUpPage/SignUpPage";
 import UserList from "./pages/SignUpPage/UserList";
-import QuestionDetails from "./pages/QuestionDetails";
+import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import "./App.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import QuestionList from "./pages/QuestionPage/QuestionPage";

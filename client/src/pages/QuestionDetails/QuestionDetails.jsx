@@ -68,7 +68,6 @@ const QuestionDetail = () => {
 
   return (
     <div>
-      <p>Question ID: {id}</p>
       <QuestionBox question={question} />
       {answers.map((answer, i) => (
         <AnswerBox key={i} answer={answer} />
