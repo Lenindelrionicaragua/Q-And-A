@@ -33,7 +33,6 @@ app.use("/api/user", userRouter);
 
 app.use("/api/questions", questionsRouter);
 
-//app.use("/api/questions", questionRouter);
 app.use("/api/questions/:questionId/answers", answerRouter);
 
 export default app;
