@@ -1,10 +1,10 @@
-import "./LoginPage.css";
+import "./LogInPage.css";
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { Link, useNavigate } from "react-router-dom";
 import { logError, logInfo } from "../../../../server/src/util/logging";
 
-const LoginPage = () => {
+const LogInPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (response) => {
@@ -32,4 +32,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LogInPage;

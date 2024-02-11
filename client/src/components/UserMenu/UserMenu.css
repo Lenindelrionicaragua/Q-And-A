@@ -1,0 +1,28 @@
+.primary-button {
+  font-size: 0.9em;
+  font-family: "Inter", sans-serif;
+  border: solid 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  padding-bottom: 1.05em;
+  min-height: 40px;
+  max-height: 40px;
+  gap: 0.5em;
+  border-radius: 0.35em; /* Asegúrate de agregar el borde redondeado */
+  border-color: #c8d1df; /* Ajusta el color del borde según tu diseño */
+  background: #0f0f12;
+  color: #c8d1df;
+}
+
+.primary-button:hover {
+  border-color: #76f013;
+  background: #76f013;
+  color: #0f0f12;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
