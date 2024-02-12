@@ -27,7 +27,7 @@ const App = () => {
             <Route path="/user-profile" element={<UserProfilePage />} />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
-            <Route path="questions/:id" element={<QuestionDetails />} />
+            <Route path="/questions/:id" element={<QuestionDetails />} />
             {/* /question-page was created to test db connection to "questions" collection */}
             <Route path="/question-page" element={<QuestionList />} />
           </Routes>
