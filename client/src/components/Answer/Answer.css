@@ -10,12 +10,17 @@
   width: 80%;
   max-width: 900px;
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   position: relative;
   background-color: #a8a6c61c;
   color: #44576a;
 }
 
+.answer-wrapper button {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+}
 .answer-pin {
   padding: 10px;
   margin-right: 5px;

@@ -1,8 +1,8 @@
 import React from "react";
-import "./CreateAnswerBox.css";
+import "./CreateAnswer.css";
 import PropTypes from "prop-types";
 
-const CreateAnswerBox = ({ handleSubmit }) => {
+const CreateAnswer = ({ handleSubmit }) => {
   const [answerContent, setAnswerContent] = React.useState("");
 
   return (
@@ -15,7 +15,7 @@ const CreateAnswerBox = ({ handleSubmit }) => {
         }}
       >
         <div className="description-wrapper">
-          <h3>This is a create answer box</h3>
+          <h3>Answer this question</h3>
           <p>Save your changes before leaving the page</p>
         </div>
         <hr />
@@ -35,8 +35,8 @@ const CreateAnswerBox = ({ handleSubmit }) => {
   );
 };
 
-CreateAnswerBox.propTypes = {
+CreateAnswer.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default CreateAnswerBox;
+export default CreateAnswer;

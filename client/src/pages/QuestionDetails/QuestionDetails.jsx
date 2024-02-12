@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import QuestionBox from "../../components/QuestionBox/QuestionBox";
-import AnswerBox from "../../components/AnswerBox/AnswerBox";
-import CreateAnswerBox from "../../components/CreateAnswerBox/CreateAnswerBox";
+import Answer from "../../components/Answer/Answer";
+import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import Question from "../../components/questions/Question";
+import "./QuestionDetail.css";
 
 const QuestionDetail = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
 
   const {
-    isLoading: questionLoading,
-    error: questionError,
     performFetch: performFetchQuestions,
     cancelFetch: cancelQuestionFetch,
   } = useFetch(`/questions/${id}`, (response) => setQuestion(response.result));
@@ -52,11 +51,13 @@ const QuestionDetail = () => {
 
   return (
     <div>
-      <QuestionBox question={question} />
+      <div className="question-wrapper">
+        <Question question={question} />
+      </div>
       {question.answers?.map((answer, i) => (
-        <AnswerBox key={i} answer={answer} />
+        <Answer key={i} answer={answer} />
       ))}
-      <CreateAnswerBox handleSubmit={handleCreateAnswer} />
+      <CreateAnswer handleSubmit={handleCreateAnswer} />
     </div>
   );
 };

@@ -26,7 +26,7 @@ const Question = ({ question }) => {
         </Stack>
 
         <Button>
-          <ThumbUpIcon />
+          <ThumbUpIcon style={{ fontSize: "22px" }} />
         </Button>
       </Stack>
       <QuestionFooter classes={classes} question={question} />
