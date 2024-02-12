@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Question from "../../components/questions/Question";
 import "./QuestionDetails.css";
+import { useAuth } from "../../Context/AuthContext";
 
 const QuestionDetails = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
+  const { user } = useAuth();
 
   const {
     performFetch: performFetchQuestions,
@@ -35,7 +37,7 @@ const QuestionDetails = () => {
     const answer = {
       question_id: id,
       answer_content: answerContent,
-      user_id: 1,
+      user_id: user?.id ?? "anonymous",
     };
 
     const options = {
