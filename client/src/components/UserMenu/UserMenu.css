@@ -1,26 +1,3 @@
-.user-menu {
-  position: relative;
-}
-
-.user-menu-dropdown .dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-}
-
-.user-menu-dropdown .dropdown.dropdown-open {
-  display: block;
-}
-
-.user-menu-button {
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  text-transform: capitalize;
-}
-
-.user-menu-button:hover {
-  background-color: #0056b3;
+.user-menu-dropdown .primary-button {
+  width: 80px;
 }

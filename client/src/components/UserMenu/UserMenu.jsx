@@ -26,6 +26,7 @@ const UserMenu = () => {
         >
           <PrimaryButton
             text={user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+            className="user-menu-button"
           />
           {isHovered && (
             <div className="dropdown-content">
