@@ -1,79 +1,33 @@
 import React from "react";
+import useFetch from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
-import SearchBar from "../../components/searchbar/SearchBar";
+import SearchBar from "../../components/searchbar/SearchBar.jsx";
 import Sorting from "../sorting/Sorting";
 import Question from "./Question";
 import "./question.module.css";
+import { logInfo } from "../../../../server/src/util/logging.js";
 
 const QuestionList = () => {
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+    "/questions",
+    fetchQuestions
+  );
+
   const [questions, setQuestions] = React.useState([]);
+  logInfo(questions);
   const [filteredQuestions, setFilteredQuestions] = React.useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
 
+  function fetchQuestions(res) {
+    setQuestions(res.questions);
+  }
+
   React.useEffect(() => {
-    setQuestions([
-      {
-        id: 1,
-        title: "Throw an error preventing a table update in a MySQL trigger",
-        excerpt:
-          "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
-        module: ["javascript", "react", "nodejs"],
-        likes: 16,
-        views: 20,
-        author: "@username",
-        date: new Date("8.9.2023"),
-        answers: [
-          "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
-          "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
-        ],
-      },
-      {
-        id: 2,
-        title: "Throw an error preventing a table update in a MySQL trigger",
-        excerpt:
-          "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
-        module: ["javascript", "react"],
-        likes: 17,
-        views: 20,
-        author: "@username",
-        date: new Date("1.10.2023"),
-        answers: [
-          "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
-          "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
-        ],
-      },
-      {
-        id: 3,
-        title: "Throw an error preventing a table update in a MySQL trigger",
-        excerpt:
-          "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
-        module: ["javascript", "react"],
-        likes: 1,
-        views: 20,
-        author: "@username",
-        date: new Date("1.1.2024"),
-        answers: [
-          "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
-          "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
-        ],
-      },
-      {
-        id: 4,
-        title: "Throw an error preventing a table update in a MySQL trigger",
-        excerpt:
-          "If I have a trigger before the update on a table, how can I throw an error that prevents the update on that table?",
-        module: ["javascript", "react"],
-        likes: 90,
-        views: 20,
-        author: "@username",
-        date: new Date("1.8.2022"),
-        answers: [
-          "Here is one hack that may work. It isn't clean, but it looks like it might work:Essentially, you just try to update a column that doesn't exist.",
-          "The hack could be implemented using triggers or using a stored procedure. I describe both options below following the example used by @RuiDC.",
-        ],
-      },
-    ]);
+    performFetch();
+    return () => {
+      cancelFetch();
+    };
   }, []);
 
   React.useEffect(() => {
@@ -126,6 +80,9 @@ const QuestionList = () => {
       setFilteredQuestions(questions);
     }
   }
+
+  if (isLoading) return <h1>Loading...</h1>;
+  if (error) return <h1>{error}</h1>;
 
   return (
     <Box component="section" py={4}>
