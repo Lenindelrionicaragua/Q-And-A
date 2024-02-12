@@ -4,9 +4,9 @@ import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Question from "../../components/questions/Question";
-import "./QuestionDetail.css";
+import "./QuestionDetails.css";
 
-const QuestionDetail = () => {
+const QuestionDetails = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
 
@@ -62,4 +62,4 @@ const QuestionDetail = () => {
   );
 };
 
-export default QuestionDetail;
+export default QuestionDetails;

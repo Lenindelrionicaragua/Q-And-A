@@ -9,7 +9,7 @@ import Home from "./pages/Home/Home";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
-import QuestionDetails from "./pages/QuestionDetails";
+import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 
 const App = () => {
