@@ -3,13 +3,6 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 const QuestionFooter = ({ classes, question }) => {
-  // const daysAgo = React.useMemo(() => {
-  //   const currentDate = new Date();
-  //   const questionDate = question.date;
-  //   const timeDifference = Math.abs(currentDate - questionDate);
-  //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  // }, [question.date]);
-
   const formattedDate = new Date(question.created_at).toLocaleDateString(
     "en-US",
     {
