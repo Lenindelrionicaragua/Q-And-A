@@ -21,7 +21,7 @@ const Header = () => {
           <Link to="/auth/log-in">
             <PrimaryButton text="Log in" />
           </Link>
-          <Link to="/auth/user-menu">
+          <Link to="/user-profile">
             <UserMenu userName={userName} />
           </Link>
         </div>
