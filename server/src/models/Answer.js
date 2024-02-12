@@ -3,16 +3,12 @@ import validateAllowedFields from "../util/validateAllowedFields.js";
 import { logInfo } from "../util/logging.js";
 
 const answerSchema = new mongoose.Schema({
-  answer_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  },
   user_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
   question_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
   answer_content: {

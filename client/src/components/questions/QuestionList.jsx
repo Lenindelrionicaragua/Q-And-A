@@ -20,7 +20,7 @@ const QuestionList = () => {
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
 
   function fetchQuestions(res) {
-    setQuestions(res.questions);
+    setQuestions(res.result);
   }
 
   React.useEffect(() => {
@@ -35,6 +35,20 @@ const QuestionList = () => {
       runSearch();
     }
   }, [questions]);
+
+  // React.useEffect(() => {
+  //   fetch("/api/questions")
+  //     .then((res) => {
+  //       console.log(res.json());
+  //       //return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   const runSearch = (searchModule) => {
     if (!searchModule) {

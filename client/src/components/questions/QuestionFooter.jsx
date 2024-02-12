@@ -3,17 +3,15 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 const QuestionFooter = ({ classes, question }) => {
-  // const daysAgo = React.useMemo(() => {
-  //   const currentDate = new Date();
-  //   const questionDate = question.date;
-  //   const timeDifference = Math.abs(currentDate - questionDate);
-  //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  // }, [question.date]);
-  const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  const formattedDate = new Date(question.created_at).toLocaleDateString(
+    "en-US",
+    {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }
+  );
+
   return (
     <Stack
       flex={1}
@@ -24,7 +22,7 @@ const QuestionFooter = ({ classes, question }) => {
       gap={3}
     >
       <ul className={classes.tags}>
-        {question.module.map((tag) => (
+        {question.module?.map((tag) => (
           <li key={tag}>
             <span>{tag}</span>
           </li>
@@ -38,9 +36,10 @@ const QuestionFooter = ({ classes, question }) => {
         rowGap={2}
       >
         {/* <Typography>{question.answers.length} Answers</Typography> */}
-        <Typography>{question.likes} Like</Typography>
-        <Typography>{question.views} Views</Typography>
+        <Typography>{question.like_counter} Like</Typography>
+        <Typography>{question.visit_counter} Views</Typography>
         <Typography>Asked by:{question.author}</Typography>
+        {/* TODO: return  userName instead of userId */}
         <Typography>{formattedDate} </Typography>
       </Stack>
     </Stack>

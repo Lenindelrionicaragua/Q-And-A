@@ -9,7 +9,7 @@ import Home from "./pages/Home/Home";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
-import QuestionDetails from "./pages/QuestionDetails";
+import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 
@@ -27,7 +27,7 @@ const App = () => {
             <Route path="/user-profile" element={<UserProfilePage />} />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
-            <Route path="/:id" element={<QuestionDetails />} />
+            <Route path="questions/:id" element={<QuestionDetails />} />
             {/* /question-page was created to test db connection to "questions" collection */}
             <Route path="/question-page" element={<QuestionList />} />
           </Routes>
