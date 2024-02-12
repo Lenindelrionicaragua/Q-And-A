@@ -64,9 +64,11 @@ const useFetch = (route, onReceived) => {
       }
 
       const jsonResult = await res.json();
-      //logInfo(jsonResult);
+
       // Log the response for debugging
-      logInfo("Response from server: " + JSON.stringify(jsonResult));
+      logInfo(
+        "Response from server in useFetch: " + JSON.stringify(jsonResult)
+      );
 
       if (jsonResult.success === true) {
         onReceived(jsonResult);

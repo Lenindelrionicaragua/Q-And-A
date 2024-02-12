@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import TEST_ID from "./SignUpPage.testid";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -141,4 +141,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

@@ -1,10 +1,11 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
-import SearchBar from "../../components/searchBar/SearchBar";
+import SearchBar from "../../components/searchbar/SearchBar.jsx";
 import Sorting from "../sorting/Sorting";
 import Question from "./Question";
 import "./question.module.css";
+import { logInfo } from "../../../../server/src/util/logging.js";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -13,6 +14,7 @@ const QuestionList = () => {
   );
 
   const [questions, setQuestions] = React.useState([]);
+  logInfo(questions);
   const [filteredQuestions, setFilteredQuestions] = React.useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
@@ -92,7 +94,7 @@ const QuestionList = () => {
       setFilteredQuestions(questions);
     }
   }
-  //////////////////////////////////////////////////////
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
 

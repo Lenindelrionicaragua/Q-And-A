@@ -6,11 +6,10 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Navigation/Nav";
 import PageContent from "./components/ui/PageContent";
 import Home from "./pages/Home/Home";
-import SignUp from "./pages/SignUpPage/SignUpPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
-import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
-import "./App.css";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import QuestionDetails from "./pages/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 
 const App = () => {
@@ -22,8 +21,8 @@ const App = () => {
         <PageContent className="overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/auth/log-in" element={<LoginPage />} />
-            <Route path="/auth/sign-up" element={<SignUp />} />
+            <Route path="/auth/sign-up" element={<SignUpPage />} />
+            <Route path="/auth/log-in" element={<LogInPage />} />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
             <Route path="questions/:id" element={<QuestionDetails />} />

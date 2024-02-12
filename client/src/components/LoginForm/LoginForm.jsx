@@ -24,8 +24,13 @@ const LoginForm = ({ onLogin }) => {
   const handleLoginSuccess = (response) => {
     if (response.success === true) {
       setFormData({ email: "", password: "", loginError: null });
-      logInfo("Login successful");
+
+      logInfo(
+        "Response from server in login Form: " + JSON.stringify(response)
+      );
+
       login(response.user);
+
       if (onLogin) {
         onLogin(response);
       }
