@@ -12,7 +12,7 @@ const Question = ({ question }) => {
     <li className={classes.questionItem}>
       <Stack direction="row" justifyContent="space-between" alignItems="start">
         <Stack spacing={2} mb={4}>
-          <Link to={`questions/${question._id}`}>
+          <Link to={`/questions/${question._id}`}>
             <Typography
               component="h3"
               variant="h6"
