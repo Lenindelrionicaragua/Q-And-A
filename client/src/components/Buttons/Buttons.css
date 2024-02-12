@@ -36,3 +36,27 @@ button .icon img {
   background: #76f013;
   color: #0f0f12;
 }
+
+/* Icon styles */
+button .icon {
+  padding-top: 0.15em;
+}
+
+button .icon img {
+  height: 1em;
+}
+
+/* Primary button styles */
+.primary-button {
+  font-weight: 600;
+  border-radius: 0.35em;
+  border-color: #c8d1df;
+  background: #0f0f12;
+  color: #c8d1df;
+}
+
+.primary-button:hover {
+  border-color: #76f013;
+  background: #76f013;
+  color: #0f0f12;
+}
