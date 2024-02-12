@@ -73,7 +73,9 @@ const QuestionDetails = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       <div className="question-wrapper">
         <Question question={question} />
       </div>
