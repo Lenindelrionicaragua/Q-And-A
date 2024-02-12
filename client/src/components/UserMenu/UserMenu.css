@@ -18,7 +18,7 @@
   display: inline-block;
   text-decoration: none;
   transition: background-color 0.3s ease;
-  text-transform: capitalize; /* Aplicamos la capitalización directamente al botón */
+  text-transform: capitalize;
 }
 
 .user-menu-button:hover {
