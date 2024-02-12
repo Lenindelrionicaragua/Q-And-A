@@ -10,11 +10,14 @@ const QuestionFooter = ({ classes, question }) => {
   //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   // }, [question.date]);
 
-  const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  const formattedDate = new Date(question.created_at).toLocaleDateString(
+    "en-US",
+    {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }
+  );
 
   return (
     <Stack
@@ -40,9 +43,10 @@ const QuestionFooter = ({ classes, question }) => {
         rowGap={2}
       >
         {/* <Typography>{question.answers.length} Answers</Typography> */}
-        <Typography>{question.likes} Like</Typography>
-        <Typography>{question.views} Views</Typography>
+        <Typography>{question.like_counter} Like</Typography>
+        <Typography>{question.visit_counter} Views</Typography>
         <Typography>Asked by:{question.author}</Typography>
+        {/* TODO: return  userName instead of userId */}
         <Typography>{formattedDate} </Typography>
       </Stack>
     </Stack>
