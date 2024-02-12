@@ -19,10 +19,10 @@ const Question = ({ question }) => {
               fontWeight="bold"
               color="primary.main"
             >
-              {question.title}
+              {question.question_title}
             </Typography>
           </Link>
-          <Typography component="span">{question.excerpt}</Typography>
+          <Typography component="span">{question.question_content}</Typography>
         </Stack>
 
         <Button>

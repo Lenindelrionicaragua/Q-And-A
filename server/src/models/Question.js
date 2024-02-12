@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const questionSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: true,
   },
   question_title: {
