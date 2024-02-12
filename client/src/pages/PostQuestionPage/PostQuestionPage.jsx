@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 // Import AuthContext to get user data
 import { useAuth } from "../../Context/AuthContext.js";
+import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
+  const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [selectedModules, setSelectedModules] = useState([]);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/questions/create",
     onSuccess
@@ -20,18 +23,20 @@ const PostQuestionPage = () => {
 
   // Extract user data from Authentication Context
   const { user } = useAuth();
+  logInfo(user);
 
   // Pending: on next stages, `selectedModules` should
   // contain an array of references to ObjectIds from
-  // `Modules` collection.
-  // User should be able to
-  // choose between many Module options.
-  // (multiple choice, in a dropdown menu).
+  // `Modules` collection. User should be able to choose between
+  // many Module options (multiple choice, in a dropdown menu).
 
   // Modules Selection
-  let selectedModules = [];
-  const handleModulesSelection = (selectedOptions) => {
-    selectedModules.push(selectedOptions);
+  const handleModuleSelection = (selectedOption) => {
+    logInfo(selectedOption);
+    setSelectedModules((prevSelectedModules) => [
+      ...prevSelectedModules,
+      selectedOption,
+    ]);
   };
 
   const onSuccess = () => {
@@ -48,11 +53,17 @@ const PostQuestionPage = () => {
       alert("Sorry! You have to log in before posting a new question 🙂");
       navigate("/auth/log-in");
     }
+
+    if (user) {
+      setUserId(user.id);
+    }
+
     return cancelFetch;
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    logInfo(userId, title, content, selectedModules);
     performFetch({
       method: "POST",
       headers: {
@@ -60,7 +71,7 @@ const PostQuestionPage = () => {
       },
       body: JSON.stringify({
         question: {
-          user_id: user._id,
+          user_id: userId,
           question_title: title,
           question_content: content,
           module_ids: selectedModules,
@@ -70,13 +81,15 @@ const PostQuestionPage = () => {
   };
 
   let statusComponent = null;
-  if (error != null) {
+  if (error !== null) {
     statusComponent = (
       <div id="postQuestion-status-component">
         Error while trying to post question: {error.toString()}
       </div>
     );
-  } else if (isLoading) {
+  }
+
+  if (isLoading) {
     statusComponent = (
       <div id="postQuestion-status-component">Posting question...</div>
     );
@@ -118,7 +131,7 @@ const PostQuestionPage = () => {
               placeholder="Please enter your question content here."
             ></textarea>
           </label>
-          <MultipleChoiceModules onSelect={handleModulesSelection} />
+          <MultipleChoiceModules onSelect={handleModuleSelection} />
         </div>
         <button id="post-question-button" type="submit">
           Post Question

@@ -28,11 +28,10 @@ const questionSchema = new Schema({
     default: 0,
   },
   // Module_ids will contain for now module names (strings).
-  // On next stage, Modules collection will be connected.
+  // On next stages, Modules collection will be connected.
   module_ids: [
     {
       type: String,
-      required: true,
     },
   ],
   visit_counter: {
@@ -44,8 +43,7 @@ const questionSchema = new Schema({
 export const validateQuestion = (
   questionObject,
   requireTitle = true,
-  requireContent = true,
-  requireModule = true
+  requireContent = true
 ) => {
   const errorList = [];
   const allowedKeys = [
@@ -72,11 +70,6 @@ export const validateQuestion = (
   if (requireContent && questionObject.question_content == null) {
     errorList.push("Content is a required field");
     logInfo("Question Validation failed: Content is required");
-  }
-
-  if (requireModule && questionObject.module_ids == null) {
-    errorList.push("Module_ids is a required field");
-    logInfo("Question Validation failed: Module_ids is required");
   }
 
   return errorList;

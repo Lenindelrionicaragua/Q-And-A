@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { logInfo } from "../../../../server/src/util/logging";
 
 const MultipleChoiceModules = ({ onSelect }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -19,12 +20,15 @@ const MultipleChoiceModules = ({ onSelect }) => {
     const value = event.target.value;
     const isChecked = event.target.checked;
 
+    onSelect(value);
+
     if (isChecked) {
       if (selectedOptions.length >= 3) {
         setError("You can select at most 3 options.");
         return;
       }
       setSelectedOptions([...selectedOptions, value]);
+      logInfo(selectedOptions);
     } else {
       setSelectedOptions(selectedOptions.filter((option) => option !== value));
     }
@@ -58,7 +62,7 @@ const MultipleChoiceModules = ({ onSelect }) => {
         </div>
       ))}
       {error && <div style={{ color: "red" }}>{error}</div>}
-      <button onClick={() => onSelect(selectedOptions)}>Submit</button>
+      {/* <a onClick={() => onSelect(selectedOptions)}>Add Modules</a> */}
     </div>
   );
 };
