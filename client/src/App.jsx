@@ -11,6 +11,7 @@ import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
 import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
+import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/auth/sign-up" element={<SignUpPage />} />
             <Route path="/auth/log-in" element={<LogInPage />} />
+            <Route path="/user-profile" element={<UserProfilePage />} />
             <Route path="/ask-a-question" />
             <Route path="/user" element={<UserList />} />
             <Route path="questions/:id" element={<QuestionDetails />} />
