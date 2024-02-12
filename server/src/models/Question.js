@@ -81,7 +81,7 @@ export const validateQuestion = (
 
   return errorList;
 };
-
-const Question = mongoose.model("questions", questionSchema);
+//i change module name from question(s) to question without (s) because i get error can not overwrite..
+const Question = mongoose.model("question", questionSchema);
 
 export default Question;

@@ -6,6 +6,8 @@ import bcrypt from "bcrypt";
 export const login = async (req, res) => {
   const { user } = req.body;
 
+  // Validation Errors
+
   try {
     const errors = [];
     if (!user.email || !user.password) {
@@ -34,15 +36,14 @@ export const login = async (req, res) => {
 
       if (isPasswordValid) {
         // Establish the user session
-        req.user = userFound;
-        // Send response to the client
-        res
-          .status(200)
-          .json({ success: true, msg: "Login successful", user: userFound });
-      } else {
-        res.status(401).json({
-          success: false,
-          msg: "Invalid credentials - Incorrect password",
+        res.status(200).json({
+          success: true,
+          msg: "Login successful",
+          user: {
+            id: userFound._id,
+            email: userFound.email,
+            name: userFound.name,
+          },
         });
       }
     } else {
