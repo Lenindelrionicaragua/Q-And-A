@@ -26,7 +26,7 @@ const QuestionDetails = () => {
     (response) => {
       setQuestion((prevQuestion) => ({
         ...prevQuestion,
-        answers: [...prevQuestion.answers, response.result],
+        answers: [...prevQuestion.answers, response.answer],
       }));
     }
   );

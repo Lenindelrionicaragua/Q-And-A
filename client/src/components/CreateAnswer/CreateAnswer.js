@@ -12,6 +12,7 @@ const CreateAnswer = ({ handleSubmit }) => {
         onSubmit={(event) => {
           event.preventDefault();
           handleSubmit(answerContent);
+          setAnswerContent("");
         }}
       >
         <div className="description-wrapper">

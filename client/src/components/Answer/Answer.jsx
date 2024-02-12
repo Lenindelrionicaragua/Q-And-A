@@ -10,9 +10,9 @@ const Answer = ({ answer }) => {
       <Button>
         <ThumbUpIcon style={{ fontSize: "18px" }} />
       </Button>
-      <p>{answer.answer_content}</p>
+      <p>{answer?.answer_content}</p>
       <div className="answer-pins">
-        <span className="pin">{answer.like_counter} LIKES</span>
+        <span className="pin">{answer?.like_counter} LIKES</span>
         <span className="pin">Answered by @username ?? mins ago</span>
       </div>
     </div>
