@@ -2,10 +2,12 @@ import React, { memo } from "react";
 import "./Answer.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import PropTypes from "prop-types";
 import { useAuth } from "../../Context/AuthContext";
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, handleDelete }) => {
   const getFormattedDate = (date) => {
     if (!date) return "unknown date";
     return new Date(date).toLocaleDateString("en-US", {
@@ -16,10 +18,17 @@ const Answer = ({ answer }) => {
   };
 
   const { user } = useAuth();
+
   return (
     <div className="answer-wrapper">
-      <Button>
+      <Button className="aswerLikeBtn">
         <ThumbUpIcon style={{ fontSize: "18px" }} />
+      </Button>
+      <Button
+        className="answerDeletBtn"
+        onClick={() => handleDelete(answer._id)}
+      >
+        <DeleteIcon style={{ fontSize: "18px" }} />
       </Button>
       <p>{answer?.answer_content}</p>
       <div className="answer-pins">

@@ -38,7 +38,8 @@ const useFetch = (route, onReceived) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Add any args given to the function to the fetch function
-  const performFetch = (options) => {
+  const performFetch = (options, newUrl) => {
+    route = newUrl || route;
     setError(null);
     setIsLoading(true);
 

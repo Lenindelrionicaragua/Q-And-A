@@ -12,16 +12,16 @@ const QuestionDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
 
-  const {
-    performFetch: performFetchQuestions,
-    cancelFetch: cancelQuestionFetch,
-  } = useFetch(`/questions/${id}`, (response) => setQuestion(response.result));
-
   useEffect(() => {
-    performFetchQuestions();
+    performFetchQuestion();
 
     return cancelQuestionFetch;
   }, []);
+
+  const {
+    performFetch: performFetchQuestion,
+    cancelFetch: cancelQuestionFetch,
+  } = useFetch(`/questions/${id}`, (response) => setQuestion(response.result));
 
   const { performFetch: performFetchAnswer } = useFetch(
     "/answer/create",
@@ -51,13 +51,34 @@ const QuestionDetails = () => {
     performFetchAnswer(options);
   };
 
+  const getDeleteUrl = (questionId, answerId) =>
+    `/questions/${questionId}/answers/${answerId}/delete`;
+
+  const { performFetch: performFetchDeleteAnswer } = useFetch(
+    "", // We don't need to specify a route here, we will do that in the handleDelete function
+    (response) => {
+      if (response.success) {
+        performFetchQuestion();
+      }
+    }
+  );
+  const handleDelete = (answerId) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    performFetchDeleteAnswer(options, getDeleteUrl(id, answerId));
+  };
+
   return (
     <div>
       <div className="question-wrapper">
         <Question question={question} />
       </div>
       {question.answers?.map((answer, i) => (
-        <Answer key={i} answer={answer} />
+        <Answer key={i} answer={answer} handleDelete={handleDelete} />
       ))}
       <CreateAnswer handleSubmit={handleCreateAnswer} />
     </div>
