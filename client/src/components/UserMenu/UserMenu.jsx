@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import "./UserMenu.css";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import LogOut from "../Logout/Logout";
+import LogOut from "../LogOut/LogOut";
 
 const UserMenu = () => {
   const { user } = useAuth();
