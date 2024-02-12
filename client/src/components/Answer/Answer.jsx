@@ -14,6 +14,7 @@ const Answer = ({ answer }) => {
       day: "numeric",
     });
   };
+
   const { user } = useAuth();
   return (
     <div className="answer-wrapper">
