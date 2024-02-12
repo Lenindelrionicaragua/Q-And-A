@@ -24,7 +24,7 @@ const QuestionFooter = ({ classes, question }) => {
       gap={3}
     >
       <ul className={classes.tags}>
-        {question.module.map((tag) => (
+        {question.module_ids.map((tag) => (
           <li key={tag}>
             <span>{tag}</span>
           </li>

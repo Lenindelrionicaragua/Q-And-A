@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import userRouter from "./routes/user.js";
-import questionsRouter from "./routes/questions.js";
+import questionsRouter from "./routes/question.js";
 import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
@@ -30,9 +30,7 @@ app.use(cors());
  */
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
-
 app.use("/api/questions", questionsRouter);
-
 app.use("/api/questions/:questionId/answers", answerRouter);
 
 export default app;
