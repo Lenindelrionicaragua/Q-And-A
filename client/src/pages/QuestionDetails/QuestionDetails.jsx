@@ -14,14 +14,15 @@ const QuestionDetails = () => {
 
   useEffect(() => {
     performFetchQuestion();
-
     return cancelQuestionFetch;
   }, []);
 
   const {
     performFetch: performFetchQuestion,
     cancelFetch: cancelQuestionFetch,
-  } = useFetch(`/questions/${id}`, (response) => setQuestion(response.result));
+  } = useFetch(`/questions/${id}`, (response) => {
+    setQuestion(response.result);
+  });
 
   const { performFetch: performFetchAnswer } = useFetch(
     "/answer/create",
@@ -72,6 +73,10 @@ const QuestionDetails = () => {
     performFetchDeleteAnswer(options, getDeleteUrl(id, answerId));
   };
 
+  const isAnswerBelongsToUser = (answer) => {
+    return user?.id === answer.user_id;
+  };
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -80,7 +85,12 @@ const QuestionDetails = () => {
         <Question question={question} />
       </div>
       {question.answers?.map((answer, i) => (
-        <Answer key={i} answer={answer} handleDelete={handleDelete} />
+        <Answer
+          key={i}
+          answer={answer}
+          handleDelete={handleDelete}
+          isAnswerBelongsToUser={isAnswerBelongsToUser(answer)}
+        />
       ))}
       <CreateAnswer handleSubmit={handleCreateAnswer} />
     </div>

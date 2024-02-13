@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
 import { useAuth } from "../../Context/AuthContext";
 
-const Answer = ({ answer, handleDelete }) => {
+const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   const getFormattedDate = (date) => {
     if (!date) return "unknown date";
     return new Date(date).toLocaleDateString("en-US", {
@@ -20,13 +20,13 @@ const Answer = ({ answer, handleDelete }) => {
 
   return (
     <div className="answer-wrapper">
-      {user ? (
+      {isAnswerBelongsToUser ? (
         <div>
           <Button className="aswerLikeBtn">
             <ThumbUpIcon style={{ fontSize: "18px" }} />
           </Button>
           <Button
-            className="answerDeletBtn"
+            className="answerDeleteBtn"
             onClick={() => handleDelete(answer._id)}
           >
             <DeleteIcon style={{ fontSize: "18px" }} />
@@ -38,7 +38,7 @@ const Answer = ({ answer, handleDelete }) => {
             <ThumbUpIcon style={{ fontSize: "18px" }} />
           </Button>
           <Button
-            className="answerDeletBtn"
+            className="answerDeleteBtn"
             disabled
             onClick={() => handleDelete(answer._id)}
           >
