@@ -67,9 +67,9 @@ const QuestionList = () => {
 
   function handleSortByTime() {
     const sortedQuestions = [...questions].sort((a, b) => {
-      const timeA = new Date().getTime() - a.date.getTime();
-      const timeB = new Date().getTime() - b.date.getTime();
-      return timeA - timeB;
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return dateB - dateA;
     });
 
     const valueToBe = !isSortedByTime;
