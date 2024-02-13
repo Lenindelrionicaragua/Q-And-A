@@ -41,7 +41,7 @@ const QuestionList = () => {
       return;
     }
     const updatedQuestions = questions.filter((question) => {
-      return question.module.includes(searchModule);
+      return question.module_ids.includes(searchModule);
     });
 
     setFilteredQuestions(updatedQuestions);
