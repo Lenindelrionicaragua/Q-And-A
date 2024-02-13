@@ -13,18 +13,16 @@ const QuestionDetails = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    performFetchQuestion();
+    fetchQuestion();
     return cancelQuestionFetch;
   }, []);
 
-  const {
-    performFetch: performFetchQuestion,
-    cancelFetch: cancelQuestionFetch,
-  } = useFetch(`/questions/${id}`, (response) => {
-    setQuestion(response.result);
-  });
+  const { performFetch: fetchQuestion, cancelFetch: cancelQuestionFetch } =
+    useFetch(`/questions/${id}`, (response) => {
+      setQuestion(response.result);
+    });
 
-  const { performFetch: performFetchAnswer } = useFetch(
+  const { performFetch: createAnswer } = useFetch(
     "/answer/create",
     (response) => {
       setQuestion((prevQuestion) => ({
@@ -38,7 +36,7 @@ const QuestionDetails = () => {
     const answer = {
       question_id: id,
       answer_content: answerContent,
-      user_id: user?.id ?? "anonymous",
+      user_id: user?.id ?? user?.name,
     };
 
     const options = {
@@ -49,17 +47,17 @@ const QuestionDetails = () => {
       body: JSON.stringify(answer),
     };
 
-    performFetchAnswer(options);
+    createAnswer(options);
   };
 
   const getDeleteUrl = (questionId, answerId) =>
     `/questions/${questionId}/answers/${answerId}/delete`;
 
-  const { performFetch: performFetchDeleteAnswer } = useFetch(
+  const { performFetch: deleteAnswer } = useFetch(
     "", // We don't need to specify a route here, we will do that in the handleDelete function
     (response) => {
       if (response.success) {
-        performFetchQuestion();
+        fetchQuestion();
       }
     }
   );
@@ -70,11 +68,11 @@ const QuestionDetails = () => {
         "Content-Type": "application/json",
       },
     };
-    performFetchDeleteAnswer(options, getDeleteUrl(id, answerId));
+    deleteAnswer(options, getDeleteUrl(id, answerId));
   };
 
   const isAnswerBelongsToUser = (answer) => {
-    return user?.id === answer.user_id;
+    return user?.id && user?.id === answer.user_id;
   };
 
   return (

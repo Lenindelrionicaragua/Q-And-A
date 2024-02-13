@@ -20,37 +20,26 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
 
   return (
     <div className="answer-wrapper">
-      {isAnswerBelongsToUser ? (
-        <div>
-          <Button className="aswerLikeBtn">
-            <ThumbUpIcon style={{ fontSize: "18px" }} />
-          </Button>
-          <Button
-            className="answerDeleteBtn"
-            onClick={() => handleDelete(answer._id)}
-          >
-            <DeleteIcon style={{ fontSize: "18px" }} />
-          </Button>
-        </div>
-      ) : (
-        <div>
-          <Button className="aswerLikeBtn" disabled>
-            <ThumbUpIcon style={{ fontSize: "18px" }} />
-          </Button>
-          <Button
-            className="answerDeleteBtn"
-            disabled
-            onClick={() => handleDelete(answer._id)}
-          >
-            <DeleteIcon style={{ fontSize: "18px" }} />
-          </Button>
-        </div>
-      )}
+      <div>
+        <Button
+          className="aswerLikeBtn"
+          disabled={isAnswerBelongsToUser ? false : true}
+        >
+          <ThumbUpIcon style={{ fontSize: "18px" }} />
+        </Button>
+        <Button
+          className="answerDeleteBtn"
+          disabled={isAnswerBelongsToUser ? false : true}
+          onClick={() => handleDelete(answer._id)}
+        >
+          <DeleteIcon style={{ fontSize: "18px" }} />
+        </Button>
+      </div>
       <p>{answer?.answer_content}</p>
       <div className="answer-pins">
         <span className="pin">{answer?.like_counter} LIKES</span>
         <span className="pin">
-          Answered by {user?.name ?? "anonymous"} on{" "}
+          Answered by {answer?.author ?? "anonymous"} on{" "}
           {getFormattedDate(answer?.created_at)}
         </span>
       </div>
