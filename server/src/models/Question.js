@@ -74,6 +74,6 @@ export const validateQuestion = (
   return errorList;
 };
 
-const Question = mongoose.model("question", questionSchema);
+const Question = mongoose.model("questions", questionSchema);
 
 export default Question;
