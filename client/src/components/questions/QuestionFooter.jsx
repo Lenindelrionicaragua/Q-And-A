@@ -3,16 +3,9 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import useFetch from "../../hooks/useFetch";
-// import { logInfo } from "../../../../server/src/util/logging";
+import TimeAgo from "../TimeAgo/TimeAgo";
 
 const QuestionFooter = ({ classes, question }) => {
-  // const daysAgo = React.useMemo(() => {
-  //   const currentDate = new Date();
-  //   const questionDate = question.date;
-  //   const timeDifference = Math.abs(currentDate - questionDate);
-  //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  // }, [question.date]);
-
   const [userName, setUserName] = useState("");
   const { performFetch, cancelFetch } = useFetch(
     `/user/${question.user_id}/name`,
@@ -26,12 +19,6 @@ const QuestionFooter = ({ classes, question }) => {
 
     return cancelFetch;
   }, []);
-
-  const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
 
   return (
     <Stack
@@ -57,10 +44,12 @@ const QuestionFooter = ({ classes, question }) => {
         rowGap={2}
       >
         {/* <Typography>{question.answers.length} Answers</Typography> */}
-        <Typography>{question.likes} Like</Typography>
-        <Typography>{question.views} Views</Typography>
+        <Typography>{question.like_counter} Like</Typography>
+        <Typography>{question.visit_counter} Views</Typography>
         <Typography>Asked by:{userName}</Typography>
-        <Typography>{formattedDate} </Typography>
+        <Typography>
+          <TimeAgo createdAt={question.created_at} />
+        </Typography>
       </Stack>
     </Stack>
   );

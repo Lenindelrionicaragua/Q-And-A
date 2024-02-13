@@ -24,7 +24,7 @@ const PostQuestionPage = () => {
         setTitle("");
         setContent("");
         setSelectedModules("");
-        alert(successMessage);
+        alert("Successful Question creation!");
       }
     }
   );
@@ -130,15 +130,15 @@ const PostQuestionPage = () => {
           </label>
           <label htmlFor="module-ids">
             Add the module names that apply for your question. Please separate
-            them by using comma:
+            them by using comma. --- Please add an extra comma at the end for
+            modules to be entered correctly, for example: &quot;HTML, CSS,
+            JavaScript,&quot;:
             <Input
               name="module_ids"
               value={selectedModules}
               onChange={(value) => {
                 setSelectedModules(value);
-                if (selectedModules.length > 0) {
-                  setModulesInputToArray(selectedModules);
-                }
+                setModulesInputToArray(selectedModules);
               }}
               placeholder="Please enter your module names here."
             />

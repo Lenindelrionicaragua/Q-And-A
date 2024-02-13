@@ -5,7 +5,7 @@ import SearchBar from "../../components/searchbar/SearchBar.jsx";
 import Sorting from "../sorting/Sorting";
 import Question from "./Question";
 import "./question.module.css";
-// import { logInfo } from "../../../../server/src/util/logging.js";
+import { logInfo } from "../../../../server/src/util/logging.js";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -14,7 +14,6 @@ const QuestionList = () => {
   );
 
   const [questions, setQuestions] = React.useState([]);
-  // logInfo(questions);
   const [filteredQuestions, setFilteredQuestions] = React.useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
@@ -50,8 +49,11 @@ const QuestionList = () => {
 
   function handleSortByPopularity() {
     const sortedQuestions = [...questions].sort((a, b) => {
-      return b.likes - a.likes;
+      return b.like_counter - a.like_counter;
     });
+
+    logInfo("Sorted Questions:", sortedQuestions);
+
     const valueToBe = !isSortedByPopularity;
     setIsSortedByPopularity(valueToBe);
     setIsSortedByTime(false);
