@@ -1,7 +1,6 @@
 import "./PostQuestionPage.css";
 import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
-import MultipleChoiceModules from "../../components/MultipleChoiceModules/MultipleChoiceModules.jsx";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
@@ -10,41 +9,38 @@ import { useAuth } from "../../Context/AuthContext.js";
 import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
+  const [successMessage, setSuccessMessage] = useState("");
   const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [selectedModules, setSelectedModules] = useState([]);
+  const [selectedModules, setSelectedModules] = useState("");
+  const [selectedModulesArray, setSelectedModulesArray] = useState([]);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/questions/create",
-    onSuccess
+    (response) => {
+      if (response) {
+        setSuccessMessage("Successful Question creation!");
+        logInfo(successMessage);
+        setTitle("");
+        setContent("");
+        setSelectedModules("");
+        alert(successMessage);
+      }
+    }
   );
 
   const navigate = useNavigate();
 
   // Extract user data from Authentication Context
   const { user } = useAuth();
-  logInfo(user);
 
-  // Pending: on next stages, `selectedModules` should
-  // contain an array of references to ObjectIds from
-  // `Modules` collection. User should be able to choose between
-  // many Module options (multiple choice, in a dropdown menu).
-
-  // Modules Selection
-  const handleModuleSelection = (selectedOption) => {
-    logInfo(selectedOption);
-    setSelectedModules((prevSelectedModules) => [
-      ...prevSelectedModules,
-      selectedOption,
-    ]);
-  };
-
-  const onSuccess = () => {
-    setTitle("");
-    setContent("");
-    alert("Successful question creation!");
-    // Pending: After a successful question creation,
-    // navigate to the new QuestionPage.
+  // TODO: on next stages, `selectedModules` should contain an array of references to ObjectIds from `Modules` collection. User should be able to choose between many Module options (multiple choice, in a dropdown menu).
+  // Handle Modules Input
+  const setModulesInputToArray = (modulesString) => {
+    const modulesArray = modulesString
+      .split(",")
+      .map((module) => module.trim());
+    setSelectedModulesArray(modulesArray);
   };
 
   useEffect(() => {
@@ -64,6 +60,7 @@ const PostQuestionPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     logInfo(userId, title, content, selectedModules);
+
     performFetch({
       method: "POST",
       headers: {
@@ -74,7 +71,7 @@ const PostQuestionPage = () => {
           user_id: userId,
           question_title: title,
           question_content: content,
-          module_ids: selectedModules,
+          module_ids: selectedModulesArray,
         },
       }),
     });
@@ -131,7 +128,21 @@ const PostQuestionPage = () => {
               placeholder="Please enter your question content here."
             ></textarea>
           </label>
-          <MultipleChoiceModules onSelect={handleModuleSelection} />
+          <label htmlFor="module-ids">
+            Add the module names that apply for your question. Please separate
+            them by using comma:
+            <Input
+              name="module_ids"
+              value={selectedModules}
+              onChange={(value) => {
+                setSelectedModules(value);
+                if (selectedModules.length > 0) {
+                  setModulesInputToArray(selectedModules);
+                }
+              }}
+              placeholder="Please enter your module names here."
+            />
+          </label>
         </div>
         <button id="post-question-button" type="submit">
           Post Question

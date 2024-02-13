@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { logInfo } from "../../../../server/src/util/logging";
 
+// This file is not being used right now, but will be used
+// on version 2 for Post-question-page
 const MultipleChoiceModules = ({ onSelect }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [error, setError] = useState("");

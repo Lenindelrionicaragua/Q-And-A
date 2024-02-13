@@ -27,8 +27,7 @@ const questionSchema = new Schema({
     type: Number,
     default: 0,
   },
-  // Module_ids will contain for now module names (strings).
-  // On next stages, Modules collection will be connected.
+  // TODO: `module_ids` will contain for now module names (strings). On next version, `Modules` collection will be connected and `module_ids` should be an Array of ObjectIds.
   module_ids: [
     {
       type: String,
