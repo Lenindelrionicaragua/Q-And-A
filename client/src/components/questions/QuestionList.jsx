@@ -40,8 +40,16 @@ const QuestionList = () => {
       setFilteredQuestions(questions);
       return;
     }
+
     const updatedQuestions = questions.filter((question) => {
-      return question.module_ids.includes(searchModule);
+      // Convert both the module_ids and searchModule to lowercase
+      const lowerCaseModuleIds = question.module_ids.map((moduleId) =>
+        moduleId.toLowerCase()
+      );
+      const lowerCaseSearchModule = searchModule.toLowerCase();
+
+      // Check if the lower case version of searchModule exists in lower case module_ids
+      return lowerCaseModuleIds.includes(lowerCaseSearchModule);
     });
 
     setFilteredQuestions(updatedQuestions);
