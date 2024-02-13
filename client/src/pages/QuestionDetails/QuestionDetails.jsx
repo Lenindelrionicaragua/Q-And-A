@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Answer from "../../components/Answer/Answer";
-import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
+// import Answer from "../../components/Answer/Answer";
+// import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import Question from "../../components/questions/Question";
+// import Question from "../../components/questions/Question";
 import "./QuestionDetails.css";
-import { useAuth } from "../../Context/AuthContext";
+// import { useAuth } from "../../Context/AuthContext";
+import { logInfo } from "../../../../server/src/util/logging";
 
 const QuestionDetails = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const {
     performFetch: performFetchQuestions,
@@ -23,43 +24,45 @@ const QuestionDetails = () => {
     return cancelQuestionFetch;
   }, []);
 
-  const { performFetch: performFetchAnswer } = useFetch(
-    "/answer/create",
-    (response) => {
-      setQuestion((prevQuestion) => ({
-        ...prevQuestion,
-        answers: [...prevQuestion.answers, response.answer],
-      }));
-    }
-  );
+  logInfo(question);
 
-  const handleCreateAnswer = (answerContent) => {
-    const answer = {
-      question_id: id,
-      answer_content: answerContent,
-      user_id: user?.id ?? "anonymous",
-    };
+  // const { performFetch: performFetchAnswer } = useFetch(
+  //   "/answer/create",
+  //   (response) => {
+  //     setQuestion((prevQuestion) => ({
+  //       ...prevQuestion,
+  //       answers: [...prevQuestion.answers, response.answer],
+  //     }));
+  //   }
+  // );
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(answer),
-    };
+  // const handleCreateAnswer = (answerContent) => {
+  //   const answer = {
+  //     question_id: id,
+  //     answer_content: answerContent,
+  //     user_id: user?.id ?? "anonymous",
+  //   };
 
-    performFetchAnswer(options);
-  };
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(answer),
+  //   };
+
+  //   performFetchAnswer(options);
+  // };
 
   return (
     <div>
       <div className="question-wrapper">
-        <Question question={question} />
+        {/* <Question question={question} /> */}
       </div>
-      {question.answers?.map((answer, i) => (
+      {/* {question.answers?.map((answer, i) => (
         <Answer key={i} answer={answer} />
       ))}
-      <CreateAnswer handleSubmit={handleCreateAnswer} />
+      <CreateAnswer handleSubmit={handleCreateAnswer} /> */}
     </div>
   );
 };
