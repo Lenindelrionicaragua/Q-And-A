@@ -39,7 +39,7 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
       <div className="answer-pins">
         <span className="pin">{answer?.like_counter} LIKES</span>
         <span className="pin">
-          Answered by {answer?.author ?? "anonymous"} on{" "}
+          Answered by {answer?.author ?? user?.name} on{" "}
           {getFormattedDate(answer?.created_at)}
         </span>
       </div>

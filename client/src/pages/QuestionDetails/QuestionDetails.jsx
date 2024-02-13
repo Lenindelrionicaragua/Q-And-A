@@ -19,7 +19,7 @@ const QuestionDetails = () => {
 
   const { performFetch: fetchQuestion, cancelFetch: cancelQuestionFetch } =
     useFetch(`/questions/${id}`, (response) => {
-      setQuestion(response.result);
+      setQuestion(response.result ?? {});
     });
 
   const { performFetch: createAnswer } = useFetch(
@@ -27,7 +27,7 @@ const QuestionDetails = () => {
     (response) => {
       setQuestion((prevQuestion) => ({
         ...prevQuestion,
-        answers: [...prevQuestion.answers, response.answer],
+        answers: [...(prevQuestion.answers ?? []), response?.answer ?? []],
       }));
     }
   );
