@@ -11,6 +11,7 @@ import { logInfo } from "../../../../server/src/util/logging.js";
 const PostQuestionPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedModules, setSelectedModules] = useState("");
@@ -52,6 +53,7 @@ const PostQuestionPage = () => {
 
     if (user) {
       setUserId(user.id);
+      setUserName(user.name);
     }
 
     return cancelFetch;
@@ -69,6 +71,7 @@ const PostQuestionPage = () => {
       body: JSON.stringify({
         question: {
           user_id: userId,
+          user_name: userName,
           question_title: title,
           question_content: content,
           module_ids: selectedModulesArray,

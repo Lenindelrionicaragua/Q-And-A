@@ -11,6 +11,10 @@ const questionSchema = new Schema({
     ref: "User",
     required: true,
   },
+  user_name: {
+    type: String,
+    required: true,
+  },
   question_title: {
     type: String,
     required: true,
@@ -47,6 +51,7 @@ export const validateQuestion = (
   const errorList = [];
   const allowedKeys = [
     "user_id",
+    "user_name",
     "question_title",
     "question_content",
     "module_ids",
