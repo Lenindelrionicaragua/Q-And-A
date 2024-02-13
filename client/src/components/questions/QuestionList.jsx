@@ -43,7 +43,7 @@ const QuestionList = () => {
 
     const updatedQuestions = questions.filter((question) => {
       // Convert both the module_ids and searchModule to lowercase
-      const lowerCaseModuleIds = question.module_ids.map((moduleId) =>
+      const lowerCaseModuleIds = question.module_ids?.map((moduleId) =>
         moduleId.toLowerCase()
       );
       const lowerCaseSearchModule = searchModule.toLowerCase();

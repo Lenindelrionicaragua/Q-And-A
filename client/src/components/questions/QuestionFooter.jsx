@@ -7,7 +7,7 @@ import TimeAgo from "../TimeAgo/TimeAgo";
 
 const QuestionFooter = ({ classes, question }) => {
   const [userName, setUserName] = useState("");
-  const { performFetch, cancelFetch } = useFetch(
+  const { /* performFetch,*/ cancelFetch } = useFetch(
     `/user/${question.user_id}/name`,
     (response) => {
       setUserName(response.result);
@@ -15,7 +15,7 @@ const QuestionFooter = ({ classes, question }) => {
   );
 
   React.useEffect(() => {
-    performFetch();
+    // performFetch(); // I've a small improvement in my branch and I believe we can use it here. Let's keep this fix for later. We can even return userName from backend in the first place
 
     return cancelFetch;
   }, []);
@@ -30,7 +30,7 @@ const QuestionFooter = ({ classes, question }) => {
       gap={3}
     >
       <ul className={classes.tags}>
-        {question.module_ids.map((tag) => (
+        {question.module_ids?.map((tag) => (
           <li key={tag}>
             <span>{tag}</span>
           </li>
