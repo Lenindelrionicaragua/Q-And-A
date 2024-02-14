@@ -6,7 +6,6 @@ import useFetch from "../../hooks/useFetch";
 import Question from "../../components/questions/Question";
 import "./QuestionDetails.css";
 import { useAuth } from "../../Context/AuthContext";
-import { logInfo } from "../../../../server/src/util/logging";
 
 const QuestionDetails = () => {
   const [question, setQuestion] = useState({});
