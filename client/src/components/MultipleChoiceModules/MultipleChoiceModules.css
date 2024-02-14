@@ -1,0 +1,33 @@
+#multipleChoiceModules {
+  font-size: 0.95em;
+}
+
+#multipleChoiceModules #modulesInputArea {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+#modulesInputArea .moduleOption {
+  display: flex;
+  align-items: center;
+}
+
+#modulesInputArea .moduleOption input {
+  display: flex;
+  height: fit-content;
+}
+#modulesInputArea label {
+  display: flex;
+  height: fit-content;
+  padding-top: 5px;
+}
+
+#multipleChoiceModules .instructions {
+  color: #54c412;
+  text-align: center;
+}
