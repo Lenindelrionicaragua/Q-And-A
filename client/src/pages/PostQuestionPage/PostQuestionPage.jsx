@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
-
-// Import AuthContext to get user data
 import { useAuth } from "../../Context/AuthContext.js";
-import { logInfo } from "../../../../server/src/util/logging.js";
+// import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
-  const [successMessage, setSuccessMessage] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    // Check if user is logged in or not
+    if (!user) {
+      alert("Sorry! You have to log in before posting a new question 🙂");
+      navigate("/auth/log-in");
+    }
+  }, []);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedModules, setSelectedModules] = useState("");
@@ -19,23 +25,15 @@ const PostQuestionPage = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/questions/create",
     (response) => {
-      if (response) {
-        setSuccessMessage("Successful Question creation!");
-        logInfo(successMessage);
-        setTitle("");
-        setContent("");
-        setSelectedModules("");
-        alert("Successful Question creation!");
-      }
+      // Extract the question ID from the response
+      const questionId = response.question._id;
+      // Navigate to the question's page
+      navigate(`/questions/${questionId}`);
+
+      alert("Successful Question creation!");
     }
   );
 
-  const navigate = useNavigate();
-
-  // Extract user data from Authentication Context
-  const { user } = useAuth();
-
-  // TODO: on next stages, `selectedModules` should contain an array of references to ObjectIds from `Modules` collection. User should be able to choose between many Module options (multiple choice, in a dropdown menu).
   // Handle Modules Input
   const setModulesInputToArray = (modulesString) => {
     const modulesArray = modulesString
@@ -44,24 +42,8 @@ const PostQuestionPage = () => {
     setSelectedModulesArray(modulesArray);
   };
 
-  useEffect(() => {
-    // Check if user is logged in or not
-    if (!user) {
-      alert("Sorry! You have to log in before posting a new question 🙂");
-      navigate("/auth/log-in");
-    }
-
-    if (user) {
-      setUserId(user.id);
-      setUserName(user.name);
-    }
-
-    return cancelFetch;
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    logInfo(userId, title, content, selectedModules);
 
     performFetch({
       method: "POST",
@@ -70,14 +52,15 @@ const PostQuestionPage = () => {
       },
       body: JSON.stringify({
         question: {
-          user_id: userId,
-          user_name: userName,
+          user_id: user.id,
+          user_name: user.name,
           question_title: title,
           question_content: content,
           module_ids: selectedModulesArray,
         },
       }),
     });
+    return cancelFetch;
   };
 
   let statusComponent = null;
