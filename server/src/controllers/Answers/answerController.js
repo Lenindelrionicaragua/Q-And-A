@@ -194,7 +194,7 @@ export const deleteAnswer = async (req, res) => {
 
     logInfo("Answer deleted successfully:", deletedAnswer);
 
-    res.status(200).json({ success: true, answer: deletedAnswer });
+    res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, msg: "Internal server error" });
   }

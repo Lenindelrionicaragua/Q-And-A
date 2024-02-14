@@ -30,7 +30,7 @@ const QuestionList = () => {
   }, []);
 
   React.useEffect(() => {
-    if (questions.length > 0) {
+    if (questions?.length > 0) {
       runSearch();
     }
   }, [questions]);

@@ -6,32 +6,28 @@ import useFetch from "../../hooks/useFetch";
 import Question from "../../components/questions/Question";
 import "./QuestionDetails.css";
 import { useAuth } from "../../Context/AuthContext";
-import { logInfo } from "../../../../server/src/util/logging";
 
 const QuestionDetails = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
   const { user } = useAuth();
 
-  const {
-    performFetch: performFetchQuestions,
-    cancelFetch: cancelQuestionFetch,
-  } = useFetch(`/questions/${id}`, (response) => setQuestion(response.result));
-
   useEffect(() => {
-    performFetchQuestions();
-
+    fetchQuestion();
     return cancelQuestionFetch;
   }, []);
 
-  logInfo(question);
+  const { performFetch: fetchQuestion, cancelFetch: cancelQuestionFetch } =
+    useFetch(`/questions/${id}`, (response) => {
+      setQuestion(response.result ?? {});
+    });
 
-  const { performFetch: performFetchAnswer } = useFetch(
+  const { performFetch: createAnswer } = useFetch(
     "/answer/create",
     (response) => {
       setQuestion((prevQuestion) => ({
         ...prevQuestion,
-        answers: [...prevQuestion.answers, response.answer],
+        answers: [...(prevQuestion.answers ?? []), response?.answer ?? []],
       }));
     }
   );
@@ -40,7 +36,7 @@ const QuestionDetails = () => {
     const answer = {
       question_id: id,
       answer_content: answerContent,
-      user_id: user?.id ?? "anonymous",
+      user_id: user?.id ?? user?.name,
     };
 
     const options = {
@@ -51,16 +47,48 @@ const QuestionDetails = () => {
       body: JSON.stringify(answer),
     };
 
-    performFetchAnswer(options);
+    createAnswer(options);
+  };
+
+  const getDeleteUrl = (questionId, answerId) =>
+    `/questions/${questionId}/answers/${answerId}/delete`;
+
+  const { performFetch: deleteAnswer } = useFetch(
+    "", // We don't need to specify a route here, we will do that in the handleDelete function
+    (response) => {
+      if (response.success) {
+        fetchQuestion();
+      }
+    }
+  );
+  const handleDelete = (answerId) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    deleteAnswer(options, getDeleteUrl(id, answerId));
+  };
+
+  const isAnswerBelongsToUser = (answer) => {
+    return user?.id && user?.id === answer.user_id;
   };
 
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       <div className="question-wrapper">
         <Question question={question} />
       </div>
       {question.answers?.map((answer, i) => (
-        <Answer key={i} answer={answer} />
+        <Answer
+          key={i}
+          answer={answer}
+          handleDelete={handleDelete}
+          isAnswerBelongsToUser={isAnswerBelongsToUser(answer)}
+        />
       ))}
       <CreateAnswer handleSubmit={handleCreateAnswer} />
     </div>
