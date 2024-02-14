@@ -2,9 +2,9 @@ import "./PostQuestionPage.css";
 import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
+import MultiChoiceModules from "../../components/MultipleChoiceModules/MultipleChoiceModules.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext.js";
-import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
   const navigate = useNavigate();
@@ -21,8 +21,7 @@ const PostQuestionPage = () => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [selectedModules, setSelectedModules] = useState("");
-  const [selectedModulesArray, setSelectedModulesArray] = useState([]);
+  const [selectedModules, setSelectedModules] = useState([]);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/questions/create",
     (response) => {
@@ -35,18 +34,12 @@ const PostQuestionPage = () => {
     }
   );
 
-  // Handle Modules Input
-  const setModulesInputToArray = (modulesString) => {
-    const modulesArray = modulesString
-      .split(",")
-      .map((module) => module.trim());
-    setSelectedModulesArray(modulesArray);
+  const handleModulesSelect = (selectedModules) => {
+    setSelectedModules(selectedModules);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    logInfo(selectedModulesArray);
 
     performFetch({
       method: "POST",
@@ -59,7 +52,7 @@ const PostQuestionPage = () => {
           user_name: user.name,
           question_title: title,
           question_content: content,
-          module_ids: selectedModulesArray,
+          module_ids: selectedModules,
         },
       }),
     });
@@ -117,19 +110,8 @@ const PostQuestionPage = () => {
             ></textarea>
           </label>
           <label htmlFor="module-ids">
-            Add the module names that apply for your question. Please separate
-            them by using comma. --- Please add an extra comma at the end for
-            modules to be entered correctly, for example: &quot;HTML, CSS,
-            JavaScript,&quot;:
-            <Input
-              name="module_ids"
-              value={selectedModules}
-              onChange={(value) => {
-                setSelectedModules(value);
-                setModulesInputToArray(selectedModules);
-              }}
-              placeholder="Please enter your module names here."
-            />
+            Please add the modules that apply for your question:
+            <MultiChoiceModules onModulesSelect={handleModulesSelect} />
           </label>
         </div>
         <button id="post-question-button" type="submit">

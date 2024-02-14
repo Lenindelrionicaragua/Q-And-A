@@ -1,70 +1,63 @@
 import React, { useState } from "react";
-import { logInfo } from "../../../../server/src/util/logging";
+import "./MultipleChoiceModules.css";
 
-// This file is not being used right now, but will be used
-// on version 2 for Post-question-page
-const MultipleChoiceModules = ({ onSelect }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [error, setError] = useState("");
+const modules = [
+  "HTML",
+  "CSS",
+  "CLI|GIT",
+  "JavaScript",
+  "Browsers",
+  "Using APIs",
+  "NodeJs",
+  "Databases",
+  "React",
+];
 
-  const options = [
-    "CLI | GIT",
-    "JavaScript",
-    "Browsers",
-    "Using APIs",
-    "Node.js",
-    "Databases",
-    "React",
-    "Project",
-  ];
+const MultipleChoiceModules = ({ onModulesSelect }) => {
+  const [selectedModules, setSelectedModules] = useState([]);
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    const isChecked = event.target.checked;
-
-    onSelect(value);
-
-    if (isChecked) {
-      if (selectedOptions.length >= 3) {
-        setError("You can select at most 3 options.");
-        return;
+  const handleModuleToggle = (module) => {
+    if (selectedModules.includes(module)) {
+      setSelectedModules(
+        selectedModules.filter((selectedModule) => selectedModule !== module)
+      );
+    } else {
+      if (selectedModules.length < 3) {
+        setSelectedModules([...selectedModules, module]);
       }
-      setSelectedOptions([...selectedOptions, value]);
-      logInfo(selectedOptions);
-    } else {
-      setSelectedOptions(selectedOptions.filter((option) => option !== value));
-    }
-
-    if (selectedOptions.length === 0 && error) {
-      setError("");
     }
   };
 
-  const handleBlur = () => {
-    if (selectedOptions.length === 0) {
-      setError("You must select at least 1 option.");
-    } else {
-      setError("");
-    }
-  };
+  React.useEffect(() => {
+    onModulesSelect(selectedModules);
+  }, [selectedModules, onModulesSelect]);
 
   return (
-    <div>
-      {options.map((option, index) => (
-        <div key={index}>
-          <input
-            type="checkbox"
-            id={option}
-            value={option}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            checked={selectedOptions.includes(option)}
-          />
-          <label htmlFor={option}>{option}</label>
-        </div>
-      ))}
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {/* <a onClick={() => onSelect(selectedOptions)}>Add Modules</a> */}
+    <div id="multipleChoiceModules">
+      <div id="modulesInputArea">
+        {modules.map((module) => (
+          <div className="moduleOption" key={module}>
+            <input
+              type="checkbox"
+              id={module}
+              checked={selectedModules.includes(module)}
+              onChange={() => handleModuleToggle(module)}
+              disabled={
+                !selectedModules.includes(module) &&
+                selectedModules.length === 3 &&
+                !selectedModules.includes(module)
+              }
+            />
+            <label htmlFor={module}>{module}</label>
+          </div>
+        ))}
+      </div>
+      {selectedModules.length === 0 && (
+        <p className="instructions">Please select at least one module.</p>
+      )}
+      {selectedModules.length > 3 && (
+        <p className="instructions">You can only select up to 3 modules.</p>
+      )}
     </div>
   );
 };
