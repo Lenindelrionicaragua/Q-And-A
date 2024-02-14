@@ -1,4 +1,7 @@
 .modules-list {
+  margin-right: auto;
+  margin-left: 2.2em;
+  margin-top: 1em;
   list-style-type: none;
   color: #c8d1df;
   display: flex;
@@ -7,4 +10,12 @@
 
 .modules-list li {
   margin-bottom: 1em;
+}
+
+.modules-list a {
+  color: white;
+}
+
+.modules-list a:hover {
+  color: #69d926;
 }
