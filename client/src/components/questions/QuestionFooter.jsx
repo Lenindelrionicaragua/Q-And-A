@@ -1,17 +1,9 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import TimeAgo from "../TimeAgo/TimeAgo";
 
 const QuestionFooter = ({ classes, question }) => {
-  const formattedDate = new Date(question.created_at).toLocaleDateString(
-    "en-US",
-    {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }
-  );
-
   return (
     <Stack
       flex={1}
@@ -22,7 +14,7 @@ const QuestionFooter = ({ classes, question }) => {
       gap={3}
     >
       <ul className={classes.tags}>
-        {question.module?.map((tag) => (
+        {question.module_ids?.map((tag) => (
           <li key={tag}>
             <span>{tag}</span>
           </li>
@@ -38,9 +30,10 @@ const QuestionFooter = ({ classes, question }) => {
         {/* <Typography>{question.answers.length} Answers</Typography> */}
         <Typography>{question.like_counter} Like</Typography>
         <Typography>{question.visit_counter} Views</Typography>
-        <Typography>Asked by:{question.author}</Typography>
-        {/* TODO: return  userName instead of userId */}
-        <Typography>{formattedDate} </Typography>
+        <Typography>Asked by:{question.user_name}</Typography>
+        <Typography>
+          <TimeAgo createdAt={question.created_at} />
+        </Typography>
       </Stack>
     </Stack>
   );

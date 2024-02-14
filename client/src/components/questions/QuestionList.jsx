@@ -14,13 +14,12 @@ const QuestionList = () => {
   );
 
   const [questions, setQuestions] = React.useState([]);
-  logInfo(questions);
   const [filteredQuestions, setFilteredQuestions] = React.useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
 
   function fetchQuestions(res) {
-    setQuestions(res.result);
+    setQuestions(res.questions);
   }
 
   React.useEffect(() => {
@@ -36,27 +35,21 @@ const QuestionList = () => {
     }
   }, [questions]);
 
-  // React.useEffect(() => {
-  //   fetch("/api/questions")
-  //     .then((res) => {
-  //       console.log(res.json());
-  //       //return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
   const runSearch = (searchModule) => {
     if (!searchModule) {
       setFilteredQuestions(questions);
       return;
     }
+
     const updatedQuestions = questions.filter((question) => {
-      return question.module.includes(searchModule);
+      // Convert both the module_ids and searchModule to lowercase
+      const lowerCaseModuleIds = question.module_ids?.map((moduleId) =>
+        moduleId.toLowerCase()
+      );
+      const lowerCaseSearchModule = searchModule.toLowerCase();
+
+      // Check if the lower case version of searchModule exists in lower case module_ids
+      return lowerCaseModuleIds.includes(lowerCaseSearchModule);
     });
 
     setFilteredQuestions(updatedQuestions);
@@ -64,8 +57,11 @@ const QuestionList = () => {
 
   function handleSortByPopularity() {
     const sortedQuestions = [...questions].sort((a, b) => {
-      return b.likes - a.likes;
+      return b.like_counter - a.like_counter;
     });
+
+    logInfo("Sorted Questions:", sortedQuestions);
+
     const valueToBe = !isSortedByPopularity;
     setIsSortedByPopularity(valueToBe);
     setIsSortedByTime(false);
@@ -79,9 +75,9 @@ const QuestionList = () => {
 
   function handleSortByTime() {
     const sortedQuestions = [...questions].sort((a, b) => {
-      const timeA = new Date().getTime() - a.date.getTime();
-      const timeB = new Date().getTime() - b.date.getTime();
-      return timeA - timeB;
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return dateB - dateA;
     });
 
     const valueToBe = !isSortedByTime;

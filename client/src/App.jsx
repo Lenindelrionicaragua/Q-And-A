@@ -11,6 +11,7 @@ import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
 import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
+import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
             <Route path="/auth/sign-up" element={<SignUpPage />} />
             <Route path="/auth/log-in" element={<LogInPage />} />
             <Route path="/user-profile" element={<UserProfilePage />} />
-            <Route path="/ask-a-question" />
+            <Route path="/post-question" element={<PostQuestionPage />} />
             <Route path="/user" element={<UserList />} />
             <Route path="/questions/:id" element={<QuestionDetails />} />
             {/* /question-page was created to test db connection to "questions" collection */}

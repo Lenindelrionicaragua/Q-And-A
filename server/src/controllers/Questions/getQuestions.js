@@ -4,7 +4,7 @@ import { logError } from "../../util/logging.js";
 const getQuestions = async (req, res) => {
   try {
     const questions = await Question.find();
-    res.status(200).json({ success: true, result: questions });
+    res.status(200).json({ success: true, questions: questions });
   } catch (error) {
     logError(error);
     res.status(500).json({
