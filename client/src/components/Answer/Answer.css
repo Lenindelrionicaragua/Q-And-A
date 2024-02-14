@@ -16,11 +16,18 @@
   color: #44576a;
 }
 
-.answer-wrapper button {
+.answer-wrapper .aswerLikeBtn {
   position: absolute;
-  right: 0px;
+  right: 15px;
   top: 10px;
 }
+
+.answer-wrapper .answerDeleteBtn {
+  position: absolute;
+  right: -10px;
+  top: 10px;
+}
+
 .answer-pin {
   padding: 10px;
   margin-right: 5px;

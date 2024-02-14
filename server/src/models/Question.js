@@ -3,20 +3,59 @@ import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
 import { logInfo } from "../util/logging.js";
 
-const questionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  // author: { type: String, required: true },
+const Schema = mongoose.Schema;
+
+const questionSchema = new Schema({
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  user_name: {
+    type: String,
+    required: true,
+  },
+  question_title: {
+    type: String,
+    required: true,
+  },
+  question_content: {
+    type: String,
+    required: true,
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  like_counter: {
+    type: Number,
+    default: 0,
+  },
+  module_ids: [
+    {
+      type: String,
+    },
+  ],
+  visit_counter: {
+    type: Number,
+    default: 0,
+  },
 });
 
 export const validateQuestion = (
   questionObject,
   requireTitle = true,
-  requireContent = true
-  // requireAuthor = true
+  requireContent = true,
+  requireModules = true
 ) => {
   const errorList = [];
-  const allowedKeys = ["title", "content", "author"];
+  const allowedKeys = [
+    "user_id",
+    "user_name",
+    "question_title",
+    "question_content",
+    "module_ids",
+  ];
 
   const validatedKeysMessage = validateAllowedFields(
     questionObject,
@@ -27,19 +66,27 @@ export const validateQuestion = (
     errorList.push(validatedKeysMessage);
   }
 
-  if (requireTitle && questionObject.title == null) {
+  if (requireTitle && questionObject.question_title == null) {
     errorList.push("Title is a required field");
-    logInfo("Question Create Validation failed: Title is required");
+    logInfo("Question Validation failed: Title is required");
   }
 
-  if (requireContent && questionObject.content == null) {
+  if (requireContent && questionObject.question_content == null) {
     errorList.push("Content is a required field");
-    logInfo("Question Create Validation failed: Content is required");
+    logInfo("Question Validation failed: Content is required");
+  }
+
+  logInfo(questionObject.module_ids);
+  logInfo(questionObject.module_ids.length);
+
+  if (requireModules && questionObject.module_ids.length < 1) {
+    errorList.push("Modules are a required field");
+    logInfo("Question Validation failed: Modules are required");
   }
 
   return errorList;
 };
-//i change module name from question(s) to question without (s) because i get error can not overwrite..
-const Question = mongoose.model("question", questionSchema);
+
+const Question = mongoose.model("questions", questionSchema);
 
 export default Question;
