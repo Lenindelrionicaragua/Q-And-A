@@ -95,6 +95,7 @@ const SignUpPage = () => {
               placeholder="Enter your email"
               data-testid={TEST_ID.emailInput}
               required
+              autoComplete="username"
               pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               title="Please enter a valid email address"
             />
@@ -110,6 +111,7 @@ const SignUpPage = () => {
               placeholder="Enter your password"
               data-testid={TEST_ID.passwordInput}
               required
+              autoComplete="current-password"
               minLength={8}
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
               title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number"

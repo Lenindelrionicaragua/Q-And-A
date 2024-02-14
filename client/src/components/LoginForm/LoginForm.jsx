@@ -90,6 +90,7 @@ const LoginForm = ({ onLogin }) => {
               onChange={handleChange}
               placeholder="Enter your email"
               required
+              autoComplete="username"
             />
           </label>
           <label htmlFor="password">
@@ -102,6 +103,7 @@ const LoginForm = ({ onLogin }) => {
               onChange={handleChange}
               placeholder="Enter your password"
               required
+              autoComplete="current-password"
             />
           </label>
         </div>

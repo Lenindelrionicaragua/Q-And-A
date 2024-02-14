@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+#PostQuestionPage {
+  border: 1px black solid;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: fit-content;
+  margin: auto;
+}
+
+#PostQuestionPage hr {
+  margin-top: 0.5em;
+  margin-bottom: 0.75em;
+  width: 100%;
+  opacity: 70%;
+}
+
+#PostQuestionPage h1 {
+  font-family: "JetBrains Mono", monospace;
+  color: #1ad721;
+  font-weight: 800;
+  text-align: center;
+}
+
+#PostQuestionPage h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+#PostQuestionPage h2 span {
+  color: #1ad721;
+}
+
+#PostQuestionPage h3 {
+  padding: 0em 1em;
+  text-align: center;
+}
+
+/* PostQuestion Form styles */
+#postQuestionForm {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Input area */
+#postQuestion-input-area {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+  margin-bottom: 1em;
+}
+
+#postQuestionForm label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+}
+
+#postQuestionForm input {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  margin-top: 0.5em;
+  padding: 0.5em;
+}
+
+#postQuestionForm input::placeholder {
+  font-family: "Inter", sans-serif;
+}
+
+#postQuestionForm textarea {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  height: 7em;
+}
+
+#postQuestionForm textarea::placeholder {
+  font-family: "Inter", sans-serif;
+  color: #44576a;
+}
+
+/* Message rendered to user */
+#postQuestion-status-component {
+  margin-top: 1.5em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+/* PostQuestion Button */
+#postQuestionForm #post-question-button {
+  font-size: 0.95em;
+  font-family: "Inter", sans-serif;
+  border: solid 1px #c8d1df;
+  cursor: pointer;
+  text-align: center;
+  padding: 1em;
+  padding-bottom: 1.1em;
+  font-weight: 600;
+  border-radius: 0.35em;
+  background: #0f0f12;
+  color: #c8d1df;
+  width: 35%;
+  min-width: 150px;
+  max-width: 175px;
+  margin: auto;
+}
+
+#postQuestionForm #post-question-button:hover {
+  border-color: #76f013;
+  background: #76f013;
+  color: #0f0f12;
+}

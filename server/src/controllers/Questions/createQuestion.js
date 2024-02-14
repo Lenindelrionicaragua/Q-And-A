@@ -5,6 +5,7 @@ import validationErrorMessage from "../../util/validationErrorMessage.js";
 const createQuestion = async (req, res) => {
   try {
     const { question } = req.body;
+    logInfo("Request:", question);
 
     if (typeof question !== "object") {
       res.status(400).json({
@@ -27,7 +28,7 @@ const createQuestion = async (req, res) => {
       const newQuestion = await Question.create(question);
       logInfo("Question created successfully:", newQuestion);
 
-      res.status(201).json({ success: true, user: newQuestion });
+      res.status(201).json({ success: true, question: newQuestion });
     }
   } catch (error) {
     logError(error);
