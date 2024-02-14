@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext.js";
-// import { logInfo } from "../../../../server/src/util/logging.js";
+import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const PostQuestionPage = () => {
       alert("Sorry! You have to log in before posting a new question 🙂");
       navigate("/auth/log-in");
     }
+    return cancelFetch;
   }, []);
 
   const [title, setTitle] = useState("");
@@ -45,6 +46,8 @@ const PostQuestionPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    logInfo(selectedModulesArray);
+
     performFetch({
       method: "POST",
       headers: {
@@ -60,7 +63,6 @@ const PostQuestionPage = () => {
         },
       }),
     });
-    return cancelFetch;
   };
 
   let statusComponent = null;
