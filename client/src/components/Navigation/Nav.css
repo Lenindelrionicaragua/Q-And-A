@@ -1,6 +1,6 @@
 /* Nav Styles */
 nav {
-  background-color: #1d1e21;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   width: 20vw;
   grid-area: sidebar;
   display: flex;
@@ -23,7 +23,7 @@ nav {
   border-right: none;
   justify-content: left;
   padding: 1.75em 1.15em;
-  background-color: #1d1e21;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   border-bottom: solid 1px #c8d1df;
   border-radius: 0em;
   color: #c8d1df;

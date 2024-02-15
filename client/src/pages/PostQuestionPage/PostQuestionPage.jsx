@@ -2,47 +2,13 @@ import "./PostQuestionPage.css";
 import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
+import MultiChoiceModules from "../../components/MultipleChoiceModules/MultipleChoiceModules.jsx";
 import { useNavigate } from "react-router-dom";
-
-// Import AuthContext to get user data
 import { useAuth } from "../../Context/AuthContext.js";
-import { logInfo } from "../../../../server/src/util/logging.js";
 
 const PostQuestionPage = () => {
-  const [successMessage, setSuccessMessage] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [selectedModules, setSelectedModules] = useState("");
-  const [selectedModulesArray, setSelectedModulesArray] = useState([]);
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/questions/create",
-    (response) => {
-      if (response) {
-        setSuccessMessage("Successful Question creation!");
-        logInfo(successMessage);
-        setTitle("");
-        setContent("");
-        setSelectedModules("");
-        alert("Successful Question creation!");
-      }
-    }
-  );
-
   const navigate = useNavigate();
-
-  // Extract user data from Authentication Context
   const { user } = useAuth();
-
-  // TODO: on next stages, `selectedModules` should contain an array of references to ObjectIds from `Modules` collection. User should be able to choose between many Module options (multiple choice, in a dropdown menu).
-  // Handle Modules Input
-  const setModulesInputToArray = (modulesString) => {
-    const modulesArray = modulesString
-      .split(",")
-      .map((module) => module.trim());
-    setSelectedModulesArray(modulesArray);
-  };
 
   useEffect(() => {
     // Check if user is logged in or not
@@ -50,18 +16,30 @@ const PostQuestionPage = () => {
       alert("Sorry! You have to log in before posting a new question 🙂");
       navigate("/auth/log-in");
     }
-
-    if (user) {
-      setUserId(user.id);
-      setUserName(user.name);
-    }
-
     return cancelFetch;
   }, []);
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [selectedModules, setSelectedModules] = useState([]);
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+    "/questions/create",
+    (response) => {
+      // Extract the question ID from the response
+      const questionId = response.question._id;
+      // Navigate to the question's page
+      navigate(`/questions/${questionId}`);
+
+      alert("Successful Question creation!");
+    }
+  );
+
+  const handleModulesSelect = (selectedModules) => {
+    setSelectedModules(selectedModules);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    logInfo(userId, title, content, selectedModules);
 
     performFetch({
       method: "POST",
@@ -70,11 +48,11 @@ const PostQuestionPage = () => {
       },
       body: JSON.stringify({
         question: {
-          user_id: userId,
-          user_name: userName,
+          user_id: user.id,
+          user_name: user.name,
           question_title: title,
           question_content: content,
-          module_ids: selectedModulesArray,
+          module_ids: selectedModules,
         },
       }),
     });
@@ -132,19 +110,8 @@ const PostQuestionPage = () => {
             ></textarea>
           </label>
           <label htmlFor="module-ids">
-            Add the module names that apply for your question. Please separate
-            them by using comma. --- Please add an extra comma at the end for
-            modules to be entered correctly, for example: &quot;HTML, CSS,
-            JavaScript,&quot;:
-            <Input
-              name="module_ids"
-              value={selectedModules}
-              onChange={(value) => {
-                setSelectedModules(value);
-                setModulesInputToArray(selectedModules);
-              }}
-              placeholder="Please enter your module names here."
-            />
+            Please add the modules that apply for your question:
+            <MultiChoiceModules onModulesSelect={handleModulesSelect} />
           </label>
         </div>
         <button id="post-question-button" type="submit">
