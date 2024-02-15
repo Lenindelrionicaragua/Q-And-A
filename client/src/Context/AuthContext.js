@@ -1,19 +1,27 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../server/src/util/logging";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  //I initial based on function and this function called only on initial render.
+  //because if we update UserState using UseEffect it will be updated after the initial render.
+  //otherwise the user will stay (null) after every time we reload the page.
+
+  const [user, setUser] = useState(() =>
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
 
   // When the component mounts, try to load the user from localStorage
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
 
   // Function to handle user login
   const login = (userData) => {

@@ -6,6 +6,7 @@ import questionsRouter from "./routes/questions.js";
 import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
+import userQuestionsRouter from "./routes/user/userQuestions.js";
 
 // Create an express server
 const app = express();
@@ -32,6 +33,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/questions", questionsRouter);
 app.use("/api/answer", answerRouter);
-
+app.use("/api/user/questions", userQuestionsRouter);
 app.use("/api/questions/:questionId/answers", answerRouter);
 export default app;
