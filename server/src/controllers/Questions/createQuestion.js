@@ -6,7 +6,6 @@ const createQuestion = async (req, res) => {
   try {
     const { question } = req.body;
     logInfo("Request:", question);
-    logInfo("UserId:", req.userId);
 
     if (typeof question !== "object") {
       res.status(400).json({

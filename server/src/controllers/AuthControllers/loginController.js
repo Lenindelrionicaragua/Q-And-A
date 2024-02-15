@@ -2,7 +2,6 @@ import { logInfo } from "../../util/logging.js";
 import validationErrorMessage from "../../util/validationErrorMessage.js";
 import User from "../../models/User.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
   const { user } = req.body;
@@ -36,19 +35,7 @@ export const login = async (req, res) => {
       logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
-        // Create jwt token
-        const token = jwt.sign(
-          { userId: userFound._id.toString() },
-          "class45-group-c"
-        );
-
-        // Save token in cookie
-        res.cookie("session", token, {
-          maxAge: 900000,
-          httpOnly: true,
-          sameSite: "lax",
-        });
-
+        // Establish the user session
         res.status(200).json({
           success: true,
           msg: "Login successful",
