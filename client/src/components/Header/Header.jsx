@@ -16,7 +16,7 @@ const Header = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const onMouseEnter = () => {
+  const handleDropdownMouseEnter = () => {
     if (window.innerWidth < 960) {
       setDropdown(false);
     } else {
@@ -24,7 +24,7 @@ const Header = () => {
     }
   };
 
-  const onMouseLeave = () => {
+  const handleDropdownMouseLeave = () => {
     if (window.innerWidth < 960) {
       setDropdown(false);
     } else {
@@ -42,7 +42,7 @@ const Header = () => {
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
         <ul className={click ? "header-menu active" : "header-menu"}>
-          {click && !user && user !== undefined && (
+          {click && !user && (
             <>
               <li>
                 <Link
@@ -67,13 +67,13 @@ const Header = () => {
           {user && (
             <li
               className="header-item"
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
+              onMouseEnter={handleDropdownMouseEnter}
+              onMouseLeave={handleDropdownMouseLeave}
             >
-              <div className="header-links" onClick={closeMobileMenu}>
+              <Link to="/" className="header-links" onClick={closeMobileMenu}>
                 {user ? `Welcome ${user.name}` : "Welcome"}{" "}
                 <i className="fas fa-caret-down" />
-              </div>
+              </Link>
               {dropdown && <Dropdown />}
             </li>
           )}
@@ -95,7 +95,7 @@ const Header = () => {
           )}
           {!click && (
             <>
-              {!user && user !== undefined && (
+              {!user && (
                 <li className="header-item">
                   <Link
                     to="/auth/log-in"
@@ -106,7 +106,7 @@ const Header = () => {
                   </Link>
                 </li>
               )}
-              {!user && user !== undefined && (
+              {!user && (
                 <li className="header-item">
                   <SignUpButton />
                 </li>
