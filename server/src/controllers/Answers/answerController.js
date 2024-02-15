@@ -2,6 +2,7 @@ import { logInfo } from "../../util/logging.js";
 import validationErrorMessage from "../../util/validationErrorMessage.js";
 import Answer, { validateAnswer } from "../../models/Answer.js";
 import Question from "../../models/Question.js";
+import AnswerLikes from "../../models/AnswerLikes.js";
 
 export const getAnswers = async (req, res) => {
   try {
@@ -197,5 +198,41 @@ export const deleteAnswer = async (req, res) => {
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, msg: "Internal server error" });
+  }
+};
+
+export const likeAnswer = async (req, res) => {
+  const { answerId } = req.params;
+  const { user_id } = req.body;
+  const currentUser = "";
+  try {
+    const isAnswerBelongsToUser =
+      (await Answer.findOne({ user_id: currentUser, answer_id: answerId })) !=
+      null;
+
+    if (isAnswerBelongsToUser) {
+      logInfo("Answer belongs to user");
+      res
+        .status(400)
+        .json({ success: false, message: "User cannot like its own answer" });
+    }
+    const existingLike = await AnswerLikes.findOne({ user_id, answerId });
+
+    if (existingLike) {
+      await AnswerLikes.deleteOne({ user_id, answerId });
+      await Answer.findByIdAndUpdate(answerId, { $inc: { like_counter: -1 } });
+    } else {
+      const newLike = new AnswerLikes({ user_id, answer_id: answerId });
+      await newLike.save();
+      await Answer.findByIdAndUpdate(answerId, { $inc: { like_counter: 1 } });
+    }
+
+    const { like_counter } = await Answer.findOne({ answer_id: answerId })
+      .select("like_counter")
+      .lean();
+
+    res.json({ success: true, result: like_counter });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };

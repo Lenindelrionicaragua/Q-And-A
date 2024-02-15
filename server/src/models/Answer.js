@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
-import { logInfo } from "../util/logging.js";
 
 const answerSchema = new mongoose.Schema({
   user_id: {
@@ -60,22 +59,18 @@ export const validateAnswer = (
 
   if (requireAnswerId && answerObject.answer_id == null) {
     errorList.push("Answer ID is a required field");
-    logInfo("Answer Validation failed: Answer ID is required");
   }
 
   if (requireAnswerContent && answerObject.answer_content == null) {
     errorList.push("Answer Content is a required field");
-    logInfo("Answer Validation failed: Answer Content is required");
   }
 
   if (requireUserId && answerObject.user_id == null) {
     errorList.push("User ID is a required field");
-    logInfo("Answer Validation failed: User ID is required");
   }
 
   if (requireQuestionId && answerObject.question_id == null) {
     errorList.push("Question ID is a required field");
-    logInfo("Answer Validation failed: Question ID is required");
   }
 
   return errorList;
