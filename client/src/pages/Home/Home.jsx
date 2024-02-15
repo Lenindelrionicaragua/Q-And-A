@@ -1,6 +1,6 @@
 import React from "react";
 import QuestionList from "../../components/questions/QuestionList";
-import PageContent from "../../components/ui/PageContent";
+import PageContent from "../../components/PageContent/PageContent";
 import TEST_ID from "./Home.testid";
 
 const Home = () => {

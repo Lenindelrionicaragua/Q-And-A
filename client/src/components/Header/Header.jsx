@@ -14,7 +14,6 @@ const Header = () => {
   const [dropdown, setDropdown] = useState(false);
 
   const handleClick = () => setClick(!click);
-
   const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
@@ -35,76 +34,80 @@ const Header = () => {
 
   return (
     <>
-      <header className="navbar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+      <header className="header">
+        <Link to="/" className="header-logo" onClick={closeMobileMenu}>
           <Logo />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <ul className={click ? "header-menu active" : "header-menu"}>
           {click && !user && user !== undefined && (
             <>
               <li>
                 <Link
                   to="/auth/sign-up"
-                  className="nav-links-mobile"
+                  className="header-links-mobile"
                   onClick={closeMobileMenu}
                 >
-                  Sign Up MOBILE
+                  Sign Up
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="header-item">
                 <Link
                   to="/auth/log-in"
-                  className="nav-links"
+                  className="header-links"
                   onClick={closeMobileMenu}
                 >
-                  Log In MOBILE
+                  Log In
                 </Link>
               </li>
             </>
           )}
-
-          {user && click && (
-            <li className="nav-item nav-links-mobile">
-              <LogOutButton />
-            </li>
-          )}
           {user && (
             <li
-              className="nav-item"
+              className="header-item"
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             >
-              <div className="nav-links" onClick={closeMobileMenu}>
+              <div className="header-links" onClick={closeMobileMenu}>
                 {user ? `Welcome ${user.name}` : "Welcome"}{" "}
                 <i className="fas fa-caret-down" />
               </div>
-
               {dropdown && <Dropdown />}
+            </li>
+          )}
+          {user && click && (
+            <li className="header-item">
+              <Link
+                to="/user-profile"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                User Profile
+              </Link>
+            </li>
+          )}
+          {user && click && (
+            <li className="header-item header-links-mobile">
+              <LogOutButton />
             </li>
           )}
           {!click && (
             <>
               {!user && user !== undefined && (
-                <li className="nav-item">
+                <li className="header-item">
                   <Link
                     to="/auth/log-in"
-                    className="nav-links"
+                    className="header-links"
                     onClick={closeMobileMenu}
                   >
                     Log In
                   </Link>
                 </li>
               )}
-              {user && (
-                <li className="nav-item">
-                  <LogOutButton />
-                </li>
-              )}
               {!user && user !== undefined && (
-                <li className="nav-item">
+                <li className="header-item">
                   <SignUpButton />
                 </li>
               )}
