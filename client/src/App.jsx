@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Nav from "./components/Navigation/Nav";
-import PageContent from "./components/ui/PageContent";
+import Sidebar from "./components/Sidebar/Sidebar";
+import PageContent from "./components/PageContent/PageContent";
 import Home from "./pages/Home/Home";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LogInPage from "./pages/LoginPage/LoginPage";
@@ -19,7 +19,7 @@ const App = () => {
     <AuthProvider>
       <>
         <Header />
-        <Nav />
+        <Sidebar />
         <PageContent className="overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
