@@ -6,7 +6,7 @@ const UserQuestions = () => {
   const { user } = useAuth();
   console.log(user);
   const { isLoading, error, performFetch } = useFetch(
-    "/user/questions",
+    "/user/userQuestions",
     fetchUserQuestions
   );
 

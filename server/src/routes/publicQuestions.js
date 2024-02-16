@@ -1,8 +1,8 @@
 import express from "express";
 import getQuestions from "../controllers/Questions/getQuestions.js";
 
-const publiQuestionsRouter = express.Router();
+const publicQuestionsRouter = express.Router();
 
-publiQuestionsRouter.get("/", getQuestions);
+publicQuestionsRouter.get("/", getQuestions);
 
-export default publiQuestionsRouter;
+export default publicQuestionsRouter;

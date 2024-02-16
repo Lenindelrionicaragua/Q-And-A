@@ -1,31 +1,29 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 
 import userRouter from "./routes/user.js";
 import questionsRouter from "./routes/questions.js";
-import publicQuestionsRouter from "./routes/publicQuestions.js";
-import { requireAuth } from "./middleware/authMiddleware.js";
+import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
-
 import userQuestionsRouter from "./routes/user/userQuestions.js";
-
-import publicAnswerRouter from "./routes/publicAnswers.js";
+import publicQuestionsRouter from "./routes/publicQuestions.js";
 
 // Create an express server
 const app = express();
 
+// Middleware to access req.session in all request.
+app.use(sessionMiddleware);
+
 // Tell express to use the json middleware
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
-app.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:8080",
-  })
-);
-app.use(cookieParser());
+app.use(cors());
+//const PORT = 5000; // Use the port your server should run on
+
+// app.get("/", (req, res) => {
+//   res.send("Backend server is running!");
+// });
 
 /****** Attach routes ******/
 /**
@@ -33,13 +31,24 @@ app.use(cookieParser());
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
 app.use("/api/auth", authRouter);
-
-app.use("/api/user", requireAuth, userRouter);
+app.use("/api/user", userRouter);
 app.use("/api/questions", publicQuestionsRouter);
-app.use("/api/answer", publicAnswerRouter);
-app.use("/api/questions", requireAuth, questionsRouter);
-app.use("/api/answer", requireAuth, answerRouter);
-app.use("/api/user/questions", requireAuth, userQuestionsRouter);
-app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
 
+app.use("/api/questions", questionsRouter);
+app.use("/api/answer", answerRouter);
+app.use("/api/user/userQuestions", userQuestionsRouter);
+app.use("/api/questions/:questionId/answers", answerRouter);
+
+app.use("/api/questions/:questionId/answers", answerRouter);
 export default app;
+
+// app.use("/api/auth", authRouter);
+// app.use("/api/user", requireAuth, userRouter);
+// app.use("/api/questions", publicQuestionsRouter);
+
+// app.use("/api/questions", requireAuth, questionsRouter);
+// app.use("/api/answer", requireAuth, answerRouter);
+// app.use("/api/user/questions", userQuestionsRouter);
+// app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
+
+// app.use("/api/questions/:questionId/answers", answerRouter);
