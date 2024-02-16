@@ -41,9 +41,9 @@ const Sidebar = () => {
           {isModulesListVisible && <ModulesList />}
         </div>
         <div className="user-area">
-          <h3>
+          {/* <h3>
             Welcome <span className="username">Guest</span>
-          </h3>
+          </h3> */}
           <Link to="/post-question">
             <PrimaryButton
               text="Ask new Question"
