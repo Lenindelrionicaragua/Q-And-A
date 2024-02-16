@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 1.1em;
-  height: 80px;
+  height: 12vh;
+  margin-bottom: 100px;
 }
 
 .header-logo {
