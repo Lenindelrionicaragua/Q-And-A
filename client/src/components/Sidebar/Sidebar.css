@@ -1,4 +1,4 @@
-sidebar {
+nav {
   background: linear-gradient(180deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   width: 20vw;
   grid-area: sidebar;
@@ -36,7 +36,7 @@ sidebar {
   color: #fff;
 }
 
-.ask-question {
+.post-question {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@ sidebar {
   color: #fff;
 }
 
-.ask-question button {
+.post-question button {
   border-radius: 4px;
   width: 100%;
   outline: none;
@@ -58,7 +58,7 @@ sidebar {
   /* padding: 5px; */
 }
 
-.ask-question button:hover {
+.post-question button:hover {
   padding: 6px 18px;
   transition: all 0.3s ease-out;
   background-color: transparent;

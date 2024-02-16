@@ -36,7 +36,7 @@ const Sidebar = () => {
   return (
     <>
       {isSidebarVisible && (
-        <sidebar className="site-sidebar" id="nav-sidebar">
+        <nav className="site-sidebar" id="nav-sidebar">
           <div className="sidebar-buttons">
             <Link to="/">
               <PrimaryButton
@@ -55,10 +55,10 @@ const Sidebar = () => {
             />
             {isModulesListVisible && <ModulesList />}
           </div>
-          <div className="ask-question">
+          <div className="post-question">
             <Link to="/post-question">
               <PrimaryButton
-                text="Ask Question"
+                text="Post Question"
                 addIcon={true}
                 srcIcon={plusIcon}
                 srcHoverIcon={plusIconHover}
@@ -66,7 +66,7 @@ const Sidebar = () => {
               />
             </Link>
           </div>
-        </sidebar>
+        </nav>
       )}
     </>
   );

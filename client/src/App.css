@@ -80,3 +80,15 @@ main {
 form input::placeholder {
   color: #44576a;
 }
+
+@media screen and (max-width: 960px) {
+  #root {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 12vh 88vh;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+}
