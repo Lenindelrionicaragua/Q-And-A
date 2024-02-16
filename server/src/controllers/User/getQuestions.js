@@ -21,7 +21,7 @@ const getUserQuestions = async (req, res) => {
       result: userQuestions,
     });
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res
       .status(500)
       .json({ success: false, error: "Failed to fetch user questions" });
