@@ -1,24 +1,21 @@
-.navbar {
+.header {
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   grid-area: header;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  justify-content: space-between;
+  font-size: 1.1em;
+  height: 80px;
 }
 
-.navbar-logo {
+.header-logo {
   width: 200px;
   min-height: 1em;
-  margin-top: 1em;
+  margin-top: 0.5em;
+  margin-left: 2em;
 }
 
-.fa-firstdraft {
-  margin-left: 0.5rem;
-  font-size: 1.6rem;
-}
-
-.nav-menu {
+.header-menu {
   display: grid;
   grid-template-columns: repeat(5, auto);
   grid-gap: 10px;
@@ -26,34 +23,35 @@
   text-align: center;
   width: 70vw;
   justify-content: end;
-  margin-right: 2rem;
+  /* margin-right: 2rem; */
+  font-size: 1.1em;
 }
 
-.nav-item {
+.header-item {
   display: flex;
   align-items: center;
   height: 80px;
 }
 
-.nav-links {
+.header-links {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
   text-transform: capitalize;
 }
 
-.nav-links:hover {
+.header-links:hover {
   background-color: #76f013;
   border-radius: 4px;
   transition: all 0.2s ease-out;
 }
 
-.fa-bars {
-  color: #fff;
+.header-links-mobile {
+  display: none;
 }
 
-.nav-links-mobile {
-  display: none;
+.fa-bars {
+  color: #fff;
 }
 
 .menu-icon {
@@ -61,11 +59,11 @@
 }
 
 @media screen and (max-width: 960px) {
-  .NavbarItems {
+  .header-item {
     position: relative;
   }
 
-  .nav-menu {
+  .header-menu {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -77,7 +75,7 @@
     transition: all 0.5s ease;
   }
 
-  .nav-menu.active {
+  .header-menu.active {
     background: #242222;
     left: 0;
     opacity: 1;
@@ -86,20 +84,20 @@
     padding-bottom: 2em;
   }
 
-  .nav-links {
+  .header-links {
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
   }
 
-  .nav-links:hover {
+  .header-links:hover {
     background-color: #76f013;
     border-radius: 0;
     color: #fff;
   }
 
-  .navbar-logo {
+  .header-logo {
     position: absolute;
     top: 0;
     left: 0;
@@ -121,7 +119,7 @@
     font-size: 2rem;
   }
 
-  .nav-links-mobile {
+  .header-links-mobile {
     display: block;
     text-align: center;
     padding: 1.5rem;
@@ -134,7 +132,7 @@
     font-size: 1.5rem;
   }
 
-  .nav-links-mobile:hover {
+  .header-links-mobile:hover {
     background: #fff;
     color: #76f013;
     transition: 250ms;

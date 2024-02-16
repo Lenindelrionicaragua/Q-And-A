@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./Nav.css";
+import "./Sidebar.css";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import ModulesList from "../ModulesList/ModulesList";
-
 import homeIcon from "../../images/icons/home-white.png";
 import homeIconHover from "../../images/icons/home.png";
 import modulesIcon from "../../images/icons/compass-white.png";
@@ -12,7 +11,7 @@ import plusIconHover from "../../images/icons/plus.png";
 
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Sidebar = () => {
   const [isModulesListVisible, setModulesListVisibility] = useState(false);
 
   const handleModulesButtonClick = () => {
@@ -59,4 +58,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Sidebar;
