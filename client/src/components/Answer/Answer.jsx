@@ -5,13 +5,13 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
 import { useAuth } from "../../Context/AuthContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   const { user } = useAuth();
-  const [liked, setLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(answer?.like_counter ?? 0);
   const { id } = useParams();
   const getFormattedDate = (date) => {
@@ -23,10 +23,14 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
     });
   };
 
-  const { performFetch: fetchLikeCount, cancelFetch: cancelFetchLikeCount } =
-    useFetch(`/questions/${id}/answers/${answer._id}/like`, ({ result }) => {
-      setLikeCount(result ?? 0);
-    });
+  const { performFetch: fetchLikeCount } = useFetch(
+    `/questions/${id}/answers/${answer._id}/like`,
+    ({ result }) => {
+      const { likeCounter, isLiked } = result;
+      setLikeCount(likeCounter ?? 0);
+      setIsLiked(isLiked);
+    }
+  );
 
   const handleLike = () => {
     const like = {
@@ -53,7 +57,14 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
           onClick={handleLike}
           disabled={isAnswerBelongsToUser || !user ? true : false}
         >
-          <ThumbUpIcon style={{ fontSize: "18px" }} />
+          {isLiked ? (
+            <ThumbUpIcon style={{ fontSize: "18px", color: "#76f013" }} />
+          ) : (
+            <ThumbUpIcon
+              style={{ fontSize: "18px" }}
+              disabled={isAnswerBelongsToUser || !user ? true : false}
+            />
+          )}
         </Button>
         <Button
           className="icon-button"

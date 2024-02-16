@@ -231,7 +231,10 @@ export const likeAnswer = async (req, res) => {
       .select("like_counter")
       .lean();
 
-    res.json({ success: true, result: like_counter });
+    res.json({
+      success: true,
+      result: { likeCounter: like_counter, isLiked: !existingLike },
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error" });
   }
