@@ -1,10 +1,12 @@
 .dropdown-menu {
-  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  background: #76f013;
   width: 200px;
   position: absolute;
   top: 80px;
   list-style: none;
   text-align: start;
+  /* border-radius: 0 0 4px 4px; */
+  z-index: 1;
 }
 
 .dropdown-menu li {
@@ -13,7 +15,7 @@
 }
 
 .dropdown-menu li:hover {
-  background: #76f013;
+  background: #0fe31d;
 }
 
 .dropdown-menu.clicked {
