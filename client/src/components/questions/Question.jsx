@@ -26,16 +26,13 @@ const Question = ({ question, isUserQus = false }) => {
   const questionRoute = `${isUserQus ? "/user-profile" : ""}/questions/${id}`;
 
   useEffect(() => {
-    const deleteQuestion = () => {
+    if (deleteStarted) {
       if (confirm("Are you sure you want to delete this question?")) {
         performFetch({ method: "DELETE" });
         setTimeout(() => {
           navigate("/");
         }, 1000);
       }
-    };
-    if (deleteStarted) {
-      deleteQuestion();
     }
     return () => {
       cancelFetch();

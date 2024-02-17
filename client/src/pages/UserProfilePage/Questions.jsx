@@ -4,7 +4,7 @@ import UserQuestions from "../../components/questions/UserQuestions";
 const UserQuestionsPage = () => {
   return (
     <div>
-      <h1>UserQuestionsPage</h1>
+      <h1>Questions</h1>
       <UserQuestions />
     </div>
   );

@@ -3,6 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import { useAuth } from "../../Context/AuthContext";
 import Box from "@mui/material/Box";
 import Question from "./Question";
+import Typography from "@mui/material/Typography";
 
 const UserQuestions = () => {
   const { user } = useAuth();
@@ -11,7 +12,10 @@ const UserQuestions = () => {
     "/user/userQuestions/userId/" + user.id,
     fetchUserQuestions
   );
+
   const [userQuestions, setUserQuestions] = useState([]);
+
+  const hasQuestions = userQuestions.length > 0;
 
   function fetchUserQuestions(res) {
     setUserQuestions(res.result);
@@ -30,11 +34,22 @@ const UserQuestions = () => {
 
   return (
     <Box component="section" py={4}>
-      <ul>
-        {userQuestions.map((qus) => (
-          <Question key={qus._id.toString()} question={qus} isUserQus={true} />
-        ))}
-      </ul>
+      {hasQuestions && (
+        <ul>
+          {userQuestions.map((qus) => (
+            <Question
+              key={qus._id.toString()}
+              question={qus}
+              isUserQus={true}
+            />
+          ))}
+        </ul>
+      )}
+      {!hasQuestions && (
+        <Typography variant="h5" component="h2">
+          You do not have any questions yet!
+        </Typography>
+      )}
     </Box>
   );
 };
