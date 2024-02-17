@@ -32,7 +32,7 @@ const QuestionDetails = () => {
     }
   );
 
- const handleCreateAnswer = (answerContent) => {
+  const handleCreateAnswer = (answerContent) => {
     const answer = {
       question_id: id,
       answer_content: answerContent,
