@@ -35,7 +35,7 @@ const App = () => {
               <Route path="" element={<UserProfilePage />} />
               <Route path="questions">
                 <Route path="" element={<UserQuestionsPage />} />
-                <Route path=":id" element={<UserQuestionDetails />} />
+                <Route path=":questionId" element={<UserQuestionDetails />} />
               </Route>
             </Route>
 

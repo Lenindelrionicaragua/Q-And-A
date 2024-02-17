@@ -1,35 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useAuth } from "../../Context/AuthContext";
+import Box from "@mui/material/Box";
+import Question from "./Question";
 
 const UserQuestions = () => {
   const { user } = useAuth();
-  console.log(user);
+
   const { isLoading, error, performFetch } = useFetch(
-    "/user/userQuestions",
+    "/user/userQuestions/userId/" + user.id,
     fetchUserQuestions
   );
+  const [userQuestions, setUserQuestions] = useState([]);
 
   function fetchUserQuestions(res) {
-    console.log(res);
+    setUserQuestions(res.result);
   }
 
   useEffect(() => {
-    performFetch({
-      headers: {
-        Authorization: user.id,
-        "content-type": "application/json",
-      },
-    });
+    performFetch();
   }, []);
+
   if (isLoading) {
-    return <h1>loading</h1>;
+    return <h1>Loading...</h1>;
   }
   if (error) {
     return <h1>{error}</h1>;
   }
 
-  return <div></div>;
+  return (
+    <Box component="section" py={4}>
+      <ul>
+        {userQuestions.map((qus) => (
+          <Question key={qus._id.toString()} question={qus} isUserQus={true} />
+        ))}
+      </ul>
+    </Box>
+  );
 };
 
 export default UserQuestions;

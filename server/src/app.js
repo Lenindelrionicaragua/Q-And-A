@@ -41,14 +41,3 @@ app.use("/api/questions/:questionId/answers", answerRouter);
 
 app.use("/api/questions/:questionId/answers", answerRouter);
 export default app;
-
-// app.use("/api/auth", authRouter);
-// app.use("/api/user", requireAuth, userRouter);
-// app.use("/api/questions", publicQuestionsRouter);
-
-// app.use("/api/questions", requireAuth, questionsRouter);
-// app.use("/api/answer", requireAuth, answerRouter);
-// app.use("/api/user/questions", userQuestionsRouter);
-// app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
-
-// app.use("/api/questions/:questionId/answers", answerRouter);

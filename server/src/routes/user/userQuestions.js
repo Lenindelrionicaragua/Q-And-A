@@ -1,14 +1,11 @@
 import express from "express";
 import getUserQuestions from "../../controllers/User/getQuestions.js";
-// import getQuestionById from "../../controllers/User/getQuestionById.js";
-// import removeUserQuestions from "../../controllers/User/removeQuestionById.js";
+import getQuestionById from "../../controllers/User/getQuestionById.js";
+import removeUserQuestion from "../../controllers/User/removeQuestionById.js";
 
 const userQuestionsRouter = express.Router();
-userQuestionsRouter.get("/", getUserQuestions);
-// userQuestionsRouter.get("/user/userQuestions/:questionId", getQuestionById);
-// userQuestionsRouter.delete(
-//   "/user/userQuestions/:questionId",
-//   removeUserQuestions
-// );
+userQuestionsRouter.get("/userId/:id", getUserQuestions);
+userQuestionsRouter.get("/:questionId", getQuestionById);
+userQuestionsRouter.delete("/delete/:questionId", removeUserQuestion);
 
 export default userQuestionsRouter;
