@@ -14,9 +14,11 @@ const QuestionList = () => {
   );
 
   const [questions, setQuestions] = React.useState([]);
-  const [filteredQuestions, setFilteredQuestions] = React.useState([]);
+  const [sortedQuestions, setSortedQuestions] = React.useState([]);
+
   const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
   const [isSortedByTime, setIsSortedByTime] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   function fetchQuestions(res) {
     setQuestions(res.questions);
@@ -30,29 +32,12 @@ const QuestionList = () => {
   }, []);
 
   React.useEffect(() => {
-    if (questions?.length > 0) {
-      runSearch();
-    }
+    setSortedQuestions(questions);
   }, [questions]);
 
-  const runSearch = (searchModule) => {
-    if (!searchModule) {
-      setFilteredQuestions(questions);
-      return;
-    }
-
-    const updatedQuestions = questions.filter((question) => {
-      // Convert both the module_ids and searchModule to lowercase
-      const lowerCaseModuleIds = question.module_ids?.map((moduleId) =>
-        moduleId.toLowerCase()
-      );
-      const lowerCaseSearchModule = searchModule.toLowerCase();
-
-      // Check if the lower case version of searchModule exists in lower case module_ids
-      return lowerCaseModuleIds.includes(lowerCaseSearchModule);
-    });
-
-    setFilteredQuestions(updatedQuestions);
+  const runSearch = async (term) => {
+    await performFetch(null, "/questions?searchTerm=" + term);
+    setSearchTerm(term);
   };
 
   function handleSortByPopularity() {
@@ -67,9 +52,9 @@ const QuestionList = () => {
     setIsSortedByTime(false);
 
     if (valueToBe) {
-      setFilteredQuestions(sortedQuestions);
+      setSortedQuestions(sortedQuestions);
     } else {
-      setFilteredQuestions(questions);
+      setSortedQuestions(questions);
     }
   }
 
@@ -85,9 +70,9 @@ const QuestionList = () => {
     setIsSortedByPopularity(false);
 
     if (valueToBe) {
-      setFilteredQuestions(sortedQuestions);
+      setSortedQuestions(sortedQuestions);
     } else {
-      setFilteredQuestions(questions);
+      setSortedQuestions(questions);
     }
   }
 
@@ -97,7 +82,7 @@ const QuestionList = () => {
   return (
     <Box component="section" py={4}>
       <div className="over-question-table">
-        <SearchBar runSearch={runSearch} />
+        <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
         <Sorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
@@ -106,7 +91,7 @@ const QuestionList = () => {
         />
       </div>
       <ul>
-        {filteredQuestions.map((qus, index) => (
+        {sortedQuestions.map((qus, index) => (
           <Question key={index} question={qus} />
         ))}
       </ul>
