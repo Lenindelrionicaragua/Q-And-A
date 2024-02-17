@@ -64,17 +64,34 @@ const Header = () => {
               </li>
             </>
           )}
-          {user && (
+          {user && !click && (
             <li
               className="header-item"
               onMouseEnter={handleDropdownMouseEnter}
               onMouseLeave={handleDropdownMouseLeave}
             >
-              <Link to="/" className="header-links" onClick={closeMobileMenu}>
+              <div className="header-links" onClick={closeMobileMenu}>
                 {user ? `Welcome ${user.name}` : "Welcome"}{" "}
                 <i className="fas fa-caret-down" />
-              </Link>
+              </div>
               {dropdown && <Dropdown />}
+            </li>
+          )}
+
+          {user && click && (
+            <li>
+              <div className="header-toggle-menu" onClick={closeMobileMenu}>
+                {user ? `Welcome ${user.name}` : "Welcome"}{" "}
+              </div>
+              <hr></hr>
+              {dropdown && <Dropdown />}
+            </li>
+          )}
+          {user && click && (
+            <li className="header-item">
+              <Link to="/" className="header-links" onClick={closeMobileMenu}>
+                Home
+              </Link>
             </li>
           )}
           {user && click && (
@@ -85,6 +102,18 @@ const Header = () => {
                 onClick={closeMobileMenu}
               >
                 User Profile
+              </Link>
+            </li>
+          )}
+
+          {user && click && (
+            <li className="header-item">
+              <Link
+                to="/post-question"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                Post Question
               </Link>
             </li>
           )}
