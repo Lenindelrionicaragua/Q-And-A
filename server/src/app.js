@@ -32,8 +32,9 @@ app.use("/api/questions", publicQuestionsRouter);
 
 app.use("/api/questions", questionsRouter);
 app.use("/api/answer", answerRouter);
+
 app.use("/api/user/userQuestions", userQuestionsRouter);
-app.use("/api/questions/:questionId/answers", answerRouter);
 
 app.use("/api/questions/:questionId/answers", answerRouter);
+
 export default app;
