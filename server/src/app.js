@@ -32,6 +32,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/questions", questionsRouter);
 app.use("/api/answer", answerRouter);
-
 app.use("/api/questions/:questionId/answers", answerRouter);
+
 export default app;
