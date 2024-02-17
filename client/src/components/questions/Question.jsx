@@ -39,10 +39,10 @@ const Question = ({ question, isUserQus = false }) => {
     }
     return () => {
       cancelFetch();
-      //setDeleteStarted(false);
+     
     };
   }, [deleteStarted]);
- 
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
 
@@ -54,7 +54,7 @@ const Question = ({ question, isUserQus = false }) => {
             <Typography
               component="h3"
               variant="h6"
-              fontWeight="bold" 
+              fontWeight="bold"
               color="primary.main"
             >
               {question.question_title}
