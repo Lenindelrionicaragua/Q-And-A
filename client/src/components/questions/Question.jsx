@@ -39,7 +39,6 @@ const Question = ({ question, isUserQus = false }) => {
     }
     return () => {
       cancelFetch();
-     
     };
   }, [deleteStarted]);
 
