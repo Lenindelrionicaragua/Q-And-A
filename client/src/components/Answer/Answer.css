@@ -6,7 +6,7 @@
 .answer-wrapper {
   flex: 1;
   border-radius: 8px;
-  padding: 25px;
+  padding: 25px 25px 40px;
   width: 80%;
   max-width: 900px;
   margin: auto;
@@ -16,19 +16,17 @@
   color: #44576a;
 }
 
-.answer-wrapper .aswerLikeBtn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-}
-
-.answer-wrapper .answerDeleteBtn {
-  position: absolute;
-  right: -10px;
-  top: 10px;
+.answer-wrapper .icon-button {
+  min-width: 0;
 }
 
 .answer-pin {
   padding: 10px;
   margin-right: 5px;
+}
+
+.button-group {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

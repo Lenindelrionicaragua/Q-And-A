@@ -1,21 +1,35 @@
 .modules-list {
+  background: transparent;
   margin-right: auto;
   margin-left: 2.2em;
-  margin-top: 1em;
+  margin-top: 0.5em;
   list-style-type: none;
-  color: #c8d1df;
+  color: #fff;
   display: flex;
   flex-direction: column;
+  text-align: start;
+  width: 70%;
+  padding-left: 0px;
+  padding-top: 10px;
 }
 
 .modules-list li {
-  margin-bottom: 1em;
+  padding: 0.5em;
+  background: transparent;
+  cursor: pointer;
+  padding-left: 10px;
+  /* border-radius: 4px; */
+}
+
+.modules-list li:hover {
+  padding: 0.5em;
+  background: #0fe31d;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+  /* border-radius: 4px; */
 }
 
 .modules-list a {
   color: white;
-}
-
-.modules-list a:hover {
-  color: #69d926;
 }

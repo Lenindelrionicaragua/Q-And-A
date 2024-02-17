@@ -1,6 +1,6 @@
 button {
   font-size: 0.9em;
-  font-family: "Inter", sans-serif;
+  font-family: "PT Sans", sans-serif;
   border: solid 1px;
   cursor: pointer;
   display: flex;
@@ -25,38 +25,14 @@ button .icon img {
 /* Primary button styles */
 .primary-button {
   font-weight: 600;
-  border-radius: 0.35em;
-  border-color: #c8d1df;
+  border-radius: 4px;
+  border-color: #fff;
   background: #0f0f12;
-  color: #c8d1df;
+  color: #fff;
 }
 
 .primary-button:hover {
   border-color: #76f013;
   background: #76f013;
-  color: #0f0f12;
-}
-
-/* Icon styles */
-button .icon {
-  padding-top: 0.15em;
-}
-
-button .icon img {
-  height: 1em;
-}
-
-/* Primary button styles */
-.primary-button {
-  font-weight: 600;
-  border-radius: 0.35em;
-  border-color: #c8d1df;
-  background: #0f0f12;
-  color: #c8d1df;
-}
-
-.primary-button:hover {
-  border-color: #76f013;
-  background: #76f013;
-  color: #0f0f12;
+  color: #fff;
 }
