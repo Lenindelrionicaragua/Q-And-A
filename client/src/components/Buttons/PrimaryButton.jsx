@@ -3,14 +3,13 @@ import "./Buttons.css";
 import PropTypes from "prop-types";
 import Icon from "../Icon/Icon";
 
-// This button style includes the option to have an icon
-//and handle the  change of the icon based on mouse hover/enter
 const PrimaryButton = ({
   text,
   addIcon,
   srcIcon,
   srcHoverIcon,
   onClickHandler,
+  textContainerClassName,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -36,7 +35,7 @@ const PrimaryButton = ({
       onClick={handleClick}
     >
       {addIcon ? <Icon src={isHovered ? srcHoverIcon : srcIcon} /> : null}
-      {text}
+      <span className={textContainerClassName}>{text}</span>
     </button>
   );
 };
@@ -47,6 +46,7 @@ PrimaryButton.propTypes = {
   srcIcon: PropTypes.string,
   srcHoverIcon: PropTypes.string,
   onClickHandler: PropTypes.func,
+  textContainerClassName: PropTypes.string,
 };
 
 PrimaryButton.defaultProps = {
@@ -55,6 +55,7 @@ PrimaryButton.defaultProps = {
   srcIcon: "",
   srcHoverIcon: "",
   onClickHandler: null,
+  textContainerClassName: "",
 };
 
 export default PrimaryButton;

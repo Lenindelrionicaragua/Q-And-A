@@ -16,7 +16,7 @@ a {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "PT Sans", sans-serif;
   height: 100vh;
   font-size: 16px;
 }
@@ -25,7 +25,7 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: 20vw 40vw 40vw;
-  grid-template-rows: 15vh 85vh;
+  grid-template-rows: 12vh 88vh;
   grid-template-areas:
     "header header header"
     "sidebar main main";
@@ -79,4 +79,16 @@ main {
 .form-group input::placeholder,
 form input::placeholder {
   color: #44576a;
+}
+
+@media screen and (max-width: 960px) {
+  #root {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 12vh 88vh;
+    grid-template-areas:
+      "header"
+      "main";
+  }
 }
