@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SignUpPage.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
@@ -11,15 +11,15 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invitationCode, setInvitationCode] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSuccess = () => {
     setName("");
     setEmail("");
     setPassword("");
     setInvitationCode("");
-    navigate("/auth/log-in");
-    alert("You signed up successfully! Login to continue.");
+    // navigate("/auth/log-in");
+    // alert("You signed up successfully! Login to continue.");
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(

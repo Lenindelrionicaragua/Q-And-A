@@ -13,6 +13,8 @@ import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import UserQuestionsPage from "./pages/UserProfilePage/Questions";
+import UserQuestionDetails from "./pages/UserProfilePage/QuestionDetails";
 
 const App = () => {
   return (
@@ -25,7 +27,18 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/auth/sign-up" element={<SignUpPage />} />
             <Route path="/auth/log-in" element={<LogInPage />} />
-            <Route path="/user-profile" element={<UserProfilePage />} />
+            {/*  <Route path="/user-profile" element={<UserProfilePage />} /> */}
+
+            {/* nested user routes */}
+
+            <Route path="/user-profile">
+              <Route path="" element={<UserProfilePage />} />
+              <Route path="questions">
+                <Route path="" element={<UserQuestionsPage />} />
+                <Route path=":questionId" element={<UserQuestionDetails />} />
+              </Route>
+            </Route>
+
             <Route path="/post-question" element={<PostQuestionPage />} />
             <Route path="/user" element={<UserList />} />
             <Route path="/questions/:id" element={<QuestionDetails />} />
