@@ -24,7 +24,7 @@ const getQuestionById = async (req, res) => {
 
       question.answers = answers?.map((x) => {
         const user = userNames.find((y) => y.id === x.user_id);
-        x.author = user.name;
+        x.author = user?.name ?? "Unactive user";
         return x;
       });
     }
