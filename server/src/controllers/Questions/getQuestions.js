@@ -3,7 +3,7 @@ import { logError } from "../../util/logging.js";
 
 const getQuestions = async (req, res) => {
   try {
-    const searchTerm = req.query.searchTerm; // Get searchTerm from query string
+    const searchTerm = req.query.searchTerm;
     let questions;
     if (searchTerm) {
       questions = await Question.find({
