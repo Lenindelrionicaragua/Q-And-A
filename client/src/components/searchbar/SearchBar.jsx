@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./SearchBar.css";
 
-const SearchBar = ({ runSearch }) => {
-  const [module, setModule] = React.useState("");
+const SearchBar = ({ searchTerm, runSearch }) => {
+  const [term, setTerm] = React.useState(searchTerm);
 
   return (
     <div className="search-form-wrapper">
@@ -10,15 +10,15 @@ const SearchBar = ({ runSearch }) => {
         className="search-form"
         onSubmit={(event) => {
           event.preventDefault();
-          runSearch(module);
+          runSearch(term);
         }}
       >
         <input
           type="text"
-          value={module}
+          value={term}
           placeholder="Search in all questions"
           onChange={(event) => {
-            setModule(event.target.value);
+            setTerm(event.target.value);
           }}
         />
       </form>
@@ -26,4 +26,4 @@ const SearchBar = ({ runSearch }) => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);
