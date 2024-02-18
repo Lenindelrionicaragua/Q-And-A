@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
@@ -9,6 +10,8 @@ import answerRouter from "./routes/answers.js";
 import userQuestionsRouter from "./routes/user/userQuestion.js";
 import publicQuestionsRouter from "./routes/publicQuestions.js";
 
+dotenv.config();
+
 // Create an express server
 const app = express();
 
@@ -18,8 +21,13 @@ app.use(sessionMiddleware);
 // Tell express to use the json middleware
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
-app.use(cors());
-//const PORT = 5000; // Use the port your server should run on
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.UI_BASE_URL,
+  })
+);
+app.use(cookieParser());
 
 /****** Attach routes ******/
 /**
