@@ -7,6 +7,7 @@ const getQuestionById = async (req, res) => {
   try {
     const questionId = req.params.questionId;
     const question = await Question.findById(questionId).lean();
+    //console.log(question);
 
     if (!question) {
       return res

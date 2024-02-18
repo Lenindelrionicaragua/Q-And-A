@@ -13,7 +13,7 @@ import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
-import UserQuestionsPage from "./pages/UserProfilePage/Questions";
+import UserQuestionsPage from "./pages/UserProfilePage/UserQuestions";
 import UserQuestionDetails from "./pages/UserProfilePage/QuestionDetails";
 
 const App = () => {

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import Question from "../../components/questions/Question";
-import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
+import UserQuestion from "../../components/User/Questions/UserQuestion";
+
 import UsersAnswersList from "../../components/Answer/UsersAnswersList";
-import Answer from "../../components/Answer/Answer";
 
 const UserQuestionDetails = () => {
   const { questionId } = useParams();
@@ -25,19 +24,11 @@ const UserQuestionDetails = () => {
 
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
-  console.log(question);
 
-  const handleAnswerSubmit = (answerContent) => {
-    console.log("Submitted answer:", answerContent);
-  };
   return (
     <div>
-      <Question question={question} isUserQus={true} />
+      <UserQuestion question={question} />
       <UsersAnswersList answers={question.answers} />
-
-      {question.answer && <Answer answer={question.answer} />}
-
-      <CreateAnswer handleSubmit={handleAnswerSubmit} />
     </div>
   );
 };
