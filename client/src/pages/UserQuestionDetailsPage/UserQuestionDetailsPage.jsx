@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import UserQuestion from "../../components/User/Questions/UserQuestion";
+import UserQuestionItem from "../../components/UserQuestionItem/UserQuestionItem";
+import UserAnswersList from "../../components/UserAnswerList/UserAnswerList";
 
-import UsersAnswersList from "../../components/Answer/UsersAnswersList";
-
-const UserQuestionDetails = () => {
+const UserQuestionDetailsPage = () => {
   const { questionId } = useParams();
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     `/user/userQuestions/${questionId}`,
@@ -27,9 +26,9 @@ const UserQuestionDetails = () => {
 
   return (
     <div>
-      <UserQuestion question={question} />
-      <UsersAnswersList answers={question.answers} />
+      <UserQuestionItem question={question} />
+      <UserAnswersList answers={question.answers} />
     </div>
   );
 };
-export default UserQuestionDetails;
+export default UserQuestionDetailsPage;

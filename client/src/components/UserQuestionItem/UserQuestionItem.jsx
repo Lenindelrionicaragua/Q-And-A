@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import QuestionFooter from "../../questions/QuestionFooter";
+import QuestionFooter from "../QuestionFooter/QuestionFooter";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import DeleteIcon from "@mui/icons-material/Delete";
-import classes from "./Question.module.css";
+import classes from "./UserQuestionItem.module.css";
 
-const UserQuestion = ({ question }) => {
+const UserQuestionItem = ({ question }) => {
   const id = question._id;
 
   const [deleteStarted, setDeleteStarted] = useState(false);
@@ -70,4 +70,4 @@ const UserQuestion = ({ question }) => {
   );
 };
 
-export default UserQuestion;
+export default UserQuestionItem;
