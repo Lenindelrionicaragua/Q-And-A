@@ -6,7 +6,7 @@ import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import "../QuestionList/QuestionList.module.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
-import SearchBar from "../SearchBar/SearchBar.jsx";
+import SearchBar from "../searchBar/SearchBar.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
