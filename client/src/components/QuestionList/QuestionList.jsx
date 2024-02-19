@@ -1,11 +1,12 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
-import SearchBar from "../../components/SearchBar/SearchBar";
+
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import "../QuestionList/QuestionList.module.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
