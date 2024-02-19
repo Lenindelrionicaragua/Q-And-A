@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import QuestionFooter from "./QuestionFooter";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import DeleteIcon from "@mui/icons-material/Delete";
-import classes from "./question.module.css";
+import Button from "@mui/material/Button";
+import "./Question.css";
 
 const Question = ({ question, isUserQus = false }) => {
   const id = question._id;
+  const [daysAgo, setDaysAgo] = useState("...");
+  useEffect(() => {
+    const newDate = !question.created_at
+      ? "unknown date"
+      : new Date(question.created_at).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
 
+    setDaysAgo(newDate);
+  }, [question.created_at]);
   const [deleteStarted, setDeleteStarted] = useState(false);
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -22,8 +30,6 @@ const Question = ({ question, isUserQus = false }) => {
   );
 
   const navigate = useNavigate();
-
-  const questionRoute = `${isUserQus ? "/user-profile" : ""}/questions/${id}`;
 
   useEffect(() => {
     if (deleteStarted) {
@@ -43,34 +49,39 @@ const Question = ({ question, isUserQus = false }) => {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <li className={classes.questionItem} style={{ listStyleType: "none" }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="start">
-        <Stack spacing={2} mb={4}>
-          <Link to={questionRoute}>
-            <Typography
-              component="h3"
-              variant="h6"
-              fontWeight="bold"
-              color="primary.main"
-            >
-              {question.question_title}
-            </Typography>
-          </Link>
-          <Typography component="span">{question.question_content}</Typography>
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          <IconButton>
-            <ThumbUpIcon style={{ fontSize: "22px" }} />
-          </IconButton>
-          {isUserQus && (
-            <IconButton onClick={() => setDeleteStarted(true)}>
-              <DeleteIcon style={{ fontSize: "22px" }} />
-            </IconButton>
-          )}
-        </Stack>
-      </Stack>
-      <QuestionFooter classes={classes} question={question} />
-    </li>
+    <div className="question-wrapper">
+      <Link to={`/questions/${id}`} className="">
+        <h1>{question.question_title}</h1>
+      </Link>
+
+      <p>{question.question_content}</p>
+      <div className="question-pins">
+        {question.module_ids?.map((tag) => (
+          <span key={tag} className="pin tag">
+            {tag}
+          </span>
+        ))}
+        <span className="flex-spanner"></span>
+        <span className="pin">{question.like_counter} LIKES</span>
+        <span className="pin">{question.visit_counter} VIEWS</span>
+        <span className="pin">
+          Asked by {question.user_name} at {daysAgo}
+        </span>
+      </div>
+      <div className="button-group">
+        <Button className="icon-button">
+          <ThumbUpIcon style={{ fontSize: "18px" }} />
+        </Button>
+        {isUserQus && (
+          <Button
+            className="icon-button delete"
+            onClick={() => setDeleteStarted(true)}
+          >
+            <DeleteIcon style={{ fontSize: "18px" }} />
+          </Button>
+        )}
+      </div>
+    </div>
   );
 };
 

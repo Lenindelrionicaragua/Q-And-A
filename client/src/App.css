@@ -51,20 +51,26 @@ main {
 .tag {
   background: #4e5289;
   color: white;
+  margin: 5px 4px;
+  padding: 7px 15px;
 }
 .flex-spanner {
   flex-grow: 1;
 }
-
+.question-list {
+  max-width: 1000px;
+  margin: auto;
+}
 .over-question-table {
   flex: 1;
-  border-radius: 8px;
-  padding: 25px;
+  border-radius: 4px;
+  padding: 25px 25px 15px;
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   position: relative;
   background-color: #c1c1c11f;
   color: #44576a;
+  box-shadow: 0px 7px 13px 0 rgb(192 195 208 / 65%);
 }
 
 .over-question-table form input {

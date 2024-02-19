@@ -62,13 +62,18 @@ const QuestionDetails = () => {
     }
   );
   const handleDelete = (answerId) => {
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    deleteAnswer(options, getDeleteUrl(id, answerId));
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this answer?"
+    );
+    if (confirmDelete) {
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      deleteAnswer(options, getDeleteUrl(id, answerId));
+    }
   };
 
   const isAnswerBelongsToUser = (answer) => {
@@ -76,12 +81,8 @@ const QuestionDetails = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <div className="question-wrapper">
-        <Question question={question} />
-      </div>
+    <div className="question-details-container">
+      <Question question={question} />
       {question.answers?.map((answer, i) => (
         <Answer
           key={i}

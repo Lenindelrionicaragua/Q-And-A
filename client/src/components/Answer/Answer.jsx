@@ -67,7 +67,9 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
           )}
         </Button>
         <Button
-          className="icon-button"
+          className={
+            isAnswerBelongsToUser && user ? "icon-button delete" : "icon-button"
+          }
           disabled={isAnswerBelongsToUser && user ? false : true}
           onClick={() => handleDelete(answer._id)}
         >

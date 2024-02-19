@@ -1,7 +1,7 @@
-.question-wrapper {
-  margin: 10px 30px 40px;
-}
-
-.question-wrapper > li {
-  list-style-type: none;
+.question-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
 }
