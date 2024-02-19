@@ -3,7 +3,9 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import TimeAgo from "../TimeAgo/TimeAgo";
 
-const QuestionFooter = ({ classes, question }) => {
+const QuestionFooter = (props) => {
+  const { classes, question } = props;
+
   return (
     <Stack
       flex={1}
