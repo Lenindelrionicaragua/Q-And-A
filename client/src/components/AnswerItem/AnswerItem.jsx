@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import "./Answer.css";
+import "../AnswerItem/AnswerItem.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
+const AnswerItem = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(answer?.like_counter ?? 0);
@@ -86,8 +86,8 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   );
 };
 
-Answer.propTypes = {
+AnswerItem.propTypes = {
   answer: PropTypes.object.isRequired,
 };
 
-export default memo(Answer);
+export default memo(AnswerItem);

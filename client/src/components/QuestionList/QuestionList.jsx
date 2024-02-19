@@ -1,11 +1,12 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
-import SearchBar from "../../components/searchbar/SearchBar.jsx";
-import Sorting from "../sorting/Sorting";
-import Question from "./Question";
-import "./question.module.css";
+
+import QuestionSorting from "../QuestionSorting/QuestionSorting";
+import QuestionItem from "../QuestionItem/QuestionItem";
+import "../QuestionList/QuestionList.module.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
+import SearchBar from "../searchbar/SearchBar.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -83,7 +84,7 @@ const QuestionList = () => {
     <Box component="section" py={4}>
       <div className="over-question-table">
         <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
-        <Sorting
+        <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
           isSortedByPopularity={isSortedByPopularity}
@@ -92,7 +93,7 @@ const QuestionList = () => {
       </div>
       <ul>
         {sortedQuestions.map((qus, index) => (
-          <Question key={index} question={qus} />
+          <QuestionItem key={index} question={qus} />
         ))}
       </ul>
     </Box>

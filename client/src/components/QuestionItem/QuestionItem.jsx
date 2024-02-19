@@ -1,15 +1,14 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-import QuestionFooter from "./QuestionFooter";
+import QuestionFooter from "../QuestionFooter/QuestionFooter";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
-import classes from "./question.module.css";
+import classes from "./QuestionItem.module.css";
 
-const Question = ({ question }) => {
+const QuestionItem = ({ question }) => {
   return (
     <li className={classes.questionItem}>
       <Stack direction="row" justifyContent="space-between" alignItems="start">
@@ -32,9 +31,9 @@ const Question = ({ question }) => {
           </IconButton>
         </Stack>
       </Stack>
-      <QuestionFooter classes={classes} question={question} />
+      <QuestionFooter question={question} />
     </li>
   );
 };
 
-export default Question;
+export default QuestionItem;

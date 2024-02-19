@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useFetch from "../../../hooks/useFetch";
-import { useAuth } from "../../../Context/AuthContext";
+import useFetch from "../../hooks/useFetch";
+import { useAuth } from "../../Context/AuthContext";
 import Box from "@mui/material/Box";
-import UserQuestion from "./UserQuestion";
+import UserQuestionItem from "../UserQuestionItem/UserQuestionItem";
 import Typography from "@mui/material/Typography";
 
-const QuestionList = () => {
+const UserQuestionList = () => {
   const { user } = useAuth();
 
   const { isLoading, error, performFetch } = useFetch(
@@ -37,7 +37,7 @@ const QuestionList = () => {
       {hasQuestions && (
         <ul>
           {userQuestions.map((qus) => (
-            <UserQuestion key={qus._id.toString()} question={qus} />
+            <UserQuestionItem key={qus._id.toString()} question={qus} />
           ))}
         </ul>
       )}
@@ -50,4 +50,4 @@ const QuestionList = () => {
   );
 };
 
-export default QuestionList;
+export default UserQuestionList;

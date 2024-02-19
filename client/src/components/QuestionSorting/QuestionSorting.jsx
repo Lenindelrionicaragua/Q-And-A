@@ -1,8 +1,8 @@
 import React from "react";
-import "./Sorting.css";
+import "./QuestionSorting.css";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 
-const Sorting = ({
+const QuestionSorting = ({
   handleSortByPopularity,
   handleSortByTime,
   isSortedByPopularity,
@@ -49,4 +49,4 @@ const Sorting = ({
   );
 };
 
-export default Sorting;
+export default QuestionSorting;
