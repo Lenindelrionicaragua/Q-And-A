@@ -1,0 +1,9 @@
+.answerItem {
+  background-color: #c5c1c1;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.answerItem:not(:last-child) {
+  margin-bottom: 1rem;
+}
