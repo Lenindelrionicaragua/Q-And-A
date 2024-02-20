@@ -2,7 +2,6 @@ import React, { memo, useState } from "react";
 import "./SearchBarComponent.css";
 
 function SearchBar({ runSearch }) {
-  debugger;
   const [term, setTerm] = useState("");
   const handleChange = (e) => {
     const inputValue = e.target.value;
