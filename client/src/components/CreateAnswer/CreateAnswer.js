@@ -1,7 +1,7 @@
 import React from "react";
 import "./CreateAnswer.css";
 import PropTypes from "prop-types";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const CreateAnswer = ({ handleSubmit }) => {
   const [answerContent, setAnswerContent] = React.useState("");

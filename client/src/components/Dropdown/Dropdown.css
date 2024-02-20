@@ -2,10 +2,10 @@
   background: #76f013;
   width: 200px;
   position: absolute;
-  top: 12vh;
+  top: 8vh;
   list-style: none;
   text-align: start;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .dropdown-menu li {

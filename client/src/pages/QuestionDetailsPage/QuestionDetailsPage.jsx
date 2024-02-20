@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
 import "./QuestionDetailsPage.css";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const QuestionDetailsPage = () => {
   const [question, setQuestion] = useState({});
@@ -62,13 +62,18 @@ const QuestionDetailsPage = () => {
     }
   );
   const handleDelete = (answerId) => {
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    deleteAnswer(options, getDeleteUrl(id, answerId));
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this answer?"
+    );
+    if (confirmDelete) {
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      deleteAnswer(options, getDeleteUrl(id, answerId));
+    }
   };
 
   const isAnswerBelongsToUser = (answer) => {
@@ -76,12 +81,8 @@ const QuestionDetailsPage = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <div className="question-wrapper">
-        <QuestionItem question={question} />
-      </div>
+    <div className="question-details-container">
+      <QuestionItem question={question} />
       {question.answers?.map((answer, i) => (
         <AnswerItem
           key={i}

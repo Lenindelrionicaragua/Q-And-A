@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetchAvatar";
 import "../AvatarCreator/AvatarCreator.css";
 

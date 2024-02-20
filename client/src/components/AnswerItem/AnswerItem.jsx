@@ -1,15 +1,15 @@
 import React, { memo } from "react";
-import "../AnswerItem/AnswerItem.css";
+import "./AnswerItem.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-const AnswerItem = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
+const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(answer?.like_counter ?? 0);
@@ -67,7 +67,9 @@ const AnswerItem = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
           )}
         </Button>
         <Button
-          className="icon-button"
+          className={
+            isAnswerBelongsToUser && user ? "icon-button delete" : "icon-button"
+          }
           disabled={isAnswerBelongsToUser && user ? false : true}
           onClick={() => handleDelete(answer._id)}
         >
@@ -86,8 +88,8 @@ const AnswerItem = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   );
 };
 
-AnswerItem.propTypes = {
+Answer.propTypes = {
   answer: PropTypes.object.isRequired,
 };
 
-export default memo(AnswerItem);
+export default memo(Answer);

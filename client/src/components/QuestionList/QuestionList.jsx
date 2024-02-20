@@ -1,10 +1,8 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
-import Box from "@mui/material/Box";
-
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
-import "../QuestionList/QuestionList.module.css";
+import "../QuestionList/QuestionList.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
 import SearchBar from "../searchbar/SearchBar.jsx";
 
@@ -81,7 +79,7 @@ const QuestionList = () => {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <Box component="section" py={4}>
+    <div className="question-list">
       <div className="over-question-table">
         <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
         <QuestionSorting
@@ -91,12 +89,12 @@ const QuestionList = () => {
           isSortedByTime={isSortedByTime}
         />
       </div>
-      <ul>
-        {sortedQuestions.map((qus, index) => (
-          <QuestionItem key={index} question={qus} />
+      <div>
+        {sortedQuestions.map((question, index) => (
+          <QuestionItem key={index} question={question} />
         ))}
-      </ul>
-    </Box>
+      </div>
+    </div>
   );
 };
 
