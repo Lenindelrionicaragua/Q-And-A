@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import "./Question.css";
+import "./QuestionItem.css";
 
-const Question = ({ question, isUserQus = false }) => {
+const QuestionItem = ({ question, isUserQus = false }) => {
   const id = question._id;
   const [daysAgo, setDaysAgo] = useState("...");
   useEffect(() => {
@@ -85,4 +85,4 @@ const Question = ({ question, isUserQus = false }) => {
   );
 };
 
-export default Question;
+export default QuestionItem;

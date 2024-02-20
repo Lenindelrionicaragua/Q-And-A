@@ -9,12 +9,12 @@ import Home from "./pages/Home/Home";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LogInPage from "./pages/LoginPage/LoginPage";
 import UserList from "./pages/SignUpPage/UserList";
-import QuestionDetails from "./pages/QuestionDetails/QuestionDetails";
+import QuestionDetailsPage from "./pages/QuestionDetailsPage/QuestionDetailsPage";
 import QuestionList from "./pages/QuestionPage/QuestionPage";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
-import UserQuestionsPage from "./pages/UserProfilePage/Questions";
-import UserQuestionDetails from "./pages/UserProfilePage/QuestionDetails";
+import UserQuestionsPage from "./pages/UserQuestionsPage/UserQuestionsPage";
+import UserQuestionDetailsPage from "./pages/UserQuestionDetailsPage/UserQuestionDetailsPage";
 
 const App = () => {
   return (
@@ -35,13 +35,16 @@ const App = () => {
               <Route path="" element={<UserProfilePage />} />
               <Route path="questions">
                 <Route path="" element={<UserQuestionsPage />} />
-                <Route path=":questionId" element={<UserQuestionDetails />} />
+                <Route
+                  path=":questionId"
+                  element={<UserQuestionDetailsPage />}
+                />
               </Route>
             </Route>
 
             <Route path="/post-question" element={<PostQuestionPage />} />
             <Route path="/user" element={<UserList />} />
-            <Route path="/questions/:id" element={<QuestionDetails />} />
+            <Route path="/questions/:id" element={<QuestionDetailsPage />} />
             {/* /question-page was created to test db connection to "questions" collection */}
             <Route path="/question-page" element={<QuestionList />} />
           </Routes>

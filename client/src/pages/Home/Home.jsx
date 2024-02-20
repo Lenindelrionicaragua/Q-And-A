@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionList from "../../components/questions/QuestionList";
+import QuestionList from "../../components/QuestionList/QuestionList";
 import PageContent from "../../components/PageContent/PageContent";
 import TEST_ID from "./Home.testid";
 

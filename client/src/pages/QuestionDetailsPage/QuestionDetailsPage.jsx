@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Answer from "../../components/Answer/Answer";
+import AnswerItem from "../../components/AnswerItem/AnswerItem";
 import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import Question from "../../components/questions/Question";
-import "./QuestionDetails.css";
+import QuestionItem from "../../components/QuestionItem/QuestionItem";
+import "./QuestionDetailsPage.css";
 import { useAuth } from "../../Context/AuthContext";
 
-const QuestionDetails = () => {
+const QuestionDetailsPage = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
   const { user } = useAuth();
@@ -82,9 +82,9 @@ const QuestionDetails = () => {
 
   return (
     <div className="question-details-container">
-      <Question question={question} />
+      <QuestionItem question={question} />
       {question.answers?.map((answer, i) => (
-        <Answer
+        <AnswerItem
           key={i}
           answer={answer}
           handleDelete={handleDelete}
@@ -96,4 +96,4 @@ const QuestionDetails = () => {
   );
 };
 
-export default QuestionDetails;
+export default QuestionDetailsPage;

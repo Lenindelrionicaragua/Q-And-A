@@ -6,7 +6,7 @@ import questionsRouter from "./routes/questions.js";
 import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
-import userQuestionsRouter from "./routes/user/userQuestions.js";
+import userQuestionsRouter from "./routes/user/userQuestion.js";
 import publicQuestionsRouter from "./routes/publicQuestions.js";
 
 // Create an express server

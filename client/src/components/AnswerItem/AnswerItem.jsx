@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import "./Answer.css";
+import "./AnswerItem.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";

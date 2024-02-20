@@ -1,11 +1,11 @@
 import React from "react";
-import UserQuestions from "../../components/questions/UserQuestions";
+import UserQuestionList from "../../components/UserQuestionList/UserQuestionList";
 
 const UserQuestionsPage = () => {
   return (
     <div>
       <h1>Questions</h1>
-      <UserQuestions />
+      <UserQuestionList />
     </div>
   );
 };

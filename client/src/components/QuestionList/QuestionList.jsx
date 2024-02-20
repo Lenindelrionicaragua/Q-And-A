@@ -1,9 +1,10 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
-import SearchBar from "../../components/searchbar/SearchBar.jsx";
-import Sorting from "../sorting/Sorting";
-import Question from "./Question";
+import QuestionSorting from "../QuestionSorting/QuestionSorting";
+import QuestionItem from "../QuestionItem/QuestionItem";
+import "../QuestionList/QuestionList.module.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
+import SearchBar from "../searchbar/SearchBar.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -81,7 +82,7 @@ const QuestionList = () => {
     <div className="question-list">
       <div className="over-question-table">
         <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
-        <Sorting
+        <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
           isSortedByPopularity={isSortedByPopularity}
@@ -89,8 +90,8 @@ const QuestionList = () => {
         />
       </div>
       <div>
-        {sortedQuestions.map((qus, index) => (
-          <Question key={index} question={qus} />
+        {sortedQuestions.map((question, index) => (
+          <QuestionItem key={index} question={question} />
         ))}
       </div>
     </div>
