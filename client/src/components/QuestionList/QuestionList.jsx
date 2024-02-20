@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
@@ -12,31 +12,29 @@ const QuestionList = () => {
     fetchQuestions
   );
 
-  const [questions, setQuestions] = React.useState([]);
-  const [sortedQuestions, setSortedQuestions] = React.useState([]);
-
-  const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
-  const [isSortedByTime, setIsSortedByTime] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [term, setTerm] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [sortedQuestions, setSortedQuestions] = useState([]);
+  const [isSortedByPopularity, setIsSortedByPopularity] = useState(false);
+  const [isSortedByTime, setIsSortedByTime] = useState(false);
 
   function fetchQuestions(res) {
     setQuestions(res.questions);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     performFetch();
     return () => {
       cancelFetch();
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSortedQuestions(questions);
   }, [questions]);
 
   const runSearch = async (term) => {
     await performFetch(null, "/questions?searchTerm=" + term);
-    setSearchTerm(term);
   };
 
   function handleSortByPopularity() {
@@ -75,13 +73,16 @@ const QuestionList = () => {
     }
   }
 
-  if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
 
   return (
     <div className="question-list">
       <div className="over-question-table">
-        <SearchBarComponent searchTerm={searchTerm} runSearch={runSearch} />
+        <SearchBarComponent
+          setTerm={setTerm}
+          term={term}
+          runSearch={runSearch}
+        />
         <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
@@ -90,9 +91,13 @@ const QuestionList = () => {
         />
       </div>
       <div>
-        {sortedQuestions.map((question, index) => (
-          <QuestionItem key={index} question={question} />
-        ))}
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          sortedQuestions.map((question, index) => (
+            <QuestionItem key={index} question={question} />
+          ))
+        )}
       </div>
     </div>
   );
