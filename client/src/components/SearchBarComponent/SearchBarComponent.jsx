@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import "./SearchBar.css";
+import "./SearchBarComponent.css";
 
 const SearchBar = ({ searchTerm, runSearch }) => {
   const [term, setTerm] = React.useState(searchTerm);

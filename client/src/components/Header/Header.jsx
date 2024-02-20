@@ -118,6 +118,17 @@ const Header = () => {
             </li>
           )}
           {user && click && (
+            <li className="header-item">
+              <Link
+                to="/user-profile/questions"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                My Question
+              </Link>
+            </li>
+          )}
+          {user && click && (
             <li className="header-item header-links-mobile">
               <LogOutButton />
             </li>

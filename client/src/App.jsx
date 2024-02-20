@@ -34,7 +34,10 @@ const App = () => {
             <Route path="/user-profile">
               <Route path="" element={<UserProfilePage />} />
               <Route path="questions">
-                <Route path="" element={<UserQuestionsPage />} />
+                <Route
+                  path="/user-profile/questions"
+                  element={<UserQuestionsPage />}
+                />
                 <Route
                   path=":questionId"
                   element={<UserQuestionDetailsPage />}
