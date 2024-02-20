@@ -183,9 +183,9 @@ export const deleteAnswer = async (req, res) => {
       return;
     }
 
-    const deletedAnswer = await Answer.findByIdAndDelete(answerId);
+    const answer = await Answer.findById(answerId);
 
-    if (!deletedAnswer) {
+    if (!answer) {
       res.status(404).json({
         success: false,
         msg: `Answer with id ${answerId} does not exist`,
@@ -193,7 +193,13 @@ export const deleteAnswer = async (req, res) => {
       return;
     }
 
-    logInfo("Answer deleted successfully:", deletedAnswer);
+    if (answer.user_id !== req.userId) {
+      return res.sendStatus(403);
+    }
+
+    answer.delete();
+
+    logInfo("Answer deleted successfully:", answer);
 
     res.status(200).json({ success: true });
   } catch (error) {

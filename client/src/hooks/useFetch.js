@@ -48,6 +48,7 @@ const useFetch = (route, onReceived) => {
       headers: {
         "content-type": "application/json",
       },
+      credentials: "include",
     };
 
     const fetchData = async () => {
