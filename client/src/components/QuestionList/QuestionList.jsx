@@ -4,7 +4,7 @@ import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import "../QuestionList/QuestionList.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
-import SearchBar from "../searchbar/SearchBar.jsx";
+import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -81,7 +81,7 @@ const QuestionList = () => {
   return (
     <div className="question-list">
       <div className="over-question-table">
-        <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
+        <SearchBarComponent searchTerm={searchTerm} runSearch={runSearch} />
         <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
