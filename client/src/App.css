@@ -53,6 +53,7 @@ main {
   color: white;
   margin: 5px 4px;
   padding: 7px 15px;
+  max-height: 30px;
 }
 .flex-spanner {
   flex-grow: 1;
