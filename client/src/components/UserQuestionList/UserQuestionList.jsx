@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import Box from "@mui/material/Box";
 import UserQuestionItem from "../UserQuestionItem/UserQuestionItem";
 import Typography from "@mui/material/Typography";

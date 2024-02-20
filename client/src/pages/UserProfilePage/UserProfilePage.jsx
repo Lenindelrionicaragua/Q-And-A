@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import AvatarCreator from "../../components/AvatarCreator/AvatarCreator";

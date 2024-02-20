@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
 import "./QuestionDetailsPage.css";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const QuestionDetailsPage = () => {
   const [question, setQuestion] = useState({});

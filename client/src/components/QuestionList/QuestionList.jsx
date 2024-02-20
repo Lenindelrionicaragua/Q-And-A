@@ -2,7 +2,7 @@ import React from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
-import "../QuestionList/QuestionList.module.css";
+import "../QuestionList/QuestionList.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
 import SearchBar from "../searchbar/SearchBar.jsx";
 

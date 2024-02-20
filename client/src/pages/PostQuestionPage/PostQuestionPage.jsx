@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import MultiChoiceModules from "../../components/MultipleChoiceModules/MultipleChoiceModules.jsx";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext.js";
+import { useAuth } from "../../contexts/AuthContext.js";
 
 const PostQuestionPage = () => {
   const navigate = useNavigate();
