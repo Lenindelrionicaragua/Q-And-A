@@ -1,7 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import "./SearchBarComponent.css";
 
-function SearchBar({ term, setTerm, runSearch }) {
+function SearchBar({ runSearch }) {
+  debugger;
+  const [term, setTerm] = useState("");
   const handleChange = (e) => {
     const inputValue = e.target.value;
     const isInputCleared = inputValue === "" && term !== "";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
@@ -12,7 +12,6 @@ const QuestionList = () => {
     fetchQuestions
   );
 
-  const [term, setTerm] = useState("");
   const [questions, setQuestions] = useState([]);
   const [sortedQuestions, setSortedQuestions] = useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = useState(false);
@@ -33,9 +32,9 @@ const QuestionList = () => {
     setSortedQuestions(questions);
   }, [questions]);
 
-  const runSearch = async (term) => {
+  const runSearch = useCallback(async (term) => {
     await performFetch(null, "/questions?searchTerm=" + term);
-  };
+  }, []);
 
   function handleSortByPopularity() {
     const sortedQuestions = [...questions].sort((a, b) => {
@@ -78,11 +77,7 @@ const QuestionList = () => {
   return (
     <div className="question-list">
       <div className="over-question-table">
-        <SearchBarComponent
-          setTerm={setTerm}
-          term={term}
-          runSearch={runSearch}
-        />
+        <SearchBarComponent runSearch={runSearch} />
         <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
