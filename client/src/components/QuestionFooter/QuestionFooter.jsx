@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import TimeAgo from "../TimeAgo/TimeAgo";
 import styles from "./QuestionFooter.module.css";
 
-const QuestionFooter = ({  question }) => {
+const QuestionFooter = ({ question }) => {
   return (
     <Stack
       flex={1}
