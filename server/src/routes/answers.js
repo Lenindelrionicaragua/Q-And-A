@@ -17,5 +17,3 @@ answerRouter.delete("/:answerId/delete", deleteAnswer);
 answerRouter.post("/:answerId/like", likeAnswer);
 
 export default answerRouter;
-
-
