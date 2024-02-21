@@ -2,10 +2,9 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import TimeAgo from "../TimeAgo/TimeAgo";
+import styles from "./QuestionFooter.module.css";
 
-const QuestionFooter = (props) => {
-  const { classes, question } = props;
-
+const QuestionFooter = ({  question }) => {
   return (
     <Stack
       flex={1}
@@ -15,7 +14,7 @@ const QuestionFooter = (props) => {
       flexWrap="wrap"
       gap={3}
     >
-      <ul className={classes.tags}>
+      <ul className={styles.tags}>
         {question.module_ids?.map((tag) => (
           <li key={tag}>
             <span>{tag}</span>

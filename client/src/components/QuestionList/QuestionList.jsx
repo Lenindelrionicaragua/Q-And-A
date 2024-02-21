@@ -1,11 +1,10 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
-import Box from "@mui/material/Box";
-import SearchBar from "../../components/searchbar/SearchBar.jsx";
-import Sorting from "../sorting/Sorting";
-import Question from "./Question";
-import "./question.module.css";
+import QuestionSorting from "../QuestionSorting/QuestionSorting";
+import QuestionItem from "../QuestionItem/QuestionItem";
+import "../QuestionList/QuestionList.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
+import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
 
 const QuestionList = () => {
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -80,22 +79,22 @@ const QuestionList = () => {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <Box component="section" py={4}>
+    <div className="question-list">
       <div className="over-question-table">
-        <SearchBar searchTerm={searchTerm} runSearch={runSearch} />
-        <Sorting
+        <SearchBarComponent searchTerm={searchTerm} runSearch={runSearch} />
+        <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
           isSortedByPopularity={isSortedByPopularity}
           isSortedByTime={isSortedByTime}
         />
       </div>
-      <ul>
-        {sortedQuestions.map((qus, index) => (
-          <Question key={index} question={qus} onDelete={setQuestions} />
+      <div>
+        {sortedQuestions.map((question, index) => (
+          <QuestionItem key={index} question={question} />
         ))}
-      </ul>
-    </Box>
+      </div>
+    </div>
   );
 };
 

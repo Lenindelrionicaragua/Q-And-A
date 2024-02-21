@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { logInfo } from "../../../../server/src/util/logging";
 import useFetch from "../../hooks/useFetch";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const LoginForm = ({ onLogin }) => {
   const [formData, setFormData] = useState({

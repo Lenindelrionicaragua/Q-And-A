@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import Logo from "../Logo/Logo";
 import Dropdown from "../Dropdown/Dropdown";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import LogOutButton from "../LogOutButton/LogOutButton";
 
 const Header = () => {
@@ -114,6 +114,17 @@ const Header = () => {
                 onClick={closeMobileMenu}
               >
                 Post Question
+              </Link>
+            </li>
+          )}
+          {user && click && (
+            <li className="header-item">
+              <Link
+                to="/user-profile/questions"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                My Question
               </Link>
             </li>
           )}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuItems } from "../MenuItems/MenuItems";
 import "./Dropdown.css";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Dropdown() {
   const { logout } = useAuth();

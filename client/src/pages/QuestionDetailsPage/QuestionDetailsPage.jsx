@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Answer from "../../components/Answer/Answer";
+import AnswerItem from "../../components/AnswerItem/AnswerItem";
 import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import Question from "../../components/questions/Question";
-import "./QuestionDetails.css";
-import { useAuth } from "../../Context/AuthContext";
+import QuestionItem from "../../components/QuestionItem/QuestionItem";
+import "./QuestionDetailsPage.css";
+import { useAuth } from "../../contexts/AuthContext";
 
-const QuestionDetails = () => {
+const QuestionDetailsPage = () => {
   const [question, setQuestion] = useState({});
   const { id } = useParams();
   const { user } = useAuth();
@@ -62,13 +62,18 @@ const QuestionDetails = () => {
     }
   );
   const handleDelete = (answerId) => {
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    deleteAnswer(options, getDeleteUrl(id, answerId));
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this answer?"
+    );
+    if (confirmDelete) {
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      deleteAnswer(options, getDeleteUrl(id, answerId));
+    }
   };
 
   const isAnswerBelongsToUser = (answer) => {
@@ -76,14 +81,10 @@ const QuestionDetails = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <div className="question-wrapper">
-        <Question question={question} />
-      </div>
+    <div className="question-details-container">
+      <QuestionItem question={question} />
       {question.answers?.map((answer, i) => (
-        <Answer
+        <AnswerItem
           key={i}
           answer={answer}
           handleDelete={handleDelete}
@@ -95,4 +96,4 @@ const QuestionDetails = () => {
   );
 };
 
-export default QuestionDetails;
+export default QuestionDetailsPage;
