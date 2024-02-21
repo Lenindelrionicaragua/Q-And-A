@@ -92,7 +92,7 @@ const QuestionList = () => {
       </div>
       <ul>
         {sortedQuestions.map((qus, index) => (
-          <Question key={index} question={qus} />
+          <Question key={index} question={qus} onDelete={setQuestions} />
         ))}
       </ul>
     </Box>

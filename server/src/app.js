@@ -7,7 +7,7 @@ import { sessionMiddleware } from "./middleware/sessionMiddleware.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
 import userQuestionsRouter from "./routes/user/userQuestions.js";
-import publicQuestionsRouter from "./routes/publicQuestions.js";
+//import publicQuestionsRouter from "./routes/publicQuestions.js";
 
 // Create an express server
 const app = express();
@@ -28,7 +28,7 @@ app.use(cors());
  */
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
-app.use("/api/questions", publicQuestionsRouter);
+//app.use("/api/questions", publicQuestionsRouter);
 
 app.use("/api/questions", questionsRouter);
 app.use("/api/answer", answerRouter);
