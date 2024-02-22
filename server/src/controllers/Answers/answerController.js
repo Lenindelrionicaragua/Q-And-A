@@ -210,11 +210,9 @@ export const deleteAnswer = async (req, res) => {
 export const likeAnswer = async (req, res) => {
   const { answerId } = req.params;
   const { user_id } = req.body;
-  const currentUser = "";
   try {
     const isAnswerBelongsToUser =
-      (await Answer.findOne({ user_id: currentUser, answer_id: answerId })) !=
-      null;
+      (await Answer.findOne({ user_id: user_id, answer_id: answerId })) != null;
 
     if (isAnswerBelongsToUser) {
       logInfo("Answer belongs to user");
@@ -233,7 +231,7 @@ export const likeAnswer = async (req, res) => {
       await Answer.findByIdAndUpdate(answerId, { $inc: { like_counter: 1 } });
     }
 
-    const { like_counter } = await Answer.findOne({ answer_id: answerId })
+    const { like_counter } = await Answer.findById(answerId)
       .select("like_counter")
       .lean();
 
