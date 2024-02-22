@@ -3,6 +3,6 @@ import createQuestion from "../controllers/Questions/createQuestion.js";
 
 const questionsRouter = express.Router();
 
-questionsRouter.post("/create", createQuestion);
+questionsRouter.post("/", createQuestion);
 
 export default questionsRouter;
