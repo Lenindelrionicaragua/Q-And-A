@@ -18,7 +18,6 @@ const LoginForm = ({ onLogin }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    logInfo(`${name} input value changed to: ${value}`);
   };
 
   const handleLoginSuccess = (response) => {

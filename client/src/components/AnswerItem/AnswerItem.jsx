@@ -34,7 +34,8 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
 
   const handleLike = () => {
     const like = {
-      user_id: user?.id ?? user?.name,
+      current_user_id: user?.id ?? user?.name,
+      answer_owner_user_id: answer.user_id,
       answer_id: answer._id,
     };
 
