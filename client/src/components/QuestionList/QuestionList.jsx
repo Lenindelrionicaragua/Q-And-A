@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
-import Question from "../QuestionItem/QuestionItem.jsx";
+import QuestionItem from "../QuestionItem/QuestionItem";
 import { logInfo } from "../../../../server/src/util/logging.js";
 import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
 
@@ -10,7 +10,7 @@ const QuestionList = () => {
     "/questions",
     fetchQuestions
   );
-
+  console.log(isLoading);
   const [questions, setQuestions] = useState([]);
   const [sortedQuestions, setSortedQuestions] = useState([]);
   const [isSortedByPopularity, setIsSortedByPopularity] = useState(false);
@@ -87,7 +87,7 @@ const QuestionList = () => {
       <ul>
         {sortedQuestions.map((question) => (
           <li className="questionItem" key={question._id}>
-            <Question question={question} onDelete={setQuestions} />
+            <QuestionItem question={question} />
           </li>
         ))}
       </ul>
