@@ -44,7 +44,7 @@ export const login = async (req, res) => {
 
         // Save token in cookie
         res.cookie("session", token, {
-          maxAge: 900000,
+          maxAge: 86400000,
           httpOnly: true,
           sameSite: "lax",
         });

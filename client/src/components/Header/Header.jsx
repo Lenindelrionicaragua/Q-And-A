@@ -5,7 +5,7 @@ import "./Header.css";
 import Logo from "../Logo/Logo";
 import Dropdown from "../Dropdown/Dropdown";
 import { useAuth } from "../../contexts/AuthContext";
-import LogOutButton from "../LogOutButton/LogOutButton";
+import LogOutButtonToggleMenu from "../LogOutButtonToggleMenu/LogOutButtonToggleMenu";
 
 const Header = () => {
   const { user } = useAuth();
@@ -130,7 +130,7 @@ const Header = () => {
           )}
           {user && click && (
             <li className="header-item header-links-mobile">
-              <LogOutButton />
+              <LogOutButtonToggleMenu />
             </li>
           )}
           {!click && (
