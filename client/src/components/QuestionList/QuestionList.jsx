@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
@@ -10,30 +10,35 @@ const QuestionList = () => {
     "/questions",
     fetchQuestions
   );
+
   console.log(isLoading);
-  const [questions, setQuestions] = useState([]);
-  const [sortedQuestions, setSortedQuestions] = useState([]);
-  const [isSortedByPopularity, setIsSortedByPopularity] = useState(false);
-  const [isSortedByTime, setIsSortedByTime] = useState(false);
+
+  const [questions, setQuestions] = React.useState([]);
+  const [sortedQuestions, setSortedQuestions] = React.useState([]);
+
+  const [isSortedByPopularity, setIsSortedByPopularity] = React.useState(false);
+  const [isSortedByTime, setIsSortedByTime] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   function fetchQuestions(res) {
     setQuestions(res.questions);
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     performFetch();
     return () => {
       cancelFetch();
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSortedQuestions(questions);
   }, [questions]);
 
-  const runSearch = useCallback(async (term) => {
+  const runSearch = async (term) => {
     await performFetch(null, "/questions?searchTerm=" + term);
-  }, []);
+    setSearchTerm(term);
+  };
 
   function handleSortByPopularity() {
     const sortedQuestions = [...questions].sort((a, b) => {
@@ -71,12 +76,13 @@ const QuestionList = () => {
     }
   }
 
+  if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
 
   return (
     <div className="question-list">
       <div className="over-question-table">
-        <SearchBarComponent runSearch={runSearch} />
+        <SearchBarComponent searchTerm={searchTerm} runSearch={runSearch} />
         <QuestionSorting
           handleSortByPopularity={handleSortByPopularity}
           handleSortByTime={handleSortByTime}
