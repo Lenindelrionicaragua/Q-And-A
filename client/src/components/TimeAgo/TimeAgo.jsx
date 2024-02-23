@@ -27,7 +27,7 @@ const TimeAgo = ({ createdAt }) => {
 
     calculateTimeAgo();
 
-    // Update the time every minute
+    // Update the time every minutes
     const interval = setInterval(calculateTimeAgo, 60000);
 
     return () => clearInterval(interval);
