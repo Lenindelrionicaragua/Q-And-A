@@ -209,13 +209,13 @@ export const deleteAnswer = async (req, res) => {
 
 export const likeAnswer = async (req, res) => {
   const { answerId } = req.params;
-  const { current_user_id, answer_owner_user_id } = req.body;
+  const currentUserId = req.userId;
+
   try {
-    const isAnswerBelongsToUser =
-      (await Answer.findOne({
-        user_id: current_user_id,
-        _id: answerId,
-      })) != null;
+    const answer = await Answer.findOne({
+      _id: answerId,
+    });
+    const isAnswerBelongsToUser = answer?.user_id == currentUserId;
 
     if (isAnswerBelongsToUser) {
       logInfo("Answer belongs to user");
@@ -223,17 +223,21 @@ export const likeAnswer = async (req, res) => {
         .status(400)
         .json({ success: false, message: "User cannot like its own answer" });
     }
+
     const existingLike = await AnswerLikes.findOne({
-      answer_owner_user_id,
-      answerId,
+      user_id: currentUserId,
+      answer_id: answerId,
     });
 
     if (existingLike) {
-      await AnswerLikes.deleteOne({ answer_owner_user_id, answerId });
+      await AnswerLikes.deleteOne({
+        user_id: currentUserId,
+        answer_id: answerId,
+      });
       await Answer.findByIdAndUpdate(answerId, { $inc: { like_counter: -1 } });
     } else {
       const newLike = new AnswerLikes({
-        user_id: answer_owner_user_id,
+        user_id: currentUserId,
         answer_id: answerId,
       });
       await newLike.save();
