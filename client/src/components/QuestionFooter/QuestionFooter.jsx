@@ -1,10 +1,17 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import TimeAgo from "../TimeAgo/TimeAgo";
 import styles from "./QuestionFooter.module.css";
 
 const QuestionFooter = ({ question }) => {
+  const formattedDate = !question.created_at
+    ? "unknown date"
+    : new Date(question.created_at).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+
   return (
     <Stack
       flex={1}
@@ -28,13 +35,10 @@ const QuestionFooter = ({ question }) => {
         flexWrap="wrap"
         rowGap={2}
       >
-        {/* <Typography>{question.answers.length} Answers</Typography> */}
         <Typography>{question.like_counter} Like</Typography>
         <Typography>{question.visit_counter} Views</Typography>
         <Typography>Asked by:{question.user_name}</Typography>
-        <Typography>
-          <TimeAgo createdAt={question.created_at} />
-        </Typography>
+        <Typography>{formattedDate}</Typography>
       </Stack>
     </Stack>
   );

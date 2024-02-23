@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import AnswerItem from "../../components/AnswerItem/AnswerItem";
-import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { useAuth } from "../../contexts/AuthContext";
+import AnswerItem from "../../components/AnswerItem/AnswerItem";
+import CreateAnswer from "../../components/CreateAnswer/CreateAnswer";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
 import "./QuestionDetailsPage.css";
-import { useAuth } from "../../contexts/AuthContext";
 
 const QuestionDetailsPage = () => {
   const [question, setQuestion] = useState({});

@@ -1,8 +1,7 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
-import QuestionItem from "../QuestionItem/QuestionItem";
-import "../QuestionList/QuestionList.css";
+import Question from "../QuestionItem/QuestionItem.jsx";
 import { logInfo } from "../../../../server/src/util/logging.js";
 import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
 
@@ -89,11 +88,13 @@ const QuestionList = () => {
           isSortedByTime={isSortedByTime}
         />
       </div>
-      <div>
-        {sortedQuestions.map((question, index) => (
-          <QuestionItem key={index} question={question} />
+      <ul>
+        {sortedQuestions.map((question) => (
+          <li className="questionItem" key={question._id}>
+            <Question question={question} onDelete={setQuestions} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

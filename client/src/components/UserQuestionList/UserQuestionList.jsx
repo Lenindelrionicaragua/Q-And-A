@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useAuth } from "../../contexts/AuthContext";
 import Box from "@mui/material/Box";
-import UserQuestionItem from "../UserQuestionItem/UserQuestionItem";
+import QuestionItem from "../QuestionItem/QuestionItem";
 import Typography from "@mui/material/Typography";
 
 const UserQuestionList = () => {
@@ -37,10 +37,10 @@ const UserQuestionList = () => {
       {hasQuestions && (
         <ul>
           {userQuestions.map((qus) => (
-            <UserQuestionItem
-              key={qus._id.toString()}
+            <QuestionItem
+              key={qus._id}
               question={qus}
-              isUserQus={true}
+              onDelete={setUserQuestions}
             />
           ))}
         </ul>
