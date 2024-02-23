@@ -24,10 +24,11 @@ const QuestionItem = ({ question, onDelete }) => {
   } = useFetch(`/questions/${questionId}/like`, (res) => {
     if (res.likeItem) {
       setLikesCount((prevLikesCount) => prevLikesCount + 1);
-      //console.log("run");
     } else {
       setLikesCount((prevLikesCount) => prevLikesCount - 1);
     }
+    return;
+    //console.log(res.likeItem);
   });
 
   const {

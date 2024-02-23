@@ -31,14 +31,13 @@ app.use(cookieParser());
  * We use /api/ at the start of every route!
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
-app.use("/api/auth", authRouter);
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", requireAuth, userRouter);
 app.use("/api/user/userQuestions", requireAuth, userQuestionsRouter);
 app.use("/api/questions", publicQuestionsRouter);
-app.use("/api/questions/create", requireAuth, questionsRouter);
-// app.get("/api/answer", getAnswers);
+app.use("/api/questions", requireAuth, questionsRouter);
+//app.get("/api/answer", getAnswers);
 app.use("/api/answer", requireAuth, answerRouter);
 app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
 

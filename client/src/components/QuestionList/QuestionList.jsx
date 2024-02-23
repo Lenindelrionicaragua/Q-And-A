@@ -93,7 +93,7 @@ const QuestionList = () => {
       <ul>
         {sortedQuestions.map((question) => (
           <li className="questionItem" key={question._id}>
-            <QuestionItem question={question} />
+            <QuestionItem question={question} onDelete={setQuestions} />
           </li>
         ))}
       </ul>

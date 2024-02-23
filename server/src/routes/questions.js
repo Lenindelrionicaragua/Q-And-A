@@ -8,5 +8,4 @@ const questionsRouter = express.Router();
 questionsRouter.post("/create", createQuestion);
 questionsRouter.delete("/:questionId/delete", deleteQuestion);
 questionsRouter.post("/:questionId/like", questionLikes);
-
 export default questionsRouter;
