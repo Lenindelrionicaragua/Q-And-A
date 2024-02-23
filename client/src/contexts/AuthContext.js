@@ -7,6 +7,14 @@ const AuthContext = createContext();
 
 // Authentication provider component
 export const AuthProvider = ({ children }) => {
+  // Define onLogoutSuccess function before referencing it
+  const onLogoutSuccess = () => {
+    // Clear the authentication context and localStorage upon receiving a successful response
+    setUser(null);
+    localStorage.removeItem("user");
+    logInfo("Logout successful in AuthContext");
+  };
+
   const { performFetch } = useFetch("/auth/log-out", onLogoutSuccess);
 
   // State to manage the user's authentication status
@@ -27,13 +35,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
 
     performFetch({ method: "POST", url: "/auth/log-out" });
-  };
-
-  const onLogoutSuccess = () => {
-    // Clear the authentication context and localStorage upon receiving a successful response
-    setUser(null);
-    localStorage.removeItem("user");
-    logInfo("Logout successful in AuthContext");
   };
 
   return (
