@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { logInfo } from "../../../server/src/util/logging";
+// import { logInfo } from "../../../server/src/util/logging";
 /**
  * Our useFetch hook should be used for all communication with the server.
  *
@@ -68,9 +68,9 @@ const useFetch = (route, onReceived) => {
       const jsonResult = await res.json();
 
       // Log the response for debugging
-      logInfo(
-        "Response from server in useFetch: " + JSON.stringify(jsonResult)
-      );
+      // logInfo(
+      //   "Response from server in useFetch: " + JSON.stringify(jsonResult)
+      // );
 
       if (jsonResult.success === true) {
         onReceived(jsonResult);
