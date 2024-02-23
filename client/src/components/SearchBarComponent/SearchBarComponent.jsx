@@ -1,29 +1,31 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import "./SearchBarComponent.css";
 
-const SearchBar = ({ searchTerm, runSearch }) => {
-  const [term, setTerm] = React.useState(searchTerm);
+function SearchBar({ runSearch }) {
+  const [term, setTerm] = useState("");
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    const isInputCleared = inputValue === "" && term !== "";
+
+    if (inputValue?.length >= 3 || isInputCleared) {
+      runSearch(inputValue);
+    }
+
+    setTerm(inputValue);
+  };
 
   return (
     <div className="search-form-wrapper">
-      <form
-        className="search-form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          runSearch(term);
-        }}
-      >
+      <form className="search-form">
         <input
           type="text"
           value={term}
           placeholder="Search in all questions"
-          onChange={(event) => {
-            setTerm(event.target.value);
-          }}
+          onChange={handleChange}
         />
       </form>
     </div>
   );
-};
+}
 
 export default memo(SearchBar);

@@ -1,9 +1,9 @@
 import React from "react";
-import "./LogOutButton.css";
+import "./LogOutButtonToggleMenu.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-const LogOutButton = () => {
+const LogOutButtonToggleMenu = () => {
   const { logout } = useAuth();
 
   const handleLogout = () => {
@@ -17,4 +17,4 @@ const LogOutButton = () => {
   );
 };
 
-export default LogOutButton;
+export default LogOutButtonToggleMenu;
