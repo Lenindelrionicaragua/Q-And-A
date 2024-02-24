@@ -1,7 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import styles from "./QuestionFooter.module.css";
 
 const QuestionFooter = ({ question }) => {
   const formattedDate = !question.created_at
@@ -21,9 +20,9 @@ const QuestionFooter = ({ question }) => {
       flexWrap="wrap"
       gap={3}
     >
-      <ul className={styles.tags}>
+      <ul className="question-pins">
         {question.module_ids?.map((tag) => (
-          <li key={tag}>
+          <li key={tag} className="pin tag">
             <span>{tag}</span>
           </li>
         ))}
@@ -35,10 +34,10 @@ const QuestionFooter = ({ question }) => {
         flexWrap="wrap"
         rowGap={2}
       >
-        <Typography>{question.like_counter} Like</Typography>
-        <Typography>{question.visit_counter} Views</Typography>
-        <Typography>Asked by:{question.user_name}</Typography>
-        <Typography>{formattedDate}</Typography>
+        <Typography className="pin">{question.like_counter} Like</Typography>
+        <Typography className="pin">{question.visit_counter} Views</Typography>
+        <Typography className="pin">Asked by:{question.user_name}</Typography>
+        <Typography className="pin">{formattedDate}</Typography>
       </Stack>
     </Stack>
   );

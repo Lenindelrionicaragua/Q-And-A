@@ -85,30 +85,31 @@ const QuestionItem = ({ question, onDelete }) => {
     : false;
 
   return (
-    <div className="questionItem">
+    <div className="question-wrapper">
       <Stack direction="row" justifyContent="space-between" alignItems="start">
         <Stack spacing={2} mb={4}>
           <Link to={`/questions/${question._id}`}>
-            <Typography
-              component="h3"
-              variant="h6"
-              fontWeight="bold"
-              color="primary.main"
-            >
-              {question.question_title}
-            </Typography>
+            <h1>{question.question_title}</h1>
           </Link>
           <Typography component="span">{question.question_content}</Typography>
         </Stack>
-        <Stack direction="row" spacing={1}>
-          <IconButton onClick={addLikeHandler} disabled={!allowToLike}>
+        <Stack className="button-group" direction="row" spacing={1}>
+          <IconButton
+            className="icon-button"
+            onClick={addLikeHandler}
+            disabled={!allowToLike}
+          >
             {!likeLoading ? (
               <ThumbUpIcon style={{ fontSize: "22px" }} />
             ) : (
               "..."
             )}
           </IconButton>
-          <IconButton onClick={deleteQuestionHandler} disabled={!allowToDelete}>
+          <IconButton
+            className="icon-button delete"
+            onClick={deleteQuestionHandler}
+            disabled={!allowToDelete}
+          >
             {!isLoading ? <DeleteIcon style={{ fontSize: "22px" }} /> : "..."}
           </IconButton>
         </Stack>
