@@ -1,10 +1,10 @@
 import React from "react";
-import { useAuth } from "../../contexts/AuthContext";
+import { useUser } from "../../contexts/UserContext"; // Importa useUser desde UserContext en lugar de useAuth
 import useFetch from "../../hooks/useFetchAvatar";
 import "../AvatarCreator/AvatarCreator.css";
 
 const AvatarCreator = () => {
-  const { user, updateUserAvatar } = useAuth();
+  const { user, updateUser } = useUser(); // Usa useUser en lugar de useAuth
   const { generateRandomAvatar } = useFetch();
   const [avatar, setAvatar] = React.useState(null);
 
@@ -12,7 +12,8 @@ const AvatarCreator = () => {
     try {
       const newAvatar = await generateRandomAvatar();
       setAvatar(newAvatar);
-      updateUserAvatar(newAvatar);
+      // Actualiza el usuario con el nuevo avatar
+      updateUser({ ...user, avatar: newAvatar });
     } catch (error) {
       console.error("Error generating avatar:", error);
     }
