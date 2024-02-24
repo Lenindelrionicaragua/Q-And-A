@@ -58,11 +58,11 @@ export const login = async (req, res) => {
             name: userFound.name,
           },
         });
+      } else {
+        res.status(401).json({ success: false, msg: "Incorrect password" });
       }
     } else {
-      res
-        .status(401)
-        .json({ success: false, msg: "Invalid credentials - User not found" });
+      res.status(401).json({ success: false, msg: "User not found" });
     }
   } catch (error) {
     res.status(500).json({ success: false, msg: "Internal server error" });

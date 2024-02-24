@@ -89,6 +89,7 @@ const QuestionDetailsPage = () => {
           answer={answer}
           handleDelete={handleDelete}
           isAnswerBelongsToUser={isAnswerBelongsToUser(answer)}
+          question={question}
         />
       ))}
       <CreateAnswer handleSubmit={handleCreateAnswer} />
