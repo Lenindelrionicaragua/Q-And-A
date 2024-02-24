@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
-import "../QuestionList/QuestionList.css";
 import { logInfo } from "../../../../server/src/util/logging.js";
 import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
 
@@ -89,8 +88,12 @@ const QuestionList = () => {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          sortedQuestions.map((question, index) => (
-            <QuestionItem key={index} question={question} />
+          sortedQuestions.map((question) => (
+            <QuestionItem
+              key={question._id}
+              question={question}
+              onDelete={setQuestions}
+            />
           ))
         )}
       </div>

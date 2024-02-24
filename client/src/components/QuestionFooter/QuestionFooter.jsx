@@ -1,10 +1,16 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import TimeAgo from "../TimeAgo/TimeAgo";
-import styles from "./QuestionFooter.module.css";
 
 const QuestionFooter = ({ question }) => {
+  const formattedDate = !question.created_at
+    ? "unknown date"
+    : new Date(question.created_at).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
   return (
     <Stack
       flex={1}
@@ -14,9 +20,9 @@ const QuestionFooter = ({ question }) => {
       flexWrap="wrap"
       gap={3}
     >
-      <ul className={styles.tags}>
+      <ul className="question-pins">
         {question.module_ids?.map((tag) => (
-          <li key={tag}>
+          <li key={tag} className="pin tag">
             <span>{tag}</span>
           </li>
         ))}
@@ -28,11 +34,10 @@ const QuestionFooter = ({ question }) => {
         flexWrap="wrap"
         rowGap={2}
       >
-        <Typography>{question.like_counter} Like</Typography>
-        <Typography>{question.visit_counter} Views</Typography>
-        <Typography>Asked by:{question.user_name}</Typography>
-        <Typography>
-          <TimeAgo createdAt={question.created_at} />
+        <Typography className="pin">{question.like_counter} Like</Typography>
+        <Typography className="pin">{question.visit_counter} Views</Typography>
+        <Typography className="pin">
+          Asked by {question.user_name} on {formattedDate}
         </Typography>
       </Stack>
     </Stack>

@@ -57,6 +57,7 @@
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
     "jsonwebtoken": "^9.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

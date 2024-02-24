@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import UserQuestionItem from "../../components/UserQuestionItem/UserQuestionItem";
+
+import QuestionItem from "../../components/QuestionItem/QuestionItem";
+
 import UserAnswersList from "../../components/UserAnswerList/UserAnswerList";
 
 const UserQuestionDetailsPage = () => {
@@ -17,7 +19,7 @@ const UserQuestionDetailsPage = () => {
 
   useEffect(() => {
     performFetch();
-    console.log("run");
+
     return () => cancelFetch();
   }, [questionId]);
 
@@ -26,7 +28,7 @@ const UserQuestionDetailsPage = () => {
 
   return (
     <div>
-      <UserQuestionItem question={question} />
+      <QuestionItem question={question} />
       <UserAnswersList answers={question.answers} />
     </div>
   );

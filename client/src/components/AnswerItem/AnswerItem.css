@@ -42,8 +42,8 @@
 
 .button-group {
   position: absolute;
-  right: 10px;
-  top: 5px;
+  right: 3px;
+  top: 15px;
 }
 .button-group button {
   padding: 3px;
