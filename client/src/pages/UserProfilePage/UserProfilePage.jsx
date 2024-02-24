@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import AvatarCreator from "../../components/AvatarCreator/AvatarCreator";
 import "./UserProfilePage.css";
 
 const UserProfilePage = () => {
@@ -15,6 +16,7 @@ const UserProfilePage = () => {
     <div id="user-profile">
       <div id="user-profile-details">
         <h2>User Profile</h2>
+        <AvatarCreator className="avatar-creator" />
         <p>Name: {user.name}</p>
         <p>Email: {user.email}</p>
       </div>
