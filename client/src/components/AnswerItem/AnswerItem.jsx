@@ -61,17 +61,12 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
   );
 
   const handleApprove = () => {
-    const approve = {
-      current_user_id: user?.id ?? user?.name,
-      answer_owner_user_id: answer.user_id,
-    };
-
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(approve),
+      body: JSON.stringify({}),
     };
 
     fetchApproveValue(options);
@@ -79,7 +74,7 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
 
   return (
     <div className="answer-wrapper">
-      <div className="button-group">
+      <div className="approval-wrapper">
         <Button
           className="icon-button"
           disabled={
@@ -90,11 +85,13 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
           onClick={handleApprove}
         >
           {isApproved ? (
-            <StarBorderIcon style={{ fontSize: "18px", color: "#76f013" }} />
+            <StarBorderIcon style={{ fontSize: "24px", color: "#76f013" }} />
           ) : (
-            <StarBorderIcon style={{ fontSize: "18px" }} />
+            <StarBorderIcon style={{ fontSize: "24px" }} />
           )}
         </Button>
+      </div>
+      <div className="button-group">
         <Button
           className="icon-button"
           onClick={handleLike}

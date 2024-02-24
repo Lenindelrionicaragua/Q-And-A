@@ -9,6 +9,7 @@ import publicQuestionsRouter from "./routes/publicQuestions.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
 import userQuestionsRouter from "./routes/user/userQuestion.js";
+import { createAnswer } from "./controllers/Answers/answerController.js";
 
 dotenv.config();
 
@@ -37,7 +38,7 @@ app.use("/api/user/userQuestions", requireAuth, userQuestionsRouter);
 app.use("/api/questions", publicQuestionsRouter);
 app.use("/api/questions/create", requireAuth, questionsRouter);
 // app.get("/api/answer", getAnswers);
-app.use("/api/answer", requireAuth, answerRouter);
+app.post("/api/answer/create", requireAuth, createAnswer);
 app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
 
 export default app;
