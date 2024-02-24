@@ -7,7 +7,7 @@ const QuestionFooter = ({ question }) => {
     ? "unknown date"
     : new Date(question.created_at).toLocaleDateString("en-US", {
         year: "numeric",
-        month: "short",
+        month: "long",
         day: "numeric",
       });
 
@@ -36,8 +36,9 @@ const QuestionFooter = ({ question }) => {
       >
         <Typography className="pin">{question.like_counter} Like</Typography>
         <Typography className="pin">{question.visit_counter} Views</Typography>
-        <Typography className="pin">Asked by:{question.user_name}</Typography>
-        <Typography className="pin">{formattedDate}</Typography>
+        <Typography className="pin">
+          Asked by {question.user_name} on {formattedDate}
+        </Typography>
       </Stack>
     </Stack>
   );

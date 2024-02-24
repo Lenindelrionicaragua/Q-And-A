@@ -100,17 +100,17 @@ const QuestionItem = ({ question, onDelete }) => {
             disabled={!allowToLike}
           >
             {!likeLoading ? (
-              <ThumbUpIcon style={{ fontSize: "22px" }} />
+              <ThumbUpIcon style={{ fontSize: "18px" }} />
             ) : (
               "..."
             )}
           </IconButton>
           <IconButton
-            className="icon-button delete"
+            className={allowToDelete ? "icon-button delete" : "icon-button"}
             onClick={deleteQuestionHandler}
             disabled={!allowToDelete}
           >
-            {!isLoading ? <DeleteIcon style={{ fontSize: "22px" }} /> : "..."}
+            {!isLoading ? <DeleteIcon style={{ fontSize: "18px" }} /> : "..."}
           </IconButton>
         </Stack>
       </Stack>
