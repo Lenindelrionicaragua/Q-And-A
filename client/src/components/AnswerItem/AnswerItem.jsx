@@ -14,6 +14,7 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(answer?.like_counter ?? 0);
   const { id } = useParams();
+
   const getFormattedDate = (date) => {
     if (!date) return "unknown date";
     return new Date(date).toLocaleDateString("en-US", {
@@ -33,17 +34,12 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser }) => {
   );
 
   const handleLike = () => {
-    const like = {
-      user_id: user?.id ?? user?.name,
-      answer_id: answer._id,
-    };
-
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(like),
+      body: JSON.stringify({}),
     };
 
     fetchLikeCount(options);
