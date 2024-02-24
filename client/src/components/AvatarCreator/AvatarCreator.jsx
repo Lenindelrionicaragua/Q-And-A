@@ -21,7 +21,7 @@ const AvatarCreator = () => {
   return (
     <div className="avatar-creator">
       <button className="button-creator" onClick={createAvatar}>
-        Change Avatar
+        Create Avatar
       </button>
       {avatar && (
         <div className="avatar-container">
