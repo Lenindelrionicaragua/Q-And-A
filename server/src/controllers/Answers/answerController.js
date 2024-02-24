@@ -256,3 +256,24 @@ export const likeAnswer = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+export const approveAnswer = async (req, res) => {
+  const { answerId } = req.params;
+
+  try {
+    let answer = await Answer.findById(answerId);
+    if (!answer) {
+      res.status(404).json({ success: false, message: "Answer not found" });
+      return;
+    }
+    answer.isApproved = answer.isApproved ? false : true;
+    await answer.save();
+    res.json({
+      success: true,
+      message: "Answer approved successfully",
+      isApproved: answer.isApproved,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
