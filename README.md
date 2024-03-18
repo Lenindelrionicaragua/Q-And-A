@@ -6,7 +6,7 @@ This is the final project for the HackYourFuture curriculum we did as a class us
 
 > TODO: Add short description of the app
 
-`[Click here for the Demo version](TODO: add link)`
+[`[Click here for the Demo version](TODO: add link)`](https://c45-group-c-f97969269a84.herokuapp.com/)
 
 ## 1. Setup
 
